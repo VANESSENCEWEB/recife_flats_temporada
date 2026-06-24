@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recife Flats Temporada — Apartamentos premium em Recife</title>
+  <meta name="description" content="Apartamentos totalmente equipados para temporada em Recife. Conforto, localização e experiências únicas a passos da praia." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+  <!-- CSS: ordem importa -->
+  <link rel="stylesheet" href="./styles/tokens.css" />
+  <link rel="stylesheet" href="./styles/base.css" />
+  <link rel="stylesheet" href="./styles/utilities.css" />
+  <link rel="stylesheet" href="./styles/components/announcement.css" />
+  <link rel="stylesheet" href="./styles/components/button.css" />
+  <link rel="stylesheet" href="./styles/components/navbar.css" />
+  <link rel="stylesheet" href="./styles/components/menu-overlay.css" />
+  <link rel="stylesheet" href="./styles/components/booking-search.css" />
+  <link rel="stylesheet" href="./styles/components/hero.css" />
+  <link rel="stylesheet" href="./styles/pages/home.css" />
+</head>
+
+<body>
+
+  <rf-menu wraps=".site-content"></rf-menu>
+
+  <div class="site-content">
+
+    <rf-announcement>
+      🌴 Promoção de Temporada — <strong>até 20% off</strong> nas reservas de 5+ noites
+    </rf-announcement>
+
+    <rf-navbar over-hero hero-target="#hero"></rf-navbar>
+
+    <rf-hero
+      video="./assets/videos/0624.mp4"
+      poster="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=1600&q=80"
+      eyebrow="Recife · Boa Viagem · Pina"
+      heading='Sua estadia em <em>Recife</em> começa aqui.'
+      description="Apartamentos de temporada, mobiliados com tudo que você precisa para alugar.">
+    </rf-hero>
+
+    <section class="next-section">
+      <div class="container next-section__inner">
+        <span class="next-section__eyebrow">A seguir</span>
+        <h2 class="next-section__title">
+          Apartamentos, <em>sobre</em>, depoimentos e contato — em breve
+        </h2>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="./scripts/main.js"></script>
+
+</body>
+</html>
