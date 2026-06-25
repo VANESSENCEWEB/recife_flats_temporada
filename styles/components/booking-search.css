@@ -1,22 +1,71 @@
 /* ============================================================
-   BOOKING SEARCH — Glassmorphism claro
-   Fundo branco translúcido + blur forte. O vídeo respira atrás,
-   mas o texto preto continua legível.
+   BOOKING SEARCH — Glowmorphism
+   Glass translúcido + halo de luz teal/sol pulsando. O vídeo respira
+   atrás mas o componente "flutua" como uma janela iluminada.
 ============================================================ */
 
+/* Wrapper que cria o halo externo (glow) atrás da caixa.
+   Usamos um ::before com gradiente cônico + blur — fica leve na GPU
+   porque é só transform/opacity animada (sem repaint do conteúdo). */
 .booking-search {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(24px) saturate(1.5);
-  -webkit-backdrop-filter: blur(24px) saturate(1.5);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  isolation: isolate;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: var(--radius-lg);
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 24px 70px -10px rgba(7, 71, 81, 0.45),
+    0 12px 28px -8px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
   overflow: hidden;
   width: 100%;
   max-width: 100%;
   font-family: var(--font-body);
+  transition: box-shadow var(--dur-slow) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+
+/* Brilho sutil interno que percorre o topo do glass.
+   Animação transform-only, contida no overflow do glass. */
+.booking-search::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -30%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.9),
+    transparent);
+  animation: booking-shine 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes booking-shine {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(280%); }
+}
+
+/* Hover/focus = halo mais forte (continua só em opacity/transform/shadow) */
+.booking-search:hover,
+.booking-search:focus-within {
+  transform: translateY(-2px);
+  box-shadow:
+    0 32px 90px -10px rgba(7, 71, 81, 0.55),
+    0 18px 36px -8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.25);
+}
+
+/* Respeita usuários sensíveis a movimento */
+@media (prefers-reduced-motion: reduce) {
+  .booking-search::after {
+    animation: none;
+  }
 }
 
 /* --- Header: glass mais transparente ainda --- */

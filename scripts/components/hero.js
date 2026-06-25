@@ -16,7 +16,7 @@
  * Requer GSAP global.
  */
 
-import { splitTextIntoLetters } from '../utils/split-text.js';
+import { splitTextIntoLetters, splitTextIntoWords } from '../utils/split-text.js';
 import { prefersReducedMotion } from '../utils/dom.js';
 
 class RFHero extends HTMLElement {
@@ -128,13 +128,21 @@ class RFHero extends HTMLElement {
   }
 
   _animate() {
-    const reduce = prefersReducedMotion();
+    const reduce    = prefersReducedMotion();
     const titleEl   = this.querySelector('[data-hero-title]');
     const eyebrowEl = this.querySelector('[data-hero-eyebrow]');
     const descEl    = this.querySelector('[data-hero-desc]');
     const searchEl  = this.querySelector('[data-hero-search]');
 
-    const letters = titleEl ? splitTextIntoLetters(titleEl) : [];
+    // Mask reveal por palavra: envolve cada .word num <span class="word-wrap">
+    // que tem overflow:hidden — animar apenas transform fica barato (GPU).
+    const words = titleEl ? splitTextIntoWords(titleEl) : [];
+    words.forEach((w) => {
+      const wrap = document.createElement('span');
+      wrap.className = 'word-wrap';
+      w.parentNode.insertBefore(wrap, w);
+      wrap.appendChild(w);
+    });
 
     if (reduce) {
       [eyebrowEl, descEl, searchEl].forEach(el => {
@@ -142,22 +150,39 @@ class RFHero extends HTMLElement {
         el.style.opacity = '1';
         el.style.transform = 'none';
       });
-      letters.forEach(l => { l.style.opacity = '1'; l.style.transform = 'none'; });
+      words.forEach(w => { w.style.opacity = '1'; w.style.transform = 'none'; });
       return;
     }
 
-    const tl = gsap.timeline({ delay: 0.15 });
+    // GSAP timeline. Animar apenas opacity/transform e remover will-change
+    // depois pra liberar memória de GPU — boa prática front-end.
+    const tl = gsap.timeline({
+      defaults: { ease: 'power3.out' },
+      delay: 0.15,
+      onComplete: () => {
+        [eyebrowEl, descEl, searchEl].forEach((el) => {
+          if (el) el.style.willChange = 'auto';
+        });
+        if (titleEl) titleEl.classList.add('is-revealed');
+      },
+    });
 
-    if (letters.length) {
-      tl.to(letters, {
-        opacity: 1, y: 0,
-        duration: 0.5, ease: 'power2.out',
-        stagger: 0.022,
-      }, 0);
+    if (words.length) {
+      tl.fromTo(words,
+        { yPercent: 100, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.85, stagger: 0.06 },
+        0
+      );
     }
-    if (eyebrowEl) tl.to(eyebrowEl, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.1);
-    if (descEl)    tl.to(descEl,    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.4);
-    if (searchEl)  tl.to(searchEl,  { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.6);
+    if (eyebrowEl) tl.to(eyebrowEl, { opacity: 1, y: 0, duration: 0.6 }, 0.1);
+    if (descEl)    tl.to(descEl,    { opacity: 1, y: 0, duration: 0.7 }, 0.45);
+    if (searchEl) {
+      tl.fromTo(searchEl,
+        { opacity: 0, y: 24, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.9, ease: 'expo.out' },
+        0.6
+      );
+    }
   }
 }
 
