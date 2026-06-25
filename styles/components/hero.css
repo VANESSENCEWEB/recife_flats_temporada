@@ -1,0 +1,387 @@
+/* ============================================================
+   HERO — Estilo "além do comum": sans-serif gigante,
+   trust badges, dois CTAs, buscador full-width no fim.
+============================================================ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin-top: calc(-1 * var(--nav-height));
+  overflow: hidden;
+  isolation: isolate;
+  background-color: var(--ocean);
+  display: flex;
+  flex-direction: column;
+}
+
+/* No mobile, a navbar é menor — ajusta a margem negativa */
+@media (max-width: 600px) {
+  .hero {
+    margin-top: calc(-1 * var(--nav-height-mobile));
+  }
+}
+.hero__video,
+.hero__poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.hero__video { filter: saturate(1.05) contrast(1.02); }
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg,
+      rgba(13, 13, 13, 0.25) 0%,
+      rgba(13, 13, 13, 0.05) 30%,
+      rgba(13, 13, 13, 0.10) 70%,
+      rgba(13, 13, 13, 0.55) 100%);
+}
+
+.hero__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* --- Container do hero --- */
+.hero__container {
+  position: relative;
+  z-index: 4;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;     /* tudo encostado embaixo */
+  padding-block: calc(var(--nav-height) + var(--space-7)) var(--space-7);
+  gap: var(--space-6);
+}
+
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 880px;
+  padding-bottom: 0;             /* tira o gap antes do buscador */
+}
+
+/* --- Eyebrow com pílula outline e dot teal --- */
+.hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: transparent;
+  border: 1px dashed var(--white-40);
+  border-radius: var(--radius-pill);
+  padding: 8px var(--space-4);
+  margin-bottom: var(--space-5);
+  opacity: 0;
+  transform: translateY(20px);
+}
+.hero__eyebrow-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(27, 154, 170, 0.25);
+  animation: hero-pulse 2s ease-in-out infinite;
+}
+@keyframes hero-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.6; transform: scale(0.85); }
+}
+.hero__eyebrow-text {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-display);
+  font-weight: 700;
+  line-height: 0.95;
+  color: var(--white);
+  letter-spacing: -0.04em;
+  margin-bottom: var(--space-4);
+  max-width: 14ch;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+  display: block;
+}
+
+.hero__title em {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--sun);                   /* amarelo solar */
+  display: inline-block;
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 30px rgba(245, 194, 78, 0.3);
+}
+
+/* --- Sol girando no fim do título --- */
+.hero__sun {
+  display: inline-flex;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.15em;
+  color: var(--sun);
+  flex-shrink: 0;
+  animation: sun-spin 18s linear infinite;
+  filter: drop-shadow(0 2px 12px rgba(245, 194, 78, 0.4));
+  opacity: 0;
+  transform: scale(0.5) rotate(0);
+}
+
+@keyframes sun-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Quando entra na cena, o GSAP/CSS troca opacity+scale, mas precisa
+   permitir que o spin continue. Por isso usamos uma classe extra: */
+.hero__sun.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-spring);
+}
+/* Palavras animadas */
+.hero__title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+}
+
+.hero__description {
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  line-height: 1.55;
+  color: var(--white-90);
+  max-width: 48ch;
+  margin-bottom: var(--space-5);
+  opacity: 0;
+  transform: translateY(20px);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Trust badges (pílulas com hover) --- */
+.hero__badges {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-5);
+  opacity: 0;
+  transform: translateY(20px);
+}
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px var(--space-4);
+  background: var(--white-10);
+  border: 1px solid var(--white-20);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--white);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background var(--dur-base), border-color var(--dur-base), transform var(--dur-fast);
+}
+.hero__badge:hover {
+  background: var(--white-20);
+  border-color: var(--white-40);
+  transform: translateY(-1px);
+}
+.hero__badge svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-soft);
+}
+
+/* --- CTAs --- */
+.hero__cta {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* --- Buscador no rodapé do hero (full bleed) --- */
+.hero__search {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(20px);
+  margin-top: 0;
+}
+
+/* Em mobile, dá folga lateral pra não encostar nas bordas */
+@media (max-width: 700px) {
+  .hero__search {
+    margin-bottom: var(--space-4);
+  }
+   .hero__sun {
+    width: 0.75em;
+    height: 0.75em;
+  }
+}
+/* ============================================================
+   RESPONSIVO — compactação progressiva
+============================================================ */
+
+@media (max-width: 900px) {
+  .hero__title { letter-spacing: -0.025em; }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  .hero__container {
+    padding-block: calc(var(--nav-height-mobile) + var(--space-5)) var(--space-5);
+    gap: var(--space-4);
+  }
+  .hero__eyebrow { margin-bottom: var(--space-4); }
+  .hero__title {
+    font-size: clamp(1.75rem, 8vw, 2.75rem);
+    max-width: 100%;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    margin-bottom: var(--space-3);
+  }
+  .hero__title em {
+    font-size: 0.95em;
+  }
+  .hero__description {
+    max-width: 100%;
+    font-size: 0.9375rem;
+    margin-bottom: var(--space-4);
+  }
+  .hero__badges {
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+  }
+  .hero__badge {
+    font-size: var(--fs-xs);
+    padding: 6px var(--space-3);
+  }
+  .hero__cta {
+    width: 100%;
+    gap: var(--space-2);
+  }
+  .hero__cta .btn {
+    flex: 1;
+    justify-content: center;
+    padding: 12px var(--space-4);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__title {
+    font-size: clamp(1.5rem, 9vw, 2.25rem);
+  }
+  .hero__description { font-size: 0.875rem; }
+  .hero__badges { display: none; }   /* em telas muito pequenas, esconde pra caber */
+}
+
+/* ============================================================
+   NUVENS DE TRANSIÇÃO — fundo do hero para a próxima section
+   Três camadas de SVGs com formas orgânicas redondas, criando
+   profundidade. Os prédios "emergem das nuvens".
+============================================================ */
+
+.hero__clouds {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 4;
+  pointer-events: none;
+  line-height: 0;
+}
+
+/* As três camadas se sobrepõem no mesmo bottom */
+.hero__clouds-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Camada de trás — mais translúcida, mais lenta */
+.hero__clouds-layer--back {
+  opacity: 0.55;
+  filter: blur(2px);
+  animation: cloud-drift-slow 28s ease-in-out infinite;
+}
+
+/* Camada do meio — meio translúcida */
+.hero__clouds-layer--mid {
+  opacity: 0.85;
+  animation: cloud-drift-mid 22s ease-in-out infinite reverse;
+}
+
+/* Camada da frente — sólida, conecta visualmente com a próxima section */
+.hero__clouds-layer--front {
+  opacity: 1;
+  animation: cloud-drift-fast 18s ease-in-out infinite;
+}
+
+@keyframes cloud-drift-slow {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-30px); }
+}
+@keyframes cloud-drift-mid {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(20px); }
+}
+@keyframes cloud-drift-fast {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-12px); }
+}
+
+/* A próxima section precisa começar branca pra continuar as nuvens */
+.hero + section,
+.hero + .next-section {
+  background: var(--white);
+  position: relative;
+}
+
+/* Em mobile, reduz a altura das nuvens pra não comer muito do hero */
+@media (max-width: 700px) {
+  .hero__clouds {
+    transform: scale(1.3);     /* aumenta visualmente sem mexer no SVG */
+    transform-origin: bottom center;
+  }
+}
+
+/* Site wrapper */
+.site-content {
+  position: relative;
+  z-index: 2;
+  background-color: var(--cream);
+  min-height: 100vh;
+  transform-origin: right center;
+  will-change: transform, filter;
+}
