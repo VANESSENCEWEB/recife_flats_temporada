@@ -20,10 +20,12 @@ const ICONS = {
 
 function renderGallery(images, name) {
   const [first, ...rest] = images;
-  const mainSrc = first.placeholder || first.src || FALLBACK_IMAGE;
+  const mainSrc = first.src || first.placeholder || FALLBACK_IMAGE;
+  const mainFallback = first.placeholder || FALLBACK_IMAGE;
 
   const thumbs = images.map((img, i) => {
-    const src = img.placeholder || img.src || FALLBACK_IMAGE;
+    const src = img.src || img.placeholder || FALLBACK_IMAGE;
+    const fallback = img.placeholder || FALLBACK_IMAGE;
     return `
       <button type="button"
               class="apt-card__thumb${i === 0 ? ' is-active' : ''}"
@@ -32,7 +34,7 @@ function renderGallery(images, name) {
               data-alt="${img.alt}"
               aria-label="Ver foto ${i + 1} de ${name}">
         <img src="${src}" alt="" loading="lazy" decoding="async"
-             onerror="this.src='${FALLBACK_IMAGE}'">
+             onerror="this.onerror=null;this.src='${fallback}'">
       </button>
     `;
   }).join('');
@@ -43,7 +45,7 @@ function renderGallery(images, name) {
         <img class="apt-gallery__main" data-gallery-main
              src="${mainSrc}" alt="${first.alt}"
              loading="lazy" decoding="async"
-             onerror="this.src='${FALLBACK_IMAGE}'">
+             onerror="this.onerror=null;this.src='${mainFallback}'">
         ${images.length > 1 ? `
           <button type="button" class="apt-gallery__nav apt-gallery__nav--prev" data-gallery-prev aria-label="Foto anterior">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
