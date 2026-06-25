@@ -40,10 +40,10 @@
   pointer-events: none;
   background:
     linear-gradient(180deg,
-      rgba(13, 13, 13, 0.25) 0%,
-      rgba(13, 13, 13, 0.05) 30%,
-      rgba(13, 13, 13, 0.10) 70%,
-      rgba(13, 13, 13, 0.55) 100%);
+      rgba(13, 13, 13, 0.35) 0%,
+      rgba(13, 13, 13, 0.08) 35%,
+      rgba(13, 13, 13, 0.12) 65%,
+      rgba(13, 13, 13, 0.58) 100%);
 }
 
 .hero__grain {
@@ -61,19 +61,20 @@
   position: relative;
   z-index: 4;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;     /* tudo encostado embaixo */
-  padding-block: calc(var(--nav-height) + var(--space-7)) var(--space-7);
-  gap: var(--space-6);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-content: stretch;
+  padding-block: calc(var(--nav-height) + var(--space-5)) var(--space-7);
+  gap: clamp(var(--space-5), 5vh, var(--space-8));
 }
 
 .hero__text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  align-self: end;
   max-width: 880px;
-  padding-bottom: 0;             /* tira o gap antes do buscador */
+  padding-bottom: 0;
 }
 
 /* --- Eyebrow com pílula outline e dot teal --- */
@@ -159,12 +160,18 @@
   transform: scale(1);
   transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-spring);
 }
+/* Letras animadas (GSAP) */
+.hero__title .letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(28px);
+}
+
 /* Palavras animadas */
 .hero__title .word {
   display: inline-block;
   opacity: 0;
   transform: translateY(20px);
-  will-change: opacity, transform;
 }
 
 .hero__description {
@@ -222,14 +229,111 @@
   transform: translateY(20px);
 }
 
-/* --- Buscador no rodapé do hero (full bleed) --- */
+/* --- Buscador no rodapé do hero (full bleed) + glowmorph --- */
 .hero__search {
   position: relative;
   z-index: 5;
   width: 100%;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(24px) scale(0.98);
   margin-top: 0;
+  isolation: isolate;
+}
+
+/* Aura difusa que pulsa atrás do card */
+.hero__search::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  z-index: -2;
+  border-radius: calc(var(--radius-lg) + 6px);
+  background: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    var(--sun) 35%,
+    var(--accent-soft) 65%,
+    var(--accent-dark) 100%
+  );
+  background-size: 300% 300%;
+  filter: blur(20px);
+  opacity: 0.55;
+  animation: glow-morph 9s ease-in-out infinite;
+}
+
+/* Borda luminosa animada */
+.hero__search::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: var(--radius-lg);
+  padding: 1.5px;
+  background: linear-gradient(
+    135deg,
+    rgba(27, 154, 170, 0.9) 0%,
+    rgba(245, 194, 78, 0.75) 40%,
+    rgba(212, 240, 243, 0.85) 70%,
+    rgba(13, 107, 117, 0.9) 100%
+  );
+  background-size: 300% 300%;
+  animation: glow-morph 9s ease-in-out infinite;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@keyframes glow-morph {
+  0%, 100% { background-position: 0% 50%; }
+  33%      { background-position: 100% 0%; }
+  66%      { background-position: 50% 100%; }
+}
+
+/* --- Scroll hint --- */
+.hero__scroll {
+  position: absolute;
+  bottom: clamp(7rem, 14vh, 10rem);
+  right: var(--container-px);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero__scroll-text {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--white-65);
+  writing-mode: vertical-rl;
+}
+
+.hero__scroll-line {
+  display: block;
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg, var(--white-40), transparent);
+  transform-origin: top center;
+  animation: scroll-line 2.2s var(--ease-out) infinite;
+}
+
+@keyframes scroll-line {
+  0%   { transform: scaleY(0); opacity: 0; }
+  40%  { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+@media (max-width: 700px) {
+  .hero__scroll { display: none; }
 }
 
 /* Em mobile, dá folga lateral pra não encostar nas bordas */
@@ -256,7 +360,7 @@
     min-height: 100dvh;
   }
   .hero__container {
-    padding-block: calc(var(--nav-height-mobile) + var(--space-5)) var(--space-5);
+    padding-block: calc(var(--nav-height-mobile) + var(--space-4)) var(--space-5);
     gap: var(--space-4);
   }
   .hero__eyebrow { margin-bottom: var(--space-4); }

@@ -5,7 +5,7 @@
  *   <rf-navbar over-hero></rf-navbar>
  *
  * Atributos:
- *   over-hero  : aplica o estilo claro inicial (texto branco) sobre hero escuro
+ *   over-hero  : aplica pill claro no botão Menu para legibilidade sobre o vídeo
  *   whatsapp   : número de WhatsApp (default: o de produção)
  *
  * Eventos emitidos:
