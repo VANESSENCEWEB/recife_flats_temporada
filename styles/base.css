@@ -81,6 +81,9 @@ rf-navbar,
 rf-menu,
 rf-hero,
 rf-booking-search,
+rf-apartment-card,
+rf-apartments-section,
+rf-apartment-detail,
 rf-footer {
   display: block;
 }

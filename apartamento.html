@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apartamentos — Recife Flats Temporada</title>
-  <meta name="description" content="Conheça nossos apartamentos mobiliados para temporada em Recife. Confortáveis, bem localizados e ideais para famílias e grupos." />
+  <title>Apartamento — Recife Flats Temporada</title>
+  <meta name="description" content="Detalhes do apartamento para temporada em Recife." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,11 +17,8 @@
   <link rel="stylesheet" href="./styles/components/button.css" />
   <link rel="stylesheet" href="./styles/components/navbar.css" />
   <link rel="stylesheet" href="./styles/components/menu-overlay.css" />
-  <link rel="stylesheet" href="./styles/components/booking-search.css" />
   <link rel="stylesheet" href="./styles/components/apartment-gallery.css" />
-  <link rel="stylesheet" href="./styles/components/apartment-card.css" />
-  <link rel="stylesheet" href="./styles/components/apartments-section.css" />
-  <link rel="stylesheet" href="./styles/pages/apartamentos.css" />
+  <link rel="stylesheet" href="./styles/pages/apartamento.css" />
 </head>
 
 <body>
@@ -37,28 +34,7 @@
     <rf-navbar></rf-navbar>
 
     <main>
-      <section class="page-header">
-        <div class="container">
-          <span class="eyebrow">Nossa coleção</span>
-          <h1>Quatro apartamentos <em class="display-italic">confortáveis</em> em Recife</h1>
-          <p class="page-header__lead">
-            Unidades mobiliadas para famílias e grupos — práticas, bem localizadas
-            e com atenção personalizada. O essencial bem feito para sua temporada.
-          </p>
-        </div>
-      </section>
-
-      <rf-apartments-section no-header></rf-apartments-section>
-
-      <section class="apartamentos-booking" id="reservar">
-        <div class="container apartamentos-booking__inner">
-          <div class="apartamentos-booking__text">
-            <h2>Pronto para reservar?</h2>
-            <p>Escolha as datas e consulte a disponibilidade dos apartamentos.</p>
-          </div>
-          <rf-booking-search action="./apartamentos.html#reservar"></rf-booking-search>
-        </div>
-      </section>
+      <rf-apartment-detail></rf-apartment-detail>
     </main>
 
   </div>

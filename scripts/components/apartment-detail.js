@@ -1,0 +1,129 @@
+/**
+ * <rf-apartment-detail> — Página individual do apartamento.
+ *
+ * Uso:
+ *   <rf-apartment-detail></rf-apartment-detail>
+ * Lê ?slug= da URL.
+ */
+
+import { getApartmentBySlug, resolveImages, FALLBACK_IMAGE } from '../data/apartamentos.js';
+import { initGallery } from '../utils/gallery.js';
+
+const ICONS = {
+  bed: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/></svg>`,
+  users: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+  bath: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-2.12 0L3 5"/><path d="M4 10h16"/><path d="M4 10v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M12 4v6"/></svg>`,
+  parking: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>`,
+  noParking: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>`,
+};
+
+function renderDetailGallery(images, name) {
+  const [first] = images;
+  const mainSrc = first.placeholder || first.src || FALLBACK_IMAGE;
+
+  const thumbs = images.map((img, i) => {
+    const src = img.placeholder || img.src || FALLBACK_IMAGE;
+    return `
+      <button type="button"
+              class="apt-detail__thumb${i === 0 ? ' is-active' : ''}"
+              data-gallery-thumb
+              data-src="${src}"
+              data-alt="${img.alt}"
+              aria-label="Ver foto ${i + 1}">
+        <img src="${src}" alt="" loading="lazy" onerror="this.src='${FALLBACK_IMAGE}'">
+      </button>
+    `;
+  }).join('');
+
+  return `
+    <div class="apt-detail__gallery apt-gallery apt-gallery--detail" data-gallery tabindex="0">
+      <div class="apt-gallery__stage">
+        <img class="apt-gallery__main" data-gallery-main src="${mainSrc}" alt="${first.alt}"
+             loading="eager" onerror="this.src='${FALLBACK_IMAGE}'">
+        <button type="button" class="apt-gallery__nav apt-gallery__nav--prev" data-gallery-prev aria-label="Anterior">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="apt-gallery__nav apt-gallery__nav--next" data-gallery-next aria-label="Próxima">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="apt-gallery__thumbs apt-gallery__thumbs--detail">${thumbs}</div>
+    </div>
+  `;
+}
+
+class RFApartmentDetail extends HTMLElement {
+  connectedCallback() {
+    const params = new URLSearchParams(window.location.search);
+    const slug   = this.getAttribute('slug') || params.get('slug');
+    const apt    = getApartmentBySlug(slug);
+
+    if (!apt) {
+      this.innerHTML = `
+        <section class="apt-detail apt-detail--error">
+          <div class="container">
+            <h1>Apartamento não encontrado</h1>
+            <p><a href="./apartamentos.html" class="btn btn--primary">Ver apartamentos</a></p>
+          </div>
+        </section>
+      `;
+      return;
+    }
+
+    const images = resolveImages(apt);
+    document.title = `${apt.name} — Recife Flats Temporada`;
+
+    this.innerHTML = `
+      <article class="apt-detail">
+        <header class="apt-detail__hero">
+          <div class="container apt-detail__hero-inner">
+            <a href="./apartamentos.html" class="apt-detail__back">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+              Todos os apartamentos
+            </a>
+            <span class="apt-detail__eyebrow">${apt.neighborhood}</span>
+            <h1 class="apt-detail__title">${apt.name}</h1>
+            <p class="apt-detail__tagline">${apt.tagline}</p>
+          </div>
+        </header>
+
+        <div class="container apt-detail__layout">
+          ${renderDetailGallery(images, apt.name)}
+
+          <aside class="apt-detail__sidebar">
+            <div class="apt-detail__panel">
+              <h2 class="apt-detail__panel-title">Resumo</h2>
+              <ul class="apt-detail__stats">
+                <li>${ICONS.bed} ${apt.bedrooms} quartos · ${apt.beds} camas</li>
+                <li>${ICONS.users} Até ${apt.guests} hóspedes</li>
+                <li>${ICONS.bath} ${apt.bathrooms} banheiro${apt.bathrooms > 1 ? 's' : ''}</li>
+                <li>${apt.parking ? ICONS.parking : ICONS.noParking} ${apt.parking ? 'Vaga de garagem' : 'Sem vaga'}</li>
+              </ul>
+              <div class="apt-detail__actions">
+                <a href="./apartamentos.html?apt=${apt.slug}#reservar" class="btn btn--primary btn--block">Reservar agora</a>
+                <a href="tel:+558196601178" class="btn btn--secondary btn--block">Fale conosco</a>
+              </div>
+            </div>
+          </aside>
+
+          <div class="apt-detail__content">
+            <section class="apt-detail__block">
+              <h2>Sobre o apartamento</h2>
+              <p>${apt.description}</p>
+            </section>
+            <section class="apt-detail__block">
+              <h2>Comodidades</h2>
+              <ul class="apt-detail__amenities">
+                ${apt.amenities.map((a) => `<li>${a}</li>`).join('')}
+              </ul>
+            </section>
+          </div>
+        </div>
+      </article>
+    `;
+
+    initGallery(this.querySelector('[data-gallery]'));
+  }
+}
+
+customElements.define('rf-apartment-detail', RFApartmentDetail);

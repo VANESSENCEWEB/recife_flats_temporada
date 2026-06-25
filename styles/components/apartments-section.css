@@ -1,0 +1,97 @@
+/* ============================================================
+   APARTMENTS SECTION — Lista com divisores
+============================================================ */
+
+.apartments-section {
+  background: var(--cream);
+  padding-block: clamp(var(--space-9), 10vh, var(--space-11));
+  position: relative;
+}
+
+.apartments-section--compact {
+  padding-block: clamp(var(--space-8), 8vh, var(--space-10));
+}
+
+.apartments-section--bare {
+  padding-top: 0;
+}
+
+.apartments-section__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--space-7), 6vh, var(--space-9));
+}
+
+.apartments-section__header {
+  max-width: 640px;
+}
+
+.apartments-section__eyebrow {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--accent-dark);
+  margin-bottom: var(--space-3);
+}
+
+.apartments-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.08;
+  color: var(--text);
+  margin-bottom: var(--space-4);
+}
+
+.apartments-section__title em {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--clay);
+}
+
+.apartments-section__lead {
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 54ch;
+}
+
+.apartments-section__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.apartments-section__item {
+  will-change: transform, opacity;
+}
+
+.apartments-section__divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(13, 107, 117, 0.18) 20%,
+    rgba(196, 155, 106, 0.25) 50%,
+    rgba(13, 107, 117, 0.18) 80%,
+    transparent
+  );
+  margin-inline: clamp(0px, 5vw, var(--space-8));
+}
+
+.apartments-section__footer {
+  display: flex;
+  justify-content: center;
+  padding-top: var(--space-4);
+}
+
+.apartments-section__footer .btn svg {
+  transition: transform var(--dur-base);
+}
+
+.apartments-section__footer .btn:hover svg {
+  transform: translateX(4px);
+}

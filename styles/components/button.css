@@ -68,3 +68,27 @@
 }
 .btn--ghost svg { transition: transform var(--dur-base); }
 .btn--ghost:hover svg { transform: translateX(4px); }
+
+/* Secundário — outline escuro sobre fundo claro */
+.btn--secondary {
+  background: var(--white);
+  color: var(--text);
+  border: 1px solid rgba(13, 13, 13, 0.12);
+  box-shadow: var(--shadow-sm);
+}
+.btn--secondary:hover {
+  background: var(--cream);
+  border-color: rgba(13, 13, 13, 0.2);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--block {
+  width: 100%;
+  justify-content: center;
+}
+
+.btn--lg {
+  padding: 16px var(--space-7);
+  font-size: var(--fs-base);
+}
