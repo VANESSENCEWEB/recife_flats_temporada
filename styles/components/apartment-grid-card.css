@@ -51,6 +51,27 @@
   background: var(--accent);
   color: var(--white);
   border-radius: var(--radius-pill);
+  z-index: 2;
+}
+
+.apt-grid-card__photos {
+  position: absolute;
+  bottom: var(--space-3);
+  right: var(--space-3);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(13, 13, 13, 0.65);
+  color: var(--white);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+.apt-grid-card__badge {
+  background: var(--accent);
+  color: var(--white);
+  border-radius: var(--radius-pill);
 }
 
 .apt-grid-card__body {

@@ -209,7 +209,7 @@
 .menu-overlay__bg {
   position: absolute;
   inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80');
+  background-image: url('../../assets/images/boa_viagem-01.avif.png');
   background-size: cover;
   background-position: center;
   transform: scale(1.07);

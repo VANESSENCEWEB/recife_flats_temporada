@@ -21,3 +21,4 @@ import './components/apartments-hub.js';
 import './components/neighborhood-hub.js';
 import './components/apartments-teaser.js';
 import './components/apartment-detail.js';
+import './components/contact-page.js';

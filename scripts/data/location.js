@@ -13,11 +13,19 @@ export const BUSINESS = {
   country: 'BR',
   phone: '+5581996601178',
   phoneDisplay: '+55 (81) 99660-1178',
+  whatsapp: '5581996601178',
   email: 'contato@recifeflats.com.br',
   website: 'https://recifeflatstemporada.com',
   lat: -8.1075708,
   lng: -34.890327,
 };
+
+/** @param {string} [text] */
+export function whatsappUrl(text = '') {
+  const digits = BUSINESS.whatsapp.replace(/\D/g, '');
+  const base = `https://wa.me/${digits}`;
+  return text ? `${base}?text=${encodeURIComponent(text)}` : base;
+}
 
 /** Embed oficial do Google Maps (Google Business Profile) */
 export const MAPS_EMBED_URL =

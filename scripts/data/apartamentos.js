@@ -9,6 +9,23 @@ import { assetUrl } from '../utils/paths.js';
 export const FALLBACK_IMAGE = './assets/images/boa_viagem-01.avif.png';
 
 /** @typedef {{ src: string, alt: string }} ApartmentImage */
+
+const COVER_BY_SLUG = {
+  'studio-203-boa-viagem': [
+    { src: FALLBACK_IMAGE, alt: 'Studio 203 Boa Viagem — temporada em Recife' },
+  ],
+  'apartamento-804-pina': [
+    { src: FALLBACK_IMAGE, alt: 'Apartamento 804 Pina — temporada em Recife' },
+  ],
+};
+
+/** @param {string} slug */
+function getApartmentImages(slug) {
+  const manifest = getManifestImages(slug);
+  if (manifest?.length) return manifest;
+  return COVER_BY_SLUG[slug] || [{ src: FALLBACK_IMAGE, alt: 'Recife Flats Temporada' }];
+}
+
 /** @typedef {{
  *   id: string,
  *   slug: string,
@@ -61,7 +78,7 @@ export const APARTAMENTOS = [
     rating: 4.9,
     reviewCount: 42,
     amenities: ['Wi-Fi', '2 quartos', '100 m da praia', 'Pet friendly', 'Estacionamento rotativo', 'Cozinha equipada'],
-    images: getManifestImages('apartamento-2-quartos-boa-viagem') ?? [],
+    images: getApartmentImages('apartamento-2-quartos-boa-viagem'),
   },
   {
     id: '02',
@@ -69,7 +86,7 @@ export const APARTAMENTOS = [
     name: 'Flat Golden View 1006',
     neighborhood: 'Boa Viagem',
     neighborhoodSlug: 'boa-viagem',
-    building: 'Golden View',
+    building: 'Golden View · Apt 1006',
     badge: 'Mais procurado',
     tagline: 'Piscina na cobertura e portaria 24h',
     description:
@@ -85,9 +102,9 @@ export const APARTAMENTOS = [
     priceFrom: 'R$ 200',
     priceNote: '/dia',
     rating: 4.9,
-    reviewCount: 42,
+    reviewCount: 38,
     amenities: ['Wi-Fi', 'Piscina rooftop', 'Portaria 24h', 'Estacionamento', '1 quarto', 'Perto da praia'],
-    images: getManifestImages('flat-golden-view-1006') ?? [],
+    images: getApartmentImages('flat-golden-view-1006'),
   },
   {
     id: '03',
@@ -95,7 +112,7 @@ export const APARTAMENTOS = [
     name: 'Studio 203 Boa Viagem',
     neighborhood: 'Boa Viagem',
     neighborhoodSlug: 'boa-viagem',
-    building: 'Boa Viagem',
+    building: 'Edifício Ipê · Apt 203',
     badge: 'Studio',
     tagline: 'Ideal para casal — perto da praia e do aeroporto',
     description:
@@ -113,10 +130,7 @@ export const APARTAMENTOS = [
     rating: 4.8,
     reviewCount: 0,
     amenities: ['Wi-Fi', '1 quarto', 'Ideal casal', 'Pet sob pedido', 'Perto da praia'],
-    images: [
-      { src: './assets/images/apartments/studio-203-01.jpg', alt: 'Studio 203 Boa Viagem' },
-      { src: './assets/images/apartments/studio-203-02.jpg', alt: 'Cozinha compacta' },
-    ],
+    images: getApartmentImages('studio-203-boa-viagem'),
   },
   {
     id: '04',
@@ -124,7 +138,7 @@ export const APARTAMENTOS = [
     name: 'Apartamento 804 Pina',
     neighborhood: 'Pina',
     neighborhoodSlug: 'pina',
-    building: 'Pina',
+    building: 'Pina · Apt 804',
     badge: '2 quartos',
     tagline: 'Ao lado do Shopping RioMar',
     description:
@@ -142,36 +156,22 @@ export const APARTAMENTOS = [
     rating: 4.8,
     reviewCount: 0,
     amenities: ['Wi-Fi', '2 quartos', 'Piscina', 'Garagem', 'Pets', 'RioMar'],
-    images: [
-      { src: './assets/images/apartments/pina-804-01.jpg', alt: 'Apartamento 804 Pina — sala' },
-      { src: './assets/images/apartments/pina-804-02.jpg', alt: 'Quarto do apartamento' },
-      { src: './assets/images/apartments/pina-804-03.jpg', alt: 'Vista do bairro Pina' },
-    ],
+    images: getApartmentImages('apartamento-804-pina'),
   },
 ];
 
-const PLACEHOLDER_BY_SLUG = {
-  'studio-203-boa-viagem': [
-    'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80',
-    'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&q=80',
-  ],
-  'apartamento-804-pina': [
-    'https://images.unsplash.com/photo-1567767292278-a4f21aabe24d?w=900&q=80',
-    'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=900&q=80',
-    'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=900&q=80',
-  ],
-};
-
 /** @param {Apartment} apt */
 export function resolveImages(apt) {
-  const placeholders = PLACEHOLDER_BY_SLUG[apt.slug] || [];
-  const firstLocal = apt.images[0]?.src;
-  const fallback = assetUrl(firstLocal || FALLBACK_IMAGE);
+  const images = apt.images.length
+    ? apt.images
+    : [{ src: FALLBACK_IMAGE, alt: apt.name }];
 
-  return apt.images.map((img, i) => ({
+  const fallback = assetUrl(FALLBACK_IMAGE);
+
+  return images.map((img) => ({
     src: assetUrl(img.src),
     alt: img.alt,
-    placeholder: placeholders[i] || placeholders[0] || fallback,
+    placeholder: fallback,
   }));
 }
 

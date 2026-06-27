@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre nós — Recife Flats Temporada</title>
+  <meta name="description" content="Conheça a Recife Flats Temporada: apartamentos mobiliados em Boa Viagem e Pina, reserva direta, atendimento humano e localização privilegiada em Recife." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="./styles/tokens.css" />
+  <link rel="stylesheet" href="./styles/base.css" />
+  <link rel="stylesheet" href="./styles/utilities.css" />
+  <link rel="stylesheet" href="./styles/components/announcement.css" />
+  <link rel="stylesheet" href="./styles/components/button.css" />
+  <link rel="stylesheet" href="./styles/components/navbar.css" />
+  <link rel="stylesheet" href="./styles/components/menu-overlay.css" />
+  <link rel="stylesheet" href="./styles/pages/sobre.css" />
+</head>
+<body>
+
+  <rf-menu wraps=".site-content"></rf-menu>
+
+  <div class="site-content">
+    <rf-announcement>🏠 <strong>4 apartamentos</strong> mobiliados em Boa Viagem e Pina</rf-announcement>
+    <rf-navbar></rf-navbar>
+
+    <main class="about-page">
+      <section class="about-hero" aria-labelledby="about-heading">
+        <div class="container about-hero__inner">
+          <span class="eyebrow eyebrow--pill">Quem somos</span>
+          <h1 id="about-heading">Temporada em Recife com <em class="display-italic">cuidado</em> e praticidade</h1>
+          <p class="about-hero__lead">
+            A Recife Flats Temporada cuida de apartamentos mobiliados em Boa Viagem e Pina —
+            com salas, quartos, cozinhas equipadas, áreas de lazer e estacionamento nas unidades que oferecem.
+            Você reserva direto conosco, sem taxas de plataforma.
+          </p>
+        </div>
+      </section>
+
+      <section class="about-grid" aria-label="Nossos diferenciais">
+        <div class="container about-grid__inner">
+          <article class="about-card">
+            <h2>Apartamentos prontos para morar</h2>
+            <p>Cama, roupa de cama, utensílios, Wi-Fi e o essencial para o dia a dia. Cada unidade tem perfil próprio — família, casal ou estadia mais longa.</p>
+          </article>
+          <article class="about-card">
+            <h2>Localização que facilita</h2>
+            <p>Praia a poucos passos em Boa Viagem, RioMar no Pina, comércio, padarias e farmácias por perto. Menos deslocamento, mais tempo aproveitando Recife.</p>
+          </article>
+          <article class="about-card">
+            <h2>Reserva direta</h2>
+            <p>Atendimento por WhatsApp e telefone, com transparência sobre disponibilidade, valores e regras da casa. Nota 4,9 no Google.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="about-collection" aria-labelledby="about-collection-heading">
+        <div class="container about-collection__inner">
+          <h2 id="about-collection-heading">Nossa coleção</h2>
+          <ul class="about-collection__list">
+            <li><strong>Edifício Ipê · Apt 105</strong> — 2 quartos, ideal para famílias, a 100 m da praia</li>
+            <li><strong>Golden View · Apt 1006</strong> — flat com piscina na cobertura e estacionamento</li>
+            <li><strong>Edifício Ipê · Apt 203</strong> — studio para casal em Boa Viagem</li>
+            <li><strong>Pina · Apt 804</strong> — 2 quartos ao lado do RioMar, com piscina e garagem</li>
+          </ul>
+          <div class="about-collection__actions">
+            <a href="./apartamentos.html" class="btn btn--secondary btn--lg">Ver apartamentos</a>
+            <a href="./contato.html" class="btn btn--primary btn--lg">Fale conosco</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script type="module" src="./scripts/main.js"></script>
+</body>
+</html>

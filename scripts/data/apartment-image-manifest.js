@@ -191,7 +191,9 @@ export const APARTMENT_IMAGE_MANIFEST = {
       "src": "./assets/images/apartamentos/boa-viagem/apt-1006/entrada-de-pedestre-edf-golden-view-boa-viagem.avif",
       "alt": "Flat Golden View 1006 — entrada de pedestre edf golden view boa viagem"
     }
-  ]
+  ],
+  "studio-203-boa-viagem": [],
+  "apartamento-804-pina": []
 };
 
 /** @param {string} slug */

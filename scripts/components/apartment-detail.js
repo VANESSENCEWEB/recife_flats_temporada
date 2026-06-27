@@ -8,6 +8,7 @@
 
 import { getApartmentBySlug, resolveImages, FALLBACK_IMAGE } from '../data/apartamentos.js';
 import { getNeighborhood, pageHref } from '../data/site-structure.js';
+import { BUSINESS, whatsappUrl } from '../data/location.js';
 import { initGallery } from '../utils/gallery.js';
 
 const ICONS = {
@@ -121,8 +122,8 @@ class RFApartmentDetail extends HTMLElement {
                 <li>${apt.parking ? ICONS.parking : ICONS.noParking} ${apt.parking ? 'Vaga de garagem' : 'Sem vaga'}</li>
               </ul>
               <div class="apt-detail__actions">
-                <a href="https://wa.me/558196601178?text=${encodeURIComponent(`Olá! Tenho interesse no ${apt.name}.`)}" class="btn btn--primary btn--block" target="_blank" rel="noopener noreferrer">Reservar no WhatsApp</a>
-                <a href="tel:+5581996601178" class="btn btn--secondary btn--block">Fale conosco</a>
+                <a href="${whatsappUrl(`Olá! Tenho interesse no ${apt.name}.`)}" class="btn btn--primary btn--block" target="_blank" rel="noopener noreferrer">Reservar no WhatsApp</a>
+                <a href="tel:${BUSINESS.phone}" class="btn btn--secondary btn--block">Fale conosco</a>
               </div>
             </div>
           </aside>

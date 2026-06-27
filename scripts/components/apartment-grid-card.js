@@ -26,6 +26,11 @@ class RFApartmentGridCard extends HTMLElement {
       ? `<span class="apt-grid-card__price">a partir de <strong>${apt.priceFrom}</strong>${apt.priceNote}</span>`
       : `<span class="apt-grid-card__price apt-grid-card__price--consult">${apt.priceNote}</span>`;
 
+    const photoCount = apt.images.length;
+    const photoBadge = photoCount > 1
+      ? `<span class="apt-grid-card__photos">${photoCount} fotos</span>`
+      : '';
+
     this.innerHTML = `
       <article class="apt-grid-card"
                data-apt-grid-card
@@ -35,6 +40,7 @@ class RFApartmentGridCard extends HTMLElement {
                data-neighborhood="${apt.neighborhoodSlug}">
         <a href="${href}" class="apt-grid-card__media">
           ${apt.badge ? `<span class="apt-grid-card__badge">${apt.badge}</span>` : ''}
+          ${photoBadge}
           <img src="${src}" alt="${cover.alt}" loading="lazy" decoding="async"
                onerror="this.onerror=null;this.src='${fallback}'">
         </a>

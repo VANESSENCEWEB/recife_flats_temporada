@@ -13,10 +13,13 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '../..');
 const BV = './assets/images/apartamentos/boa-viagem';
+const PINA = './assets/images/apartamentos/pina';
 
 const FOLDERS = {
-  'apartamento-2-quartos-boa-viagem': { dir: 'apt-105', label: 'Apartamento 105 Boa Viagem' },
-  'flat-golden-view-1006': { dir: 'apt-1006', label: 'Flat Golden View 1006' },
+  'apartamento-2-quartos-boa-viagem': { base: BV, dir: 'apt-105', label: 'Apartamento 105 Boa Viagem' },
+  'flat-golden-view-1006': { base: BV, dir: 'apt-1006', label: 'Flat Golden View 1006' },
+  'studio-203-boa-viagem': { base: BV, dir: 'apt-203', label: 'Studio 203 Boa Viagem' },
+  'apartamento-804-pina': { base: PINA, dir: 'apt-804', label: 'Apartamento 804 Pina' },
 };
 
 function normalizeBase(filename) {
@@ -25,8 +28,10 @@ function normalizeBase(filename) {
   return base.replace(/_opt$/, '');
 }
 
-function listImages(dir) {
-  const full = path.join(ROOT, dir);
+function listImages(relativeDir) {
+  const full = path.join(ROOT, relativeDir);
+  if (!fs.existsSync(full)) return [];
+
   const files = fs.readdirSync(full);
   const chosen = new Map();
 
@@ -76,10 +81,10 @@ function toAlt(file, label) {
 
 const manifest = {};
 
-for (const [slug, { dir, label }] of Object.entries(FOLDERS)) {
-  const files = sortFiles(listImages(`${BV}/${dir}`));
+for (const [slug, { base, dir, label }] of Object.entries(FOLDERS)) {
+  const files = sortFiles(listImages(`${base.replace(/^\.\//, '')}/${dir}`));
   manifest[slug] = files.map((file) => ({
-    src: `${BV}/${dir}/${file}`,
+    src: `${base}/${dir}/${file}`,
     alt: toAlt(file, label),
   }));
 }
