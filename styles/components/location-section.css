@@ -1,0 +1,337 @@
+/* ============================================================
+   LOCATION SECTION — Mapa Google Business + benefícios + reviews
+============================================================ */
+
+.location-section {
+  background: var(--cream);
+  padding-block: var(--space-10);
+}
+
+.location-section__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.location-section__title {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.08;
+  max-width: 18ch;
+  margin-block: var(--space-3) var(--space-4);
+}
+
+.location-section__lead {
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 52ch;
+}
+
+/* --- Benefícios --- */
+
+.location-benefits {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+.location-benefit {
+  padding: var(--space-5);
+  background: var(--white);
+  border: 1px solid rgba(13, 13, 13, 0.06);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.location-benefit__title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--accent-darker);
+}
+
+.location-benefit__desc {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: var(--space-4);
+}
+
+.location-benefit__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.location-benefit__list li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+  color: var(--text);
+}
+
+.location-benefit__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* --- Painel mapa + reviews --- */
+
+.location-panel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.location-map {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--cream-dark);
+  box-shadow: var(--shadow-lg);
+  min-height: 320px;
+}
+
+.location-map__iframe {
+  display: block;
+  width: 100%;
+  height: clamp(280px, 50vw, 480px);
+  border: 0;
+}
+
+.location-map__overlay {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: var(--white);
+  border-top: 1px solid rgba(13, 13, 13, 0.06);
+}
+
+.location-map__address {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--fs-sm);
+  line-height: 1.45;
+}
+
+.location-map__address strong {
+  font-size: var(--fs-base);
+  font-weight: 600;
+}
+
+.location-map__address span {
+  color: var(--text-muted);
+}
+
+.location-map__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.btn--sm {
+  padding: 10px var(--space-5);
+  font-size: var(--fs-sm);
+}
+
+/* --- Reviews --- */
+
+.location-panel__reviews-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.location-reviews-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(13, 13, 13, 0.08);
+}
+
+.location-rating__score {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.location-rating__value {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--accent-darker);
+}
+
+.location-rating__meta {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.location-rating__source {
+  display: block;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sand);
+  margin-top: var(--space-1);
+}
+
+.location-reviews-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--accent-dark);
+  transition: color var(--dur-fast), gap var(--dur-fast);
+}
+
+.location-reviews-link:hover {
+  color: var(--accent-darker);
+  gap: var(--space-3);
+}
+
+.location-reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.location-reviews-placeholder {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-muted);
+  padding: var(--space-5);
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px dashed rgba(13, 13, 13, 0.12);
+}
+
+.location-reviews-placeholder a {
+  color: var(--accent-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.location-review {
+  margin: 0;
+  padding: var(--space-5);
+  background: var(--white);
+  border: 1px solid rgba(13, 13, 13, 0.06);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.location-review__stars {
+  margin-bottom: var(--space-3);
+}
+
+.location-review__text {
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  color: var(--text);
+  margin-bottom: var(--space-3);
+}
+
+.location-review__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.location-review__author {
+  font-weight: 600;
+  color: var(--text);
+}
+
+a.location-review__author:hover {
+  color: var(--accent-dark);
+}
+
+.location-review__time::before {
+  content: '·';
+  margin-right: var(--space-2);
+}
+
+/* --- Estrelas --- */
+
+.location-stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--cream-dark);
+}
+
+.location-stars__star {
+  display: inline-flex;
+  color: var(--cream-dark);
+}
+
+.location-stars__star.is-filled {
+  color: var(--sun);
+}
+
+.location-stars__star.is-half {
+  color: var(--sun);
+  opacity: 0.55;
+}
+
+/* --- Responsivo --- */
+
+@media (min-width: 768px) {
+  .location-benefits {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-5);
+  }
+
+  .location-map__overlay {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .location-reviews-header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 1024px) {
+  .location-panel {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: var(--space-8);
+  }
+
+  .location-map__iframe {
+    height: 100%;
+    min-height: 420px;
+  }
+
+  .location-panel__reviews-col {
+    position: sticky;
+    top: calc(var(--nav-height) + var(--space-4));
+    max-height: calc(100vh - var(--nav-height) - var(--space-8));
+    overflow-y: auto;
+    padding-right: var(--space-1);
+  }
+}
