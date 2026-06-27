@@ -73,15 +73,33 @@
 }
 
 .apt-gallery__thumbs {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  display: flex;
   gap: var(--space-2);
   margin-top: var(--space-3);
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: var(--space-1);
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-soft) transparent;
+}
+
+.apt-gallery__thumbs::-webkit-scrollbar {
+  height: 6px;
+}
+
+.apt-gallery__thumbs::-webkit-scrollbar-thumb {
+  background: var(--accent-soft);
+  border-radius: var(--radius-pill);
 }
 
 .apt-gallery__thumbs button,
 .apt-card__thumb,
 .apt-detail__thumb {
+  flex: 0 0 72px;
+  width: 72px;
+  scroll-snap-align: start;
   position: relative;
   padding: 0;
   border: 2px solid transparent;
@@ -123,8 +141,13 @@
 }
 
 .apt-gallery__thumbs--detail {
-  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
   gap: var(--space-3);
+}
+
+.apt-gallery__thumbs--detail button,
+.apt-gallery__thumbs--detail .apt-detail__thumb {
+  flex: 0 0 88px;
+  width: 88px;
 }
 
 @media (max-width: 600px) {
@@ -133,8 +156,11 @@
     width: 36px;
     height: 36px;
   }
-  .apt-gallery__thumbs {
-    grid-template-columns: repeat(4, 1fr);
+  .apt-gallery__thumbs button,
+  .apt-card__thumb,
+  .apt-detail__thumb {
+    flex: 0 0 64px;
+    width: 64px;
   }
 }
 

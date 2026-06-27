@@ -1,0 +1,97 @@
+#!/usr/bin/env node
+/**
+ * Regenera scripts/data/apartment-image-manifest.js a partir das pastas em
+ * assets/images/apartamentos/boa-viagem/apt-*
+ *
+ * Uso: node scripts/tools/regenerate-image-manifest.mjs
+ */
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(__dirname, '../..');
+const BV = './assets/images/apartamentos/boa-viagem';
+
+const FOLDERS = {
+  'apartamento-2-quartos-boa-viagem': { dir: 'apt-105', label: 'Apartamento 105 Boa Viagem' },
+  'flat-golden-view-1006': { dir: 'apt-1006', label: 'Flat Golden View 1006' },
+};
+
+function listImages(dir) {
+  const full = path.join(ROOT, dir);
+  const files = fs.readdirSync(full);
+  const chosen = new Map();
+
+  for (const f of files) {
+    if (f.endsWith('.md') || f.startsWith('teste_')) continue;
+    if (!/\.(webp|avif)$/i.test(f)) continue;
+
+    const base = f.replace(/\.(webp|avif)$/i, '').replace(/\.avif$/, '');
+    const key = base.replace(/_opt$/, '');
+    const ext = f.endsWith('.webp') ? 'webp' : 'avif';
+    const existing = chosen.get(key);
+
+    if (!existing || (existing.ext !== 'webp' && ext === 'webp')) {
+      chosen.set(key, { file: f, ext });
+    }
+  }
+
+  return [...chosen.values()].map((v) => v.file);
+}
+
+function sortKey(file) {
+  const order = ['sala', 'quarto', 'cozinha', 'banheiro', 'area', 'piscina', 'estacionamento', 'lavanderia', 'omo', 'utensilios', 'portao', 'rua', 'entrada'];
+  const lower = file.toLowerCase();
+  for (let i = 0; i < order.length; i++) {
+    if (lower.startsWith(order[i]) || lower.includes(`-${order[i]}`)) return i;
+  }
+  return 99;
+}
+
+function sortFiles(files) {
+  return [...files].sort((a, b) => {
+    const ka = sortKey(a);
+    const kb = sortKey(b);
+    if (ka !== kb) return ka - kb;
+    return a.localeCompare(b, 'pt-BR');
+  });
+}
+
+function toAlt(file, label) {
+  const base = file.replace(/\.(webp|avif)$/i, '').replace(/_opt$/, '').replace(/\.avif$/, '');
+  return `${label} — ${base.replace(/-/g, ' ')}`;
+}
+
+const manifest = {};
+
+for (const [slug, { dir, label }] of Object.entries(FOLDERS)) {
+  const files = sortFiles(listImages(`${BV}/${dir}`));
+  manifest[slug] = files.map((file) => ({
+    src: `${BV}/${dir}/${file}`,
+    alt: toAlt(file, label),
+  }));
+}
+
+const out = `/**
+ * Manifesto de fotos — gerado por scripts/tools/regenerate-image-manifest.mjs
+ * Prefere .webp; inclui .avif quando não há webp equivalente.
+ */
+
+export const APARTMENT_IMAGE_MANIFEST = ${JSON.stringify(manifest, null, 2)};
+
+/** @param {string} slug */
+export function getManifestImages(slug) {
+  return APARTMENT_IMAGE_MANIFEST[slug] || null;
+}
+`;
+
+const target = path.join(ROOT, 'scripts/data/apartment-image-manifest.js');
+fs.writeFileSync(target, out);
+
+for (const [slug, imgs] of Object.entries(manifest)) {
+  console.log(`${slug}: ${imgs.length} fotos`);
+}
+
+console.log(`\nAtualizado: ${target}`);
