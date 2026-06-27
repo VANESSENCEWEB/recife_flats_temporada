@@ -4,6 +4,7 @@
  */
 
 import { getApartmentBySlug } from './apartamentos.js';
+import { isNestedApartmentPage, pageHref } from '../utils/paths.js';
 
 /** @typedef {{ slug: string, name: string, pageUrl: string, description: string, intro: string, highlights: string[] }} Neighborhood */
 
@@ -45,6 +46,9 @@ export function neighborhoodKeyFromName(neighborhoodName) {
   return map[neighborhoodName] || neighborhoodName.toLowerCase().replace(/\s+/g, '-');
 }
 
+/** Páginas em /apartamentos/*.html (paths relativos precisam de ../). */
+export { isNestedApartmentPage, assetUrl, pageHref } from '../utils/paths.js';
+
 /** @param {string} slug */
 export function getNeighborhood(slug) {
   return NEIGHBORHOODS[slug] || null;
@@ -52,12 +56,15 @@ export function getNeighborhood(slug) {
 
 /** @param {string} apartmentSlug */
 export function apartmentUrl(apartmentSlug) {
-  return `./apartamentos/${apartmentSlug}.html`;
+  return isNestedApartmentPage()
+    ? `./${apartmentSlug}.html`
+    : `./apartamentos/${apartmentSlug}.html`;
 }
 
 /** @param {string} neighborhoodSlug */
 export function neighborhoodUrl(neighborhoodSlug) {
-  return NEIGHBORHOODS[neighborhoodSlug]?.pageUrl || './apartamentos.html';
+  const url = NEIGHBORHOODS[neighborhoodSlug]?.pageUrl || './apartamentos.html';
+  return pageHref(url);
 }
 
 /**

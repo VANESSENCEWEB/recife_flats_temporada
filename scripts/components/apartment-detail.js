@@ -7,7 +7,7 @@
  */
 
 import { getApartmentBySlug, resolveImages, FALLBACK_IMAGE } from '../data/apartamentos.js';
-import { getNeighborhood } from '../data/site-structure.js';
+import { getNeighborhood, pageHref } from '../data/site-structure.js';
 import { initGallery } from '../utils/gallery.js';
 
 const ICONS = {
@@ -18,10 +18,13 @@ const ICONS = {
   noParking: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m4.9 4.9 14.2 14.2"/></svg>`,
 };
 
-function renderDetailGallery(images, name) {
+function renderDetailGallery(images) {
   const [first] = images;
   const mainSrc = first.src || first.placeholder || FALLBACK_IMAGE;
   const mainFallback = first.placeholder || FALLBACK_IMAGE;
+  const counter = images.length > 1
+    ? `<span class="apt-gallery__counter" aria-hidden="true">1 / ${images.length}</span>`
+    : '';
 
   const thumbs = images.map((img, i) => {
     const src = img.src || img.placeholder || FALLBACK_IMAGE;
@@ -49,7 +52,9 @@ function renderDetailGallery(images, name) {
         <button type="button" class="apt-gallery__nav apt-gallery__nav--next" data-gallery-next aria-label="Próxima">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
         </button>
+        ${counter}
       </div>
+      ${images.length > 1 ? `<p class="apt-gallery__hint">${images.length} fotos — deslize para ver todas</p>` : ''}
       <div class="apt-gallery__thumbs apt-gallery__thumbs--detail">${thumbs}</div>
     </div>
   `;
@@ -66,7 +71,7 @@ class RFApartmentDetail extends HTMLElement {
         <section class="apt-detail apt-detail--error">
           <div class="container">
             <h1>Apartamento não encontrado</h1>
-            <p><a href="./apartamentos.html" class="btn btn--primary">Ver apartamentos</a></p>
+            <p><a href="${pageHref('./apartamentos.html')}" class="btn btn--primary">Ver apartamentos</a></p>
           </div>
         </section>
       `;
@@ -75,8 +80,6 @@ class RFApartmentDetail extends HTMLElement {
 
     const images = resolveImages(apt);
     const n      = getNeighborhood(apt.neighborhoodSlug);
-    const isNestedPage = window.location.pathname.includes('/apartamentos/');
-    const prefix = isNestedPage ? '../' : './';
 
     document.title = `${apt.name} — Recife Flats Temporada`;
 
@@ -105,7 +108,7 @@ class RFApartmentDetail extends HTMLElement {
         </header>
 
         <div class="container apt-detail__layout">
-          ${renderDetailGallery(images, apt.name)}
+          ${renderDetailGallery(images)}
 
           <aside class="apt-detail__sidebar" id="reservar">
             <div class="apt-detail__panel">
@@ -142,7 +145,7 @@ class RFApartmentDetail extends HTMLElement {
               <ul class="apt-detail__nb-list">
                 ${n.highlights.map((h) => `<li>${h}</li>`).join('')}
               </ul>
-              <a href="${prefix}${apt.neighborhoodSlug}.html" class="apt-detail__nb-link">Ver mais em ${n.name} →</a>
+              <a href="${pageHref(`./${apt.neighborhoodSlug}.html`)}" class="apt-detail__nb-link">Ver mais em ${n.name} →</a>
             </section>
             ` : ''}
           </div>

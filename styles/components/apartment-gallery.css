@@ -144,6 +144,14 @@
   gap: var(--space-3);
 }
 
+.apt-gallery__hint {
+  margin-top: var(--space-2);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
 .apt-gallery__thumbs--detail button,
 .apt-gallery__thumbs--detail .apt-detail__thumb {
   flex: 0 0 88px;

@@ -7,7 +7,7 @@
  *   <rf-breadcrumbs context="apartment" slug="flat-golden-view-1006"></rf-breadcrumbs>
  */
 
-import { getBreadcrumbs } from '../data/site-structure.js';
+import { getBreadcrumbs, pageHref } from '../data/site-structure.js';
 
 class RFBreadcrumbs extends HTMLElement {
   connectedCallback() {
@@ -20,7 +20,7 @@ class RFBreadcrumbs extends HTMLElement {
       if (isLast || !crumb.href) {
         return `<li class="breadcrumbs__item" aria-current="page"><span>${crumb.label}</span></li>`;
       }
-      return `<li class="breadcrumbs__item"><a href="${crumb.href}">${crumb.label}</a></li>`;
+      return `<li class="breadcrumbs__item"><a href="${pageHref(crumb.href)}">${crumb.label}</a></li>`;
     }).join('');
 
     this.innerHTML = `

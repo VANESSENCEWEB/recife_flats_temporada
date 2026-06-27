@@ -19,6 +19,12 @@ const FOLDERS = {
   'flat-golden-view-1006': { dir: 'apt-1006', label: 'Flat Golden View 1006' },
 };
 
+function normalizeBase(filename) {
+  let base = filename.replace(/\.(webp|avif)$/i, '');
+  base = base.replace(/\.avif$/i, '');
+  return base.replace(/_opt$/, '');
+}
+
 function listImages(dir) {
   const full = path.join(ROOT, dir);
   const files = fs.readdirSync(full);
@@ -28,12 +34,16 @@ function listImages(dir) {
     if (f.endsWith('.md') || f.startsWith('teste_')) continue;
     if (!/\.(webp|avif)$/i.test(f)) continue;
 
-    const base = f.replace(/\.(webp|avif)$/i, '').replace(/\.avif$/, '');
-    const key = base.replace(/_opt$/, '');
+    const key = normalizeBase(f);
     const ext = f.endsWith('.webp') ? 'webp' : 'avif';
     const existing = chosen.get(key);
+    const score = (file, extension) => {
+      let s = extension === 'webp' ? 2 : 1;
+      if (file.includes('.avif.webp')) s = 1;
+      return s;
+    };
 
-    if (!existing || (existing.ext !== 'webp' && ext === 'webp')) {
+    if (!existing || score(f, ext) > score(existing.file, existing.ext)) {
       chosen.set(key, { file: f, ext });
     }
   }

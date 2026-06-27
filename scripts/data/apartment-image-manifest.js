@@ -1,7 +1,6 @@
 /**
- * Manifesto de fotos — gerado a partir de assets/images/apartamentos/boa-viagem/
+ * Manifesto de fotos — gerado por scripts/tools/regenerate-image-manifest.mjs
  * Prefere .webp; inclui .avif quando não há webp equivalente.
- * Exclui arquivos teste_* e duplicatas.
  */
 
 export const APARTMENT_IMAGE_MANIFEST = {
@@ -189,7 +188,7 @@ export const APARTMENT_IMAGE_MANIFEST = {
       "alt": "Flat Golden View 1006 — rua entrada golden view boa viagem"
     },
     {
-      "src": "./assets/images/apartamentos/boa-viagem/apt-1006/entrada-de-pedestre-edf-golden-view-boa-viagem.avif.webp",
+      "src": "./assets/images/apartamentos/boa-viagem/apt-1006/entrada-de-pedestre-edf-golden-view-boa-viagem.avif",
       "alt": "Flat Golden View 1006 — entrada de pedestre edf golden view boa viagem"
     }
   ]
@@ -199,4 +198,3 @@ export const APARTMENT_IMAGE_MANIFEST = {
 export function getManifestImages(slug) {
   return APARTMENT_IMAGE_MANIFEST[slug] || null;
 }
-

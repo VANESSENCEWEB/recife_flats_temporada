@@ -4,6 +4,7 @@
  */
 
 import { getManifestImages } from './apartment-image-manifest.js';
+import { assetUrl } from '../utils/paths.js';
 
 export const FALLBACK_IMAGE = './assets/images/boa_viagem-01.avif.png';
 
@@ -165,10 +166,12 @@ const PLACEHOLDER_BY_SLUG = {
 export function resolveImages(apt) {
   const placeholders = PLACEHOLDER_BY_SLUG[apt.slug] || [];
   const firstLocal = apt.images[0]?.src;
+  const fallback = assetUrl(firstLocal || FALLBACK_IMAGE);
+
   return apt.images.map((img, i) => ({
-    src: img.src,
+    src: assetUrl(img.src),
     alt: img.alt,
-    placeholder: placeholders[i] || placeholders[0] || firstLocal || FALLBACK_IMAGE,
+    placeholder: placeholders[i] || placeholders[0] || fallback,
   }));
 }
 
