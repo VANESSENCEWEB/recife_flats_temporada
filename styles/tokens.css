@@ -80,6 +80,8 @@
   --container-px:  clamp(1.25rem, 4vw, 3.75rem);  /* padding horizontal responsivo */
   --nav-height:    84px;
   --nav-height-mobile: 68px;
+  --announcement-height: 52px;
+  --announcement-height-mobile: 56px;
 
   /* ---------- RAIOS ---------- */
   --radius-sm:    6px;

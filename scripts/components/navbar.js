@@ -1,5 +1,5 @@
 /**
- * <rf-navbar> — Header sticky reutilizável.
+ * <rf-navbar> — Header fixo reutilizável.
  *
  * Uso:
  *   <rf-navbar over-hero></rf-navbar>

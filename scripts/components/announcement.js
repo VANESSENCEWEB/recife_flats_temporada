@@ -25,8 +25,8 @@ class RFAnnouncement extends HTMLElement {
     `;
 
     this.querySelector('.announcement__close').addEventListener('click', () => {
-      this.querySelector('.announcement').classList.add('is-hidden');
       localStorage.setItem('rf-announcement-dismissed', '1');
+      this.remove();
     });
   }
 }

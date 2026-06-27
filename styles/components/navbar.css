@@ -1,12 +1,20 @@
 /* ============================================================
-   NAVBAR — Header sticky no topo
+   NAVBAR — Header fixo no topo
    Dois estados: sobre o hero (transparente) e scrolled (frosted glass).
    Conteúdo interno respeita o .container global.
 ============================================================ */
 
+rf-navbar {
+  display: block;
+  height: var(--nav-height);
+}
+
 .navbar {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: var(--z-nav);
   height: var(--nav-height);
   display: flex;
@@ -14,7 +22,13 @@
   background: transparent;
   transition: background var(--dur-slow) var(--ease-out),
               backdrop-filter var(--dur-slow) var(--ease-out),
-              box-shadow var(--dur-slow) var(--ease-out);
+              box-shadow var(--dur-slow) var(--ease-out),
+              top var(--dur-base) var(--ease-out);
+}
+
+/* Com barra de anúncio visível, navbar fica logo abaixo */
+.site-content:has(rf-announcement) .navbar {
+  top: var(--announcement-height);
 }
 
 .navbar.is-scrolled {
@@ -143,7 +157,11 @@
 
 /* Mobile */
 @media (max-width: 600px) {
+  rf-navbar { height: var(--nav-height-mobile); }
   .navbar { height: var(--nav-height-mobile); }
+  .site-content:has(rf-announcement) .navbar {
+    top: var(--announcement-height-mobile);
+  }
   .btn--whatsapp .btn__label { display: none; }
   .btn--whatsapp { padding: var(--space-3); border-radius: 50%; }
   .menu-toggle__label { display: none; }
