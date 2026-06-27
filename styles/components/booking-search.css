@@ -1,36 +1,33 @@
 /* ============================================================
-   BOOKING SEARCH — Glassmorphism claro
-   Fundo branco translúcido + blur forte. O vídeo respira atrás,
-   mas o texto preto continua legível.
+   BOOKING SEARCH — Glassmorphism + compacto no mobile
 ============================================================ */
 
 .booking-search {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(24px) saturate(1.5);
-  -webkit-backdrop-filter: blur(24px) saturate(1.5);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.65);
   border-radius: var(--radius-lg);
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    0 16px 40px rgba(0, 0, 0, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
   overflow: hidden;
   width: 100%;
   max-width: 100%;
   font-family: var(--font-body);
 }
 
-/* --- Header: glass mais transparente ainda --- */
 .booking-search__header {
-  background: rgba(13, 107, 117, 0.85);   /* teal escuro semi-transparente */
+  background: rgba(13, 107, 117, 0.92);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: var(--white);
-  padding: var(--space-3) var(--space-5);
+  padding: var(--space-2) var(--space-4);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: var(--space-3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .booking-search__title {
@@ -43,8 +40,10 @@
   color: var(--white);
 }
 .booking-search__title svg {
-  width: 16px; height: 16px;
+  width: 15px;
+  height: 15px;
   color: var(--accent-soft);
+  flex-shrink: 0;
 }
 
 .booking-search__status {
@@ -53,8 +52,9 @@
   gap: var(--space-2);
   font-size: var(--fs-xs);
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.75);
-  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.8);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
 }
 .booking-search__status-dot {
   width: 6px;
@@ -65,7 +65,6 @@
   animation: hero-pulse 2s ease-in-out infinite;
 }
 
-/* --- Corpo glass --- */
 .booking-search__body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr auto;
@@ -75,36 +74,39 @@
 
 .booking-search__field {
   position: relative;
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-3) var(--space-4);
   border-right: 1px solid rgba(13, 13, 13, 0.08);
   cursor: pointer;
   transition: background var(--dur-fast);
+  min-width: 0;
 }
 .booking-search__field:hover {
-  background: rgba(255, 255, 255, 0.4);   /* glass mais branco no hover */
+  background: rgba(255, 255, 255, 0.45);
 }
 .booking-search__field:last-of-type { border-right: none; }
 
 .booking-search__label {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  gap: 6px;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
   color: var(--accent-dark);
-  margin-bottom: var(--space-2);
+  margin-bottom: 4px;
 }
 .booking-search__label svg {
-  width: 13px; height: 13px;
+  width: 12px;
+  height: 12px;
   color: var(--accent);
+  flex-shrink: 0;
 }
 
 .booking-search__input,
 .booking-search__select {
   font-family: inherit;
-  font-size: var(--fs-base);
+  font-size: var(--fs-sm);
   font-weight: 500;
   color: var(--text);
   background: transparent;
@@ -113,6 +115,7 @@
   width: 100%;
   padding: 0;
   cursor: pointer;
+  min-height: 1.25rem;
 }
 .booking-search__input::-webkit-calendar-picker-indicator {
   cursor: pointer;
@@ -127,20 +130,20 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230d6b75' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0 center;
-  padding-right: var(--space-5);
+  padding-right: var(--space-4);
 }
 
-/* --- Botão Consultar: teal sólido pra fazer o contraste do CTA --- */
 .booking-search__submit {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-2);
   background: var(--accent);
   color: var(--white);
   font-size: var(--fs-sm);
   font-weight: 600;
   letter-spacing: 0.02em;
-  padding: 0 var(--space-7);
+  padding: 0 var(--space-5);
   border: none;
   cursor: pointer;
   transition: background var(--dur-base), transform var(--dur-fast);
@@ -165,43 +168,80 @@
 .booking-search__submit:active { transform: scale(0.98); }
 .booking-search__submit svg { width: 14px; height: 14px; }
 
-/* --- Responsivo --- */
+/* --- Tablet --- */
 @media (max-width: 720px) {
-  .booking-search { border-radius: var(--radius-md); }
-  .booking-search__header {
-    padding: var(--space-3) var(--space-4);
+  .booking-search {
+    border-radius: var(--radius-md);
   }
+
   .booking-search__body {
     grid-template-columns: 1fr 1fr;
   }
+
   .booking-search__field {
-    border-right: 1px solid rgba(13, 13, 13, 0.08);
-    border-bottom: 1px solid rgba(13, 13, 13, 0.08);
-    padding: var(--space-3) var(--space-4);
+    padding: 10px var(--space-3);
+    border-bottom: 1px solid rgba(13, 13, 13, 0.07);
   }
+
+  .booking-search__field:nth-of-type(1) { border-right: 1px solid rgba(13, 13, 13, 0.07); }
   .booking-search__field:nth-of-type(2) { border-right: none; }
   .booking-search__field:nth-of-type(3) {
-    grid-column: 1 / -1;
-    border-right: none;
+    grid-column: 1 / 2;
+    border-right: 1px solid rgba(13, 13, 13, 0.07);
   }
+
   .booking-search__submit {
-    grid-column: 1 / -1;
-    padding: var(--space-3);
-    justify-content: center;
-    min-height: 52px;
+    grid-column: 2 / 3;
+    grid-row: 2;
+    min-height: 44px;
+    padding: 10px var(--space-3);
+    font-size: var(--fs-xs);
+  }
+
+  .booking-search__status {
+    display: none;
   }
 }
 
+/* --- Mobile compacto --- */
 @media (max-width: 480px) {
-  .booking-search__body { grid-template-columns: 1fr; }
-  .booking-search__field {
-    border-right: none;
-    padding: var(--space-3) var(--space-4);
-  }
   .booking-search__header {
-    flex-wrap: wrap;
-    gap: var(--space-2);
+    padding: 8px var(--space-3);
   }
-  .booking-search__status { font-size: 10px; }
-  .booking-search__title { font-size: var(--fs-xs); }
+
+  .booking-search__title {
+    font-size: var(--fs-xs);
+  }
+
+  .booking-search__title svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .booking-search__body {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .booking-search__field {
+    padding: 8px var(--space-3);
+  }
+
+  .booking-search__label {
+    font-size: 9px;
+    margin-bottom: 2px;
+  }
+
+  .booking-search__input,
+  .booking-search__select {
+    font-size: 0.8125rem;
+  }
+
+  .booking-search__submit {
+    min-height: 40px;
+    padding: 8px var(--space-2);
+  }
+
+  .booking-search__submit-text {
+    display: none;
+  }
 }

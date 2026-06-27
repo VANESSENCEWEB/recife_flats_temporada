@@ -10,13 +10,24 @@
   font-weight: 500;
   letter-spacing: var(--tracking-wide);
   text-align: center;
-  padding: 9px var(--space-7);
+  line-height: 1.45;
+  padding: 10px clamp(2.5rem, 8vw, var(--space-7)) 10px var(--space-4);
   position: relative;
   overflow: hidden;
   transition: max-height var(--dur-base) var(--ease-out),
               padding    var(--dur-base) var(--ease-out),
               opacity    var(--dur-base) var(--ease-out);
-  max-height: 40px;
+  max-height: 52px;
+}
+
+@media (max-width: 480px) {
+  .announcement {
+    font-size: 0.6875rem;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    padding-block: 11px;
+    max-height: 56px;
+  }
 }
 
 .announcement__text strong {

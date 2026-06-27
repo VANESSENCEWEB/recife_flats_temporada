@@ -49,9 +49,35 @@
   color: var(--sand);
 }
 
+/* Eyebrow com contraste em fundos claros */
+.eyebrow--pill {
+  color: var(--accent-darker);
+  background: var(--accent-soft);
+  border: 1px solid rgba(27, 154, 170, 0.22);
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.eyebrow--on-dark {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--white-20);
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+}
+
 .display-italic {
   font-style: italic;
   color: var(--sand);
+}
+
+/* Títulos de seção em fundo claro — itálico teal para contraste */
+.section-title em,
+.apt-teaser__title em,
+.location-section__title em {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--accent-dark);
 }
 
 /* Grão sutil — overlay opcional sobre qualquer fundo */

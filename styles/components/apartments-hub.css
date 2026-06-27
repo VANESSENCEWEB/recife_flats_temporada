@@ -3,8 +3,16 @@
 ============================================================ */
 
 .apt-teaser {
-  background: var(--cream);
+  background: var(--white);
   padding-block: var(--space-10);
+  border-top: 1px solid rgba(13, 13, 13, 0.06);
+}
+
+.apt-teaser__header {
+  padding-bottom: var(--space-2);
+  border-bottom: 3px solid var(--accent-soft);
+  margin-bottom: var(--space-2);
+  max-width: fit-content;
 }
 
 .apt-teaser__inner {

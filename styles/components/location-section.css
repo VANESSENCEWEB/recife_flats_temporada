@@ -3,8 +3,13 @@
 ============================================================ */
 
 .location-section {
-  background: var(--cream);
+  background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 12rem);
   padding-block: var(--space-10);
+  border-top: 4px solid var(--accent);
+}
+
+.location-section__header {
+  padding-bottom: var(--space-3);
 }
 
 .location-section__inner {
@@ -40,7 +45,7 @@
 .location-benefit {
   padding: var(--space-5);
   background: var(--white);
-  border: 1px solid rgba(13, 13, 13, 0.06);
+  border: 1px solid rgba(27, 154, 170, 0.12);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
 }

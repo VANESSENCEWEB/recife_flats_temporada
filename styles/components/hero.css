@@ -8,6 +8,7 @@
   width: 100%;
   min-height: 100vh;
   min-height: 100dvh;
+  --hero-cloud-reserve: 5.5rem;
   margin-top: calc(-1 * var(--nav-height));
   overflow: hidden;
   isolation: isolate;
@@ -59,21 +60,23 @@
 /* --- Container do hero --- */
 .hero__container {
   position: relative;
-  z-index: 4;
+  z-index: 6;
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;     /* tudo encostado embaixo */
-  padding-block: calc(var(--nav-height) + var(--space-7)) var(--space-7);
-  gap: var(--space-6);
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-content: end;
+  padding-block: calc(var(--nav-height) + var(--space-5)) calc(var(--hero-cloud-reserve, 5.5rem) + var(--space-4));
+  gap: var(--space-5);
+  min-height: 0;
 }
 
 .hero__text {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  align-self: end;
   max-width: 880px;
-  padding-bottom: 0;             /* tira o gap antes do buscador */
+  padding-bottom: 0;
 }
 
 /* --- Eyebrow com pílula outline e dot teal --- */
@@ -225,19 +228,17 @@
 /* --- Buscador no rodapé do hero (full bleed) --- */
 .hero__search {
   position: relative;
-  z-index: 5;
+  z-index: 7;
   width: 100%;
   opacity: 0;
   transform: translateY(20px);
   margin-top: 0;
+  flex-shrink: 0;
 }
 
 /* Em mobile, dá folga lateral pra não encostar nas bordas */
 @media (max-width: 700px) {
-  .hero__search {
-    margin-bottom: var(--space-4);
-  }
-   .hero__sun {
+  .hero__sun {
     width: 0.75em;
     height: 0.75em;
   }
@@ -252,20 +253,32 @@
 
 @media (max-width: 700px) {
   .hero {
-    min-height: 100vh;
+    --hero-cloud-reserve: 3.25rem;
+    min-height: 100svh;
     min-height: 100dvh;
   }
+
   .hero__container {
-    padding-block: calc(var(--nav-height-mobile) + var(--space-5)) var(--space-5);
-    gap: var(--space-4);
+    grid-template-rows: minmax(0, 1fr) auto;
+    align-content: stretch;
+    padding-block: calc(var(--nav-height-mobile) + var(--space-2)) calc(var(--hero-cloud-reserve) + var(--space-2));
+    gap: var(--space-3);
   }
-  .hero__eyebrow { margin-bottom: var(--space-4); }
+
+  .hero__text {
+    align-self: center;
+    justify-content: center;
+    margin-block: auto;
+    padding-top: var(--space-1);
+  }
+
+  .hero__eyebrow { margin-bottom: var(--space-3); }
   .hero__title {
-    font-size: clamp(1.75rem, 8vw, 2.75rem);
+    font-size: clamp(1.875rem, 8.5vw, 2.75rem);
     max-width: 100%;
     letter-spacing: -0.02em;
-    line-height: 1.0;
-    margin-bottom: var(--space-3);
+    line-height: 1.02;
+    margin-bottom: var(--space-2);
   }
   .hero__title em {
     font-size: 0.95em;
@@ -273,7 +286,8 @@
   .hero__description {
     max-width: 100%;
     font-size: 0.9375rem;
-    margin-bottom: var(--space-4);
+    line-height: 1.5;
+    margin-bottom: 0;
   }
   .hero__badges {
     gap: var(--space-2);
@@ -291,6 +305,10 @@
     flex: 1;
     justify-content: center;
     padding: 12px var(--space-4);
+  }
+
+  .hero__search {
+    margin-bottom: 0;
   }
 }
 
@@ -310,13 +328,15 @@
 
 .hero__clouds {
   position: absolute;
-  bottom: -1px;
+  bottom: 0;
   left: 0;
   right: 0;
   width: 100%;
+  height: var(--hero-cloud-reserve, 5.5rem);
   z-index: 4;
   pointer-events: none;
   line-height: 0;
+  overflow: hidden;
 }
 
 /* As três camadas se sobrepõem no mesmo bottom */
@@ -361,18 +381,24 @@
   50%      { transform: translateX(-12px); }
 }
 
-/* A próxima section precisa começar branca pra continuar as nuvens */
+/* A próxima section continua o fundo branco das nuvens */
+.hero + rf-apartments-teaser,
 .hero + section,
 .hero + .next-section {
   background: var(--white);
   position: relative;
 }
 
-/* Em mobile, reduz a altura das nuvens pra não comer muito do hero */
+/* Em mobile: nuvens mais baixas — não cobrem o buscador */
 @media (max-width: 700px) {
-  .hero__clouds {
-    transform: scale(1.3);     /* aumenta visualmente sem mexer no SVG */
-    transform-origin: bottom center;
+  .hero__clouds-layer--back,
+  .hero__clouds-layer--mid {
+    display: none;
+  }
+
+  .hero__clouds-layer--front {
+    opacity: 1;
+    animation: none;
   }
 }
 

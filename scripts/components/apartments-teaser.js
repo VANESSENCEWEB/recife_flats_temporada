@@ -26,7 +26,7 @@ class RFApartmentsTeaser extends HTMLElement {
       <section class="apt-teaser" id="apartamentos" aria-labelledby="apt-teaser-heading">
         <div class="container apt-teaser__inner">
           <header class="apt-teaser__header" data-apt-teaser-reveal>
-            <span class="eyebrow">Nossa coleção</span>
+            <span class="eyebrow eyebrow--pill">Nossa coleção</span>
             <h2 class="apt-teaser__title" id="apt-teaser-heading">
               Flats para temporada em <em class="display-italic">Recife</em>
             </h2>
