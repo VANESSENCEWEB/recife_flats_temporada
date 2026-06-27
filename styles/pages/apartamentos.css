@@ -1,0 +1,58 @@
+/* ============================================================
+   APARTAMENTOS PAGE — Header + booking CTA
+============================================================ */
+
+.site-content {
+  background: var(--cream);
+  min-height: 100vh;
+}
+
+.page-header {
+  padding-block: var(--space-4) var(--space-6);
+}
+
+.page-header h1 {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  max-width: 20ch;
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+}
+
+.page-header__lead {
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 48ch;
+}
+
+.apartamentos-booking {
+  padding-block: var(--space-9) var(--space-10);
+  background: var(--white);
+  border-top: 1px solid rgba(13, 13, 13, 0.06);
+}
+
+.apartamentos-booking__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.apartamentos-booking__text h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.apartamentos-booking__text p {
+  color: var(--text-muted);
+  max-width: 40ch;
+}
+
+@media (min-width: 768px) {
+  .apartamentos-booking__inner {
+    gap: var(--space-8);
+  }
+}

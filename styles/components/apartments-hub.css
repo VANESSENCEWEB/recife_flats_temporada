@@ -1,0 +1,310 @@
+/* ============================================================
+   APARTMENTS TEASER — Home preview
+============================================================ */
+
+.apt-teaser {
+  background: var(--cream);
+  padding-block: var(--space-10);
+}
+
+.apt-teaser__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+}
+
+.apt-teaser__title {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.08;
+  max-width: 16ch;
+  margin-block: var(--space-3) var(--space-4);
+}
+
+.apt-teaser__lead {
+  font-size: var(--fs-md);
+  color: var(--text-muted);
+  max-width: 46ch;
+  line-height: 1.6;
+}
+
+.apt-teaser__nb-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.apt-teaser__nb-link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-5);
+  background: var(--white);
+  border: 1px solid rgba(13, 13, 13, 0.06);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--dur-fast), transform var(--dur-fast);
+}
+
+.apt-teaser__nb-link:hover {
+  border-color: rgba(27, 154, 170, 0.35);
+  transform: translateY(-2px);
+}
+
+.apt-teaser__nb-name {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+}
+
+.apt-teaser__nb-count {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.apt-teaser__footer {
+  display: flex;
+  justify-content: center;
+}
+
+/* --- Hub listagem --- */
+
+.apt-hub__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-7);
+}
+
+.apt-hub__filter {
+  padding: 8px 16px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  border: 1px solid rgba(13, 13, 13, 0.1);
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  color: var(--text-muted);
+  transition: all var(--dur-fast);
+}
+
+.apt-hub__filter:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.apt-hub__filter.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white);
+}
+
+.apt-hub__group + .apt-hub__group {
+  margin-top: var(--space-9);
+  padding-top: var(--space-9);
+  border-top: 1px solid rgba(13, 13, 13, 0.08);
+}
+
+.apt-hub__group-head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.apt-hub__group-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 600;
+}
+
+.apt-hub__group-desc {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  max-width: 58ch;
+  line-height: 1.55;
+}
+
+.apt-hub__group-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--accent-dark);
+}
+
+.apt-hub__booking {
+  margin-top: var(--space-10);
+  padding: var(--space-8);
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(13, 13, 13, 0.06);
+}
+
+.apt-hub__booking-inner h2 {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.apt-hub__booking-inner p {
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .apt-hub__group-head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+/* --- Neighborhood hub --- */
+
+.nb-hub__intro {
+  padding-block: var(--space-6) var(--space-8);
+}
+
+.nb-hub__title {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  line-height: 1.08;
+  max-width: 16ch;
+  margin-block: var(--space-3) var(--space-4);
+}
+
+.nb-hub__lead {
+  font-size: var(--fs-md);
+  color: var(--text-muted);
+  max-width: 52ch;
+  line-height: 1.6;
+  margin-bottom: var(--space-5);
+}
+
+.nb-hub__highlights {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nb-hub__highlights li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: var(--fs-sm);
+  color: var(--text);
+}
+
+.nb-hub__highlights li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.nb-hub__divider {
+  height: 1px;
+  background: rgba(13, 13, 13, 0.08);
+  margin-block: var(--space-2);
+}
+
+.nb-hub__cta {
+  padding-block: var(--space-9);
+  margin-top: var(--space-6);
+  background: var(--white);
+  border-top: 1px solid rgba(13, 13, 13, 0.06);
+}
+
+.nb-hub__cta-inner h2 {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.nb-hub__cta-inner p {
+  color: var(--text-muted);
+  margin-bottom: var(--space-5);
+}
+
+.nb-hub__cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.apt-detail__badge {
+  display: inline-block;
+  margin-bottom: var(--space-3);
+  padding: 6px 12px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  background: var(--accent-soft);
+  color: var(--accent-darker);
+  border-radius: var(--radius-pill);
+}
+
+.apt-detail__rating {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--sun-dark);
+  margin-top: var(--space-2);
+}
+
+.apt-detail__rating span {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.apt-detail__price {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.apt-detail__price strong {
+  font-size: var(--fs-xl);
+  color: var(--text);
+}
+
+.apt-detail__price--consult {
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.apt-detail__nb-list {
+  list-style: none;
+  margin: var(--space-4) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.apt-detail__nb-list li {
+  padding-left: 1rem;
+  position: relative;
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+.apt-detail__nb-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.apt-detail__nb-link {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--accent-dark);
+}
+
+.apt-detail__nb-link:hover {
+  color: var(--accent-darker);
+}

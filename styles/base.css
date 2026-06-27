@@ -81,6 +81,13 @@ rf-navbar,
 rf-menu,
 rf-hero,
 rf-booking-search,
+rf-breadcrumbs,
+rf-apartment-card,
+rf-apartment-grid-card,
+rf-apartments-hub,
+rf-neighborhood-hub,
+rf-apartments-teaser,
+rf-apartment-detail,
 rf-location-section,
 rf-footer {
   display: block;

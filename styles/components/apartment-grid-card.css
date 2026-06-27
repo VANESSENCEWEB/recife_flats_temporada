@@ -1,0 +1,160 @@
+/* ============================================================
+   APARTMENT GRID CARD — Card compacto para hubs
+============================================================ */
+
+.apt-grid-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid rgba(13, 13, 13, 0.06);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
+}
+
+.apt-grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.apt-grid-card.is-hidden {
+  display: none;
+}
+
+.apt-grid-card__media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.apt-grid-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow);
+}
+
+.apt-grid-card:hover .apt-grid-card__media img {
+  transform: scale(1.04);
+}
+
+.apt-grid-card__badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  padding: 6px 12px;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--white);
+  border-radius: var(--radius-pill);
+}
+
+.apt-grid-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  flex: 1;
+}
+
+.apt-grid-card__meta {
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent-dark);
+}
+
+.apt-grid-card__title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.apt-grid-card__title a:hover {
+  color: var(--accent-dark);
+}
+
+.apt-grid-card__tagline {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.apt-grid-card__rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+}
+
+.apt-grid-card__stars {
+  font-weight: 600;
+  color: var(--sun-dark);
+}
+
+.apt-grid-card__reviews {
+  color: var(--text-muted);
+}
+
+.apt-grid-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.apt-grid-card__chips li {
+  font-size: var(--fs-xs);
+  padding: 4px 10px;
+  background: var(--cream);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+}
+
+.apt-grid-card__price {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-top: auto;
+}
+
+.apt-grid-card__price strong {
+  font-size: var(--fs-lg);
+  color: var(--text);
+}
+
+.apt-grid-card__price--consult {
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.apt-grid-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.apt-teaser__grid,
+.apt-hub__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .apt-teaser__grid,
+  .apt-hub__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .apt-teaser__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

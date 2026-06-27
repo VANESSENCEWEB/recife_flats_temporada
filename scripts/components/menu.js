@@ -18,7 +18,7 @@ const NAV_ITEMS = [
   { num: '01', label: 'Início',       href: '/'              },
   { num: '02', label: 'Apartamentos', href: '/apartamentos.html' },
   { num: '03', label: 'Sobre nós',    href: '/sobre.html'    },
-  { num: '04', label: 'Depoimentos',  href: '/#depoimentos'  },
+  { num: '04', label: 'Localização',  href: '/#localizacao'  },
   { num: '05', label: 'Contato',      href: '/contato.html'  },
 ];
 
