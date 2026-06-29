@@ -1,0 +1,229 @@
+/* =========================================================
+   utilities.css — Layout, seções, animações e responsivo
+   ========================================================= */
+
+/* --- Container e seções --- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+.container--wide {
+  max-width: var(--container-wide);
+}
+
+.section {
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+
+/* Seção com altura mínima de tela — conteúdo pode crescer além */
+.section--screen {
+  min-height: 100dvh;
+  padding-block: clamp(4rem, 9vw, 7rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.section--screen > .container {
+  width: 100%;
+}
+
+.section--screen .section-head {
+  margin-bottom: clamp(1.5rem, 4vw, 3rem);
+}
+
+/* Stats em tela cheia */
+.section--stats .hero__meta {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  justify-content: center;
+  gap: clamp(2rem, 6vw, 5rem);
+}
+
+.section--stats .hero__meta-item {
+  text-align: center;
+}
+
+.section--stats .hero__meta-item .num {
+  color: var(--color-text);
+}
+
+.section--stats .hero__meta-item .label {
+  color: var(--color-muted);
+}
+
+.section--tight {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.section--dark {
+  background: var(--color-bg-dark);
+  color: #f0f8fa;
+}
+
+.section--dark h1,
+.section--dark h2,
+.section--dark h3,
+.section--dark h4,
+.section--dark h5 {
+  color: #f0f8fa;
+}
+
+.section--dark p {
+  color: #a8c4ce;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+.section-head__copy {
+  max-width: 720px;
+}
+
+.section-head__aside {
+  max-width: 380px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.section--dark .section-head__aside {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-sunset);
+}
+
+.section--dark .eyebrow {
+  color: var(--color-muted-2);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+/* --- Estados de reveal (GSAP aplica via JS) --- */
+.reveal,
+.reveal-x {
+  will-change: transform, opacity;
+}
+
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.split-word > span {
+  display: inline-block;
+}
+
+/* --- Cabeçalho de subpáginas --- */
+.page-head {
+  min-height: auto;
+  padding-top: calc(var(--site-header-offset) + 3rem);
+  padding-bottom: 3rem;
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.page-head h1 {
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  letter-spacing: -0.035em;
+  margin-bottom: 1rem;
+}
+
+.page-head p {
+  max-width: 65ch;
+  font-size: 1.1rem;
+}
+
+.breadcrumb {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+}
+
+/* --- Layout de contato (duas colunas) --- */
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.contact-aside {
+  background: var(--color-bg-alt);
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+}
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal,
+  .reveal-x {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Breakpoints globais --- */
+@media (max-width: 1024px) {
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
