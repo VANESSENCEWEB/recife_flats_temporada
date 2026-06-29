@@ -1,0 +1,96 @@
+/* =========================================================
+   form.css — Formulários de contato e campos
+   ========================================================= */
+
+.form {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 640px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field label {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 0.9rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: 0.95rem;
+  transition: border-color var(--dur-2) var(--ease),
+    box-shadow var(--dur-2) var(--ease);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 0;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 140px;
+  font-family: inherit;
+}
+
+.form__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.form__status {
+  font-size: 0.9rem;
+}
+
+.contact-channel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-channel__label {
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+}
+
+.contact-channel a {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+}
+
+.contact-channel p {
+  margin: 0.25rem 0 0;
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

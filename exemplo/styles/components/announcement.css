@@ -1,0 +1,54 @@
+/* =========================================================
+   announcement.css — Barra de promoção fixa no topo
+   ========================================================= */
+
+.announcement-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 70;
+  height: var(--announcement-h);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+  padding-inline: 1rem;
+}
+
+.announcement-bar p {
+  margin: 0;
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-soft);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Barra escura na home para combinar com o hero */
+body[data-page="index"] .announcement-bar {
+  background: rgba(15, 26, 36, 0.92);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+body[data-page="index"] .announcement-bar p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 480px) {
+  :root {
+    --announcement-h: 2rem;
+    --nav-h: 3.75rem;
+  }
+
+  .announcement-bar p {
+    font-size: 0.65rem;
+    letter-spacing: 0.04em;
+  }
+}
