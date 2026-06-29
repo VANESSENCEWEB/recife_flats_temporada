@@ -1,16 +1,36 @@
 /* ============================================================
-   HOME — Ritmo visual entre seções
+   HOME — Ritmo visual entre seções (azul → branco → creme)
 ============================================================ */
 
-.site-content > rf-apartments-teaser + rf-location-section {
-  margin-top: 0;
+.site-content:has(.announcement) {
+  padding-top: var(--announcement-height);
 }
 
-/* Contraste entre hero → coleção → localização */
+@media (max-width: 480px) {
+  .site-content:has(.announcement) {
+    padding-top: var(--announcement-height-mobile);
+  }
+}
+
 rf-apartments-teaser {
   background: var(--white);
+  position: relative;
+  z-index: 2;
+}
+
+rf-reservation-steps {
+  display: block;
+  margin-top: -2rem;
+  position: relative;
+  z-index: 1;
 }
 
 rf-location-section {
   background: var(--cream);
+  position: relative;
+  z-index: 2;
+}
+
+.site-content > rf-apartments-teaser + rf-reservation-steps {
+  margin-top: 0;
 }

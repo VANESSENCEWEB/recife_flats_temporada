@@ -1,0 +1,45 @@
+/* ============================================================
+   FLOATING WHATSAPP — Botão fixo
+============================================================ */
+
+rf-floating-whatsapp {
+  display: block;
+}
+
+.floating-whatsapp {
+  position: fixed;
+  right: clamp(1rem, 3vw, 1.5rem);
+  bottom: clamp(1rem, 3vw, 1.5rem);
+  z-index: calc(var(--z-nav) - 1);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25d366;
+  color: var(--white);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: 0 12px 36px rgba(37, 211, 102, 0.55);
+}
+
+.floating-whatsapp__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: wa-pulse 2s ease-out infinite;
+}
+
+@keyframes wa-pulse {
+  0%   { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .floating-whatsapp__pulse { animation: none; }
+}

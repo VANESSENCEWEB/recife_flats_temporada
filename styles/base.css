@@ -24,7 +24,7 @@ body {
   font-size: var(--fs-base);
   line-height: var(--lh-normal);
   color: var(--text);
-  background-color: var(--cream);
+  background-color: var(--black);   /* fundo escuro aparece por trás do site quando o menu abre */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -87,11 +87,10 @@ rf-apartment-grid-card,
 rf-apartments-hub,
 rf-neighborhood-hub,
 rf-apartments-teaser,
-rf-home-marquee,
-rf-home-sections,
-rf-footer,
 rf-apartment-detail,
 rf-location-section,
-rf-footer {
+rf-footer,
+rf-floating-whatsapp,
+rf-reservation-steps {
   display: block;
 }

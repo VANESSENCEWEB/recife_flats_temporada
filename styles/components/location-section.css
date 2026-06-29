@@ -3,9 +3,11 @@
 ============================================================ */
 
 .location-section {
-  background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 12rem);
+  background: linear-gradient(180deg, var(--cream) 0%, var(--white) 8rem);
   padding-block: var(--space-10);
-  border-top: 4px solid var(--accent);
+  margin-top: -4rem;
+  padding-top: calc(var(--space-10) + 4rem);
+  position: relative;
 }
 
 .location-section__header {

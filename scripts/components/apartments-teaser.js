@@ -1,8 +1,10 @@
 /**
- * <rf-apartments-teaser> — Destaque na home (design exemplo).
+ * <rf-apartments-teaser> — Destaque na home com links para bairros.
  */
 
 import { APARTAMENTOS } from '../data/apartamentos.js';
+import { NEIGHBORHOODS } from '../data/site-structure.js';
+import { prefersReducedMotion } from '../utils/dom.js';
 
 class RFApartmentsTeaser extends HTMLElement {
   connectedCallback() {
@@ -10,22 +12,61 @@ class RFApartmentsTeaser extends HTMLElement {
       .map((a) => `<rf-apartment-grid-card slug="${a.slug}"></rf-apartment-grid-card>`)
       .join('');
 
+    const neighborhoodLinks = Object.values(NEIGHBORHOODS).map((n) => {
+      const count = APARTAMENTOS.filter((a) => a.neighborhoodSlug === n.slug).length;
+      return `
+        <a href="${n.pageUrl}" class="apt-teaser__nb-link">
+          <span class="apt-teaser__nb-name">${n.name}</span>
+          <span class="apt-teaser__nb-count">${count} imóve${count > 1 ? 'is' : 'l'}</span>
+        </a>
+      `;
+    }).join('');
+
     this.innerHTML = `
-      <section class="section section--apartments" id="apartamentos" style="background:var(--color-bg-alt)" aria-labelledby="apt-teaser-heading">
-        <div class="container">
-          <div class="section-head">
-            <div class="section-head__copy">
-              <span class="pre-title pre-title--dark reveal"><span class="pre-title__dot"></span> Nossos imóveis</span>
-              <h2 class="reveal" id="apt-teaser-heading">4 apartamentos em<br><span class="accent-word">Boa Viagem</span> e Pina.</h2>
-            </div>
-            <a href="./apartamentos.html" class="link-arrow reveal">Ver catálogo completo</a>
+      <section class="apt-teaser" id="apartamentos" aria-labelledby="apt-teaser-heading">
+        <div class="container apt-teaser__inner">
+          <header class="apt-teaser__header" data-apt-teaser-reveal>
+            <span class="eyebrow eyebrow--pill">Nossa coleção</span>
+            <h2 class="apt-teaser__title" id="apt-teaser-heading">
+              Flats para temporada em <em class="display-italic">Recife</em>
+            </h2>
+            <p class="apt-teaser__lead">
+              Quatro apartamentos mobiliados em Boa Viagem e Pina — confortáveis,
+              bem localizados e com reserva direta.
+            </p>
+          </header>
+
+          <div class="apt-teaser__nb-row" data-apt-teaser-reveal>
+            ${neighborhoodLinks}
           </div>
-          <div class="properties properties--compact" data-stagger>
+
+          <div class="apt-teaser__grid" data-apt-teaser-reveal>
             ${cards}
           </div>
+
+          <footer class="apt-teaser__footer" data-apt-teaser-reveal>
+            <a href="./apartamentos.html" class="btn btn--secondary btn--lg">
+              Ver todos os apartamentos
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </footer>
         </div>
       </section>
     `;
+
+    this._animate();
+  }
+
+  _animate() {
+    if (prefersReducedMotion() || !window.gsap) return;
+    gsap.from(this.querySelectorAll('[data-apt-teaser-reveal]'), {
+      opacity: 0,
+      y: 28,
+      duration: 0.65,
+      stagger: 0.1,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: this, start: 'top 85%', once: true },
+    });
   }
 }
 

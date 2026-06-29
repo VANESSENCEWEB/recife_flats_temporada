@@ -12,7 +12,11 @@
   text-align: center;
   line-height: 1.45;
   padding: 10px clamp(2.5rem, 8vw, var(--space-7)) 10px var(--space-4);
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: calc(var(--z-nav) + 1);
   overflow: hidden;
   transition: max-height var(--dur-base) var(--ease-out),
               padding    var(--dur-base) var(--ease-out),

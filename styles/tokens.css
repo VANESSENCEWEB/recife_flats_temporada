@@ -28,40 +28,7 @@
 --sun-light:  #FAD888;
 --sun-dark:   #D9A22F;
 
-  --color-border: #e8e4da;
-  --color-border-strong: #1a1a17;
-  --color-bg: #f7f5f0;
-  --color-bg-alt: #efe9dc;
-  --color-bg-dark: #0f1a24;
-  --color-surface: #ffffff;
-  --color-surface-2: #f2ece0;
-  --color-text: #1a1a17;
-  --color-text-soft: #5e5e5e;
-  --color-muted: #8a8a8a;
-  --color-accent: var(--accent);
-  --color-accent-soft: var(--accent-soft);
-  --color-accent-dark: var(--accent-dark);
-  --color-sea: #0a4d68;
-  --color-coral: #ff8e5c;
-  --color-coral-dark: #e8632e;
-  --color-sunset: #ff8e5c;
-  --color-primary-sand: #fff6c7;
-  --color-palm: #25d366;
-  --font-sans: "Stack Sans Headline", "Inter Tight", -apple-system, sans-serif;
-  --font-accent: "Source Serif 4", var(--font-italic);
-  --site-header-offset: calc(var(--announcement-height) + var(--nav-height));
-  --container: var(--container-max);
-  --dur-1: var(--dur-fast);
-  --dur-2: var(--dur-base);
-  --dur-3: var(--dur-slow);
-  --ease: var(--ease-out);
-  --shadow-1: var(--shadow-md);
-  --shadow-glow: 0 0 60px rgba(27, 154, 170, 0.15);
-
-  /* alinha tokens legados com o design exemplo */
-  --cream: var(--color-bg);
-  --cream-dark: var(--color-bg-alt);
-  --ocean: var(--color-bg-dark);
+  /* alfa frequentes (evita re-escrever rgba todo lugar) */
   --white-90:     rgba(255, 255, 255, 0.90);
   --white-65:     rgba(255, 255, 255, 0.65);
   --white-40:     rgba(255, 255, 255, 0.40);
@@ -69,8 +36,8 @@
   --white-10:     rgba(255, 255, 255, 0.10);
 
   /* ---------- TIPOGRAFIA ---------- */
---font-display: "Inter Tight", "Stack Sans Headline", var(--font-body);
---font-body:    "Stack Sans Headline", "Inter Tight", -apple-system, sans-serif;
+--font-display: 'Geist', 'Inter', -apple-system, sans-serif;
+--font-body:    'Geist', 'Inter', -apple-system, sans-serif;
 --font-italic:  'Instrument Serif', Georgia, serif;  /* só pro italic destacado */
 
   /* escala tipográfica fluida (clamp = min, ideal, max) */

@@ -1,0 +1,141 @@
+/* ============================================================
+   RESERVATION STEPS — Como funciona (fundo azul → transição)
+============================================================ */
+
+.reservation-steps {
+  position: relative;
+  background: linear-gradient(165deg, var(--ocean) 0%, var(--ocean-light) 55%, #2a6d8a 100%);
+  color: var(--white);
+  padding-block: var(--space-10);
+  overflow: hidden;
+}
+
+.reservation-steps__fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8rem;
+  background: linear-gradient(180deg, transparent 0%, var(--cream) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.reservation-steps__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.reservation-steps__title {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  line-height: 1.08;
+  max-width: 16ch;
+  margin-block: var(--space-3) var(--space-4);
+  color: var(--white);
+}
+
+.reservation-steps__title em {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--sun-light);
+}
+
+.reservation-steps__lead {
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 52ch;
+}
+
+.reservation-steps__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.reservation-step {
+  padding: var(--space-6);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.reservation-step__num {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  color: var(--sun);
+  margin-bottom: var(--space-3);
+}
+
+.reservation-step__title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--white);
+}
+
+.reservation-step__text {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.reservation-steps__highlights {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+.reservation-highlight {
+  padding: var(--space-5);
+  border-left: 3px solid var(--accent);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.reservation-highlight h4 {
+  font-size: var(--fs-base);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--white);
+}
+
+.reservation-highlight p {
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.reservation-steps__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.reservation-steps .btn--outline {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: var(--white);
+}
+
+.reservation-steps .btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+@media (min-width: 768px) {
+  .reservation-steps__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .reservation-steps__highlights {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
