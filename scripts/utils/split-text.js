@@ -70,3 +70,25 @@ export function splitTextIntoWords(el) {
   [...el.childNodes].forEach(walk);
   return el.querySelectorAll('.word');
 }
+
+/** Split estilo exemplo — palavras em .split-word > span */
+export function initSplitText(element) {
+  if (!element) return;
+
+  const original = element.innerHTML;
+  const tokens = original.split(/(<[^>]+>|\s+)/);
+
+  element.innerHTML = tokens
+    .map((token) => {
+      if (!token) return '';
+      if (/^<[^>]+>$/.test(token)) return token;
+      if (/^\s+$/.test(token)) return token;
+      return `<span class="split-word"><span>${token}</span></span>`;
+    })
+    .join('');
+}
+
+export function initAllSplitText(root = document) {
+  const heroTitle = root.querySelector('[data-split]');
+  if (heroTitle) initSplitText(heroTitle);
+}

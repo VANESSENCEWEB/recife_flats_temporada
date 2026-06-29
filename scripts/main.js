@@ -1,7 +1,5 @@
 /**
  * main.js — Ponto de entrada.
- * Importa todos os Web Components. Ao carregar, eles se auto-registram
- * via customElements.define() e ficam disponíveis em qualquer página.
  */
 
 if (window.gsap && window.ScrollTrigger) {
@@ -13,6 +11,9 @@ import './components/navbar.js';
 import './components/menu.js';
 import './components/booking-search.js';
 import './components/hero.js';
+import './components/home-marquee.js';
+import './components/home-sections.js';
+import './components/footer.js';
 import './components/location-section.js';
 import './components/breadcrumbs.js';
 import './components/apartment-card.js';
@@ -22,3 +23,17 @@ import './components/neighborhood-hub.js';
 import './components/apartments-teaser.js';
 import './components/apartment-detail.js';
 import './components/contact-page.js';
+
+import { initLenis } from './utils/lenis.js';
+import { initScrollAnimations } from './utils/scroll-animations.js';
+
+function bootMotion() {
+  initLenis();
+  initScrollAnimations();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootMotion);
+} else {
+  bootMotion();
+}

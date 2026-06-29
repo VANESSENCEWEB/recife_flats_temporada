@@ -92,3 +92,99 @@
   background-size: 200px;
   mix-blend-mode: overlay;
 }
+
+/* --- Design exemplo (Tripora) --- */
+.blur-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  z-index: 45;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  mask: linear-gradient(#000 5%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 5%, transparent 100%);
+  opacity: 0.2;
+}
+
+.pre-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  border: 1.5px dashed rgba(255, 255, 255, 0.45);
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.25rem;
+}
+
+.pre-title--dark {
+  border-color: var(--color-border);
+  color: var(--color-text-soft);
+}
+
+.pre-title__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+.accent-word,
+.hero h1 .accent {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-sunset);
+}
+
+.section {
+  padding-block: clamp(4rem, 9vw, 7.5rem);
+}
+
+.section--screen {
+  min-height: 100dvh;
+  padding-block: clamp(4rem, 9vw, 7rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section--dark {
+  background: var(--color-bg-dark);
+  color: #f0f8fa;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+.section-head__copy {
+  max-width: 720px;
+}
+
+.reveal,
+.reveal-x {
+  will-change: transform, opacity;
+}
+
+.split-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.split-word > span {
+  display: inline-block;
+}

@@ -169,14 +169,3 @@
     animation: none;
   }
 }
-
-/* Buscador dentro do hero */
-.hero__search-wrap .booking-search {
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-}
-
-.hero__search-wrap {
-  width: 100%;
-  max-width: 100%;
-}

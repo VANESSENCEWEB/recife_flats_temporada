@@ -68,3 +68,77 @@
 }
 .btn--ghost svg { transition: transform var(--dur-base); }
 .btn--ghost:hover svg { transform: translateX(4px); }
+
+/* Variantes design exemplo */
+.btn--accent {
+  background: var(--color-accent);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(27, 154, 170, 0.25);
+}
+.btn--accent:hover {
+  background: var(--color-accent-dark);
+  transform: translateY(-2px);
+}
+
+.btn--coral {
+  background: var(--color-coral);
+  color: var(--white);
+}
+.btn--coral:hover {
+  background: var(--color-coral-dark);
+  transform: translateY(-2px);
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(13, 13, 13, 0.12);
+}
+.btn--secondary:hover {
+  background: rgba(13, 13, 13, 0.04);
+  transform: translateY(-2px);
+}
+
+.btn--sm {
+  padding: 10px 18px;
+  font-size: var(--fs-xs);
+}
+
+.btn--lg {
+  padding: 16px 28px;
+  font-size: var(--fs-sm);
+}
+
+.btn--block {
+  width: 100%;
+  justify-content: center;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-accent-dark);
+}
+.link-arrow::after {
+  content: "→";
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.link-arrow:hover::after {
+  transform: translateX(5px);
+}
+
+/* Hero ghost sobre vídeo */
+.hero .btn--ghost {
+  color: #fff;
+  border-bottom-color: rgba(255, 255, 255, 0.35);
+  padding: 14px var(--space-6);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-pill);
+}
+.hero .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}

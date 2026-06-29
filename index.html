@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Recife Flats Temporada — Apartamentos para temporada em Boa Viagem, Recife</title>
   <meta name="description" content="Apartamentos mobiliados para temporada em Boa Viagem e Pina, Recife. A 100m da praia, reserva direta e nota 4.9 no Google. Veja no mapa e fale conosco." />
+  <meta name="theme-color" content="#0f1a24" />
 
   <link rel="preconnect" href="https://www.google.com" />
   <link rel="preconnect" href="https://maps.googleapis.com" crossorigin />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,600;1,600&family=Stack+Sans+Headline:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- CSS: ordem importa -->
   <link rel="stylesheet" href="./styles/tokens.css" />
   <link rel="stylesheet" href="./styles/base.css" />
   <link rel="stylesheet" href="./styles/utilities.css" />
@@ -21,13 +21,17 @@
   <link rel="stylesheet" href="./styles/components/menu-overlay.css" />
   <link rel="stylesheet" href="./styles/components/booking-search.css" />
   <link rel="stylesheet" href="./styles/components/hero.css" />
-  <link rel="stylesheet" href="./styles/components/apartment-grid-card.css" />
+  <link rel="stylesheet" href="./styles/components/home-sections.css" />
+  <link rel="stylesheet" href="./styles/components/property.css" />
   <link rel="stylesheet" href="./styles/components/apartments-hub.css" />
   <link rel="stylesheet" href="./styles/components/location-section.css" />
+  <link rel="stylesheet" href="./styles/components/footer.css" />
   <link rel="stylesheet" href="./styles/pages/home.css" />
 </head>
 
 <body>
+
+  <div class="blur-gradient" aria-hidden="true"></div>
 
   <rf-menu wraps=".site-content"></rf-menu>
 
@@ -42,14 +46,20 @@
     <rf-hero
       video="./assets/videos/0624-otimizado.mp4"
       poster="./assets/images/boa_viagem-01.avif.png"
-      eyebrow="Recife · Boa Viagem · Pina"
-      title='Sua estadia em <em>Recife</em> começa aqui.'
-      description="Apartamentos de temporada, mobiliados com tudo que você precisa para alugar.">
+      eyebrow="Boa Viagem &amp; Pina · Recife, PE"
+      title='Sua temporada além do <span class="accent">comum.</span>'
+      description="4 apartamentos selecionados à beira-mar em Recife. Mobiliados, verificados e com atendimento de quem é da terra.">
     </rf-hero>
+
+    <rf-home-marquee></rf-home-marquee>
 
     <rf-apartments-teaser></rf-apartments-teaser>
 
+    <rf-home-sections></rf-home-sections>
+
     <rf-location-section></rf-location-section>
+
+    <rf-footer></rf-footer>
 
   </div>
 

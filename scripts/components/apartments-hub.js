@@ -23,7 +23,7 @@ class RFApartmentsHub extends HTMLElement {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
           </div>
-          <div class="apt-hub__grid" data-apt-grid>${cards}</div>
+          <div class="apt-hub__grid properties properties--compact" data-apt-grid>${cards}</div>
         </section>
       `;
     }).join('');
@@ -73,7 +73,7 @@ class RFApartmentsHub extends HTMLElement {
 
   _animate() {
     if (prefersReducedMotion() || !window.gsap) return;
-    gsap.from(this.querySelectorAll('.apt-grid-card'), {
+    gsap.from(this.querySelectorAll('.property'), {
       opacity: 0,
       y: 24,
       duration: 0.6,

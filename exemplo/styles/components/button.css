@@ -1,0 +1,115 @@
+/* =============================================================================
+ * button.css — Botões estilo mix (pill, hover suave, ícones)
+ * ============================================================================= */
+
+.btn {
+  --btn-bg: var(--color-text);
+  --btn-fg: #fff;
+  --btn-bd: var(--color-text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 1rem 1.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  border: 1.5px solid var(--btn-bd);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-1);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-text);
+  --btn-bd: var(--color-border-strong);
+}
+
+.btn--ghost:hover {
+  --btn-bg: var(--color-text);
+  --btn-fg: #fff;
+}
+
+.btn--accent {
+  --btn-bg: var(--color-accent);
+  --btn-bd: var(--color-accent);
+  --btn-fg: #fff;
+}
+
+.btn--accent:hover {
+  --btn-bg: var(--color-accent-dark);
+  --btn-bd: var(--color-accent-dark);
+}
+
+.btn--coral {
+  --btn-bg: var(--color-coral);
+  --btn-bd: var(--color-coral);
+  --btn-fg: #fff;
+}
+
+.btn--coral:hover {
+  --btn-bg: var(--color-coral-dark);
+  --btn-bd: var(--color-coral-dark);
+}
+
+.btn--light {
+  --btn-bg: #fff;
+  --btn-fg: var(--color-text);
+  --btn-bd: #fff;
+}
+
+.btn--sm {
+  padding: 0.7rem 1.25rem;
+  font-size: 0.82rem;
+}
+
+.btn--block {
+  width: 100%;
+}
+
+.btn__icon {
+  width: 1.1em;
+  height: 1.1em;
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.btn:hover .btn__icon {
+  transform: translateX(3px);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.link-arrow::after {
+  content: "→";
+  transition: transform var(--dur-2) var(--ease);
+}
+
+.link-arrow:hover::after {
+  transform: translateX(5px);
+}
+
+@media (max-width: 480px) {
+  .hero__actions .btn,
+  .cta-banner__actions .btn {
+    width: 100%;
+  }
+}

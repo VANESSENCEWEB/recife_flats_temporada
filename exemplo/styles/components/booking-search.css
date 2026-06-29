@@ -1,0 +1,206 @@
+/* =========================================================
+   booking-search.css — Card de busca / filtro de reservas
+   ========================================================= */
+
+.search-card {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-text);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  box-shadow: var(--shadow-2);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  max-width: 100%;
+}
+
+.search-card--filter {
+  margin-bottom: 3rem;
+}
+
+.search-tabs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  margin-bottom: 1rem;
+  gap: 2px;
+}
+
+.search-tabs button {
+  padding: 0.55rem 1.2rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  transition: background var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
+}
+
+.search-tabs button.is-active {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.search-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr auto;
+  gap: 0.25rem;
+  align-items: stretch;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+}
+
+.search-field {
+  padding: 0.85rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  border-right: 1px solid var(--color-border);
+}
+
+.search-field:last-of-type {
+  border-right: 0;
+}
+
+.search-field label {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.search-field select,
+.search-field input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  padding: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.search-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent);
+  color: #fff;
+  border-radius: var(--radius-md);
+  margin: 6px;
+  padding: 0 1.4rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  gap: 0.4rem;
+  transition: background var(--dur-2) var(--ease);
+}
+
+.search-submit:hover {
+  background: var(--color-sunset);
+}
+
+/* --- Variante hero (barra escura estilo referência) --- */
+.search-card--hero {
+  background: var(--color-navy);
+  color: #fff;
+  padding: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(12, 31, 61, 0.45);
+}
+
+.search-card--hero .search-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.search-card--hero .search-tabs {
+  display: none;
+}
+
+.search-card--hero .search-grid {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  gap: 0;
+}
+
+.search-card--hero .search-field {
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 0;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.search-card--hero .search-field label {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search-card--hero .search-field select,
+.search-card--hero .search-field input {
+  color: #fff;
+}
+
+.search-card--hero .search-field select option {
+  color: var(--color-text);
+}
+
+.search-card--hero .search-submit {
+  background: var(--color-accent);
+  border-radius: 0;
+  margin: 0;
+  min-height: 100%;
+  padding: 1.25rem 1.75rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.search-card--hero .search-submit:hover {
+  background: #22a0b3;
+}
+
+/* Tablet: 2 colunas */
+@media (max-width: 1024px) {
+  .search-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .search-field {
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .search-field:nth-child(odd) {
+    border-right: 1px solid var(--color-border);
+  }
+
+  .search-submit {
+    grid-column: 1 / -1;
+    margin: 6px;
+    padding: 0.95rem;
+  }
+}
+
+/* Mobile: 1 coluna */
+@media (max-width: 480px) {
+  .search-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-field:nth-child(odd) {
+    border-right: 0;
+  }
+}

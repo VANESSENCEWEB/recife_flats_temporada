@@ -1,0 +1,109 @@
+/* =============================================================================
+ * tokens.css — Design tokens Recife Flats (mix Tripora × praia)
+ * Tipografia editorial + paleta oceano/areia/coral de Recife.
+ * ============================================================================= */
+
+:root {
+  /* --- Fundos --- */
+  --color-bg: #f7f5f0;
+  --color-bg-alt: #efe9dc;
+  --color-bg-dark: #0f1a24;
+  --color-surface: #ffffff;
+  --color-surface-2: #f2ece0;
+
+  /* --- Texto --- */
+  --color-text: #1a1a17;
+  --color-text-soft: #5e5e5e;
+  --color-muted: #8a8a8a;
+  --color-muted-2: #b4b4b4;
+  --color-border: #e8e4da;
+  --color-border-strong: #1a1a17;
+
+  /* --- Mar / turquesa Recife --- */
+  --color-accent: #1b9aaa;
+  --color-accent-soft: #d4f0f3;
+  --color-accent-dark: #0d6b75;
+
+  /* --- Oceano profundo --- */
+  --color-sea: #0a4d68;
+  --color-sea-soft: #c5dfe8;
+
+  /* --- Coral pôr do sol --- */
+  --color-sunset: #ff8e5c;
+  --color-sunset-soft: #ffe8dc;
+  --color-coral: #ff8e5c;
+  --color-coral-dark: #e8632e;
+
+  /* --- Destaques mix (pastéis) --- */
+  --color-primary-sand: #fff6c7;
+  --color-primary-sky: #d2e6f6;
+
+  /* --- Natureza --- */
+  --color-palm: #25d366;
+  --color-gold: #d4a574;
+
+  /* --- Menu overlay --- */
+  --color-navy: #0f1a24;
+  --color-navy-light: #1a2a38;
+
+  /* --- Tipografia (mix: Stack Sans + serif accent) --- */
+  --font-sans: "Stack Sans Headline", "Inter Tight", "Inter", sans-serif;
+  --font-display: "Inter Tight", "Stack Sans Headline", sans-serif;
+  --font-accent: "Source Serif 4", Georgia, serif;
+
+  --fs-h1: clamp(2.75rem, 7vw, 5.625rem);
+  --fs-h2: clamp(2rem, 4.8vw, 3.75rem);
+  --fs-h3: clamp(1.5rem, 3vw, 2.5rem);
+  --fs-h4: clamp(1.25rem, 2.1vw, 1.75rem);
+  --fs-h5: clamp(1.05rem, 1.6vw, 1.35rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  --lh-display: 1.05;
+  --lh-tight: 1.15;
+  --lh-body: 1.55;
+
+  /* --- Espaçamento --- */
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 9.375rem;
+
+  /* --- Header fixo --- */
+  --announcement-h: 2.35rem;
+  --nav-h: 4.5rem;
+  --site-header-offset: calc(var(--announcement-h) + var(--nav-h));
+
+  /* --- Layout --- */
+  --container: 1280px;
+  --container-wide: 1460px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-pill: 999px;
+
+  /* --- Motion --- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-1: 200ms;
+  --dur-2: 450ms;
+  --dur-3: 700ms;
+
+  /* --- Sombras --- */
+  --shadow-1: 0 2px 8px rgba(26, 26, 23, 0.04), 0 12px 32px rgba(26, 26, 23, 0.06);
+  --shadow-2: 0 8px 24px rgba(26, 26, 23, 0.08), 0 32px 64px rgba(26, 26, 23, 0.1);
+  --shadow-glow: 0 0 60px rgba(27, 154, 170, 0.15);
+}
+
+@media (max-width: 480px) {
+  :root {
+    --announcement-h: 2rem;
+    --nav-h: 3.85rem;
+  }
+}
