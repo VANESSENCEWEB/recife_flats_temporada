@@ -52,7 +52,7 @@ function renderGallery(images) {
       ${cells}
       ${images.length > 1 ? `
         <button type="button" class="show-all-photos" data-gallery-open>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+          <i class="fas fa-images" aria-hidden="true"></i>
           Mostrar todas as fotos
         </button>
       ` : ''}
@@ -65,26 +65,6 @@ function renderGallery(images) {
       <div class="modal-gallery">${modalItems}</div>
     </div>
   `;
-}
-
-function renderSpecs(apt) {
-  const items = [
-    { icon: '🛏️', label: `${apt.bedrooms} quarto${apt.bedrooms > 1 ? 's' : ''}` },
-    { icon: '🛁', label: `${apt.bathrooms} banheiro${apt.bathrooms > 1 ? 's' : ''}` },
-    { icon: '👥', label: `Até ${apt.guests} hóspedes` },
-    { icon: '📐', label: apt.size },
-    { icon: '🛋️', label: `${apt.beds} cama${apt.beds > 1 ? 's' : ''}` },
-    apt.pool ? { icon: '🏊', label: 'Piscina' } : null,
-    apt.parking ? { icon: '🅿️', label: 'Garagem' } : null,
-    apt.petFriendly ? { icon: '🐾', label: 'Pet friendly' } : null,
-  ].filter(Boolean);
-
-  return items.map((s) => `
-    <div class="spec-item">
-      <span class="spec-item__icon" aria-hidden="true">${s.icon}</span>
-      <span class="spec-item__label">${s.label}</span>
-    </div>
-  `).join('');
 }
 
 function renderOtherApartments(currentSlug) {
@@ -100,7 +80,7 @@ function renderOtherApartments(currentSlug) {
         <div class="apt-card-link__body">
           <h3 class="apt-card-link__title">${a.name}</h3>
           <p class="apt-card-link__meta">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
             ${a.neighborhood} · ${a.building}
           </p>
           <div class="apt-card-link__chips">
@@ -187,7 +167,7 @@ class RFApartmentDetail extends HTMLElement {
                 ${apt.reviewCount ? `<span class="rating-count">· ${apt.reviewCount} avaliações</span>` : ''}
               </div>
               <a href="#localizacao" class="location-link">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                 ${apt.neighborhood}, Recife — PE
               </a>
             </div>
@@ -205,11 +185,10 @@ class RFApartmentDetail extends HTMLElement {
               <section class="card">
                 <h2>${extras.overviewTitle}</h2>
                 <p class="card-subtitle">${extras.overviewSubtitle}</p>
-                <div class="specs-grid">${renderSpecs(apt)}</div>
                 <div class="highlights">
                   ${extras.highlights.map((h) => `
                     <div class="highlight-item">
-                      <div class="highlight-icon" aria-hidden="true">${h.icon}</div>
+                      <div class="highlight-icon"><i class="${h.icon}" aria-hidden="true"></i></div>
                       <div class="highlight-content">
                         <h4>${h.title}</h4>
                         <p>${h.text}</p>
@@ -282,7 +261,7 @@ class RFApartmentDetail extends HTMLElement {
                 <div class="nearby-places">
                   ${extras.nearby.map((p) => `
                     <div class="place-item">
-                      <div class="place-icon" aria-hidden="true">${p.icon}</div>
+                      <div class="place-icon"><i class="${p.icon}" aria-hidden="true"></i></div>
                       <div class="place-info"><h4>${p.title}</h4><p>${p.distance}</p></div>
                     </div>
                   `).join('')}
@@ -295,13 +274,13 @@ class RFApartmentDetail extends HTMLElement {
                 <h3 class="card-h3">Regras da casa</h3>
                 <div class="rules-list">
                   ${extras.rules.map((r) => `
-                    <div class="rule-row${r.negative ? ' rule-row--no' : ''}"><span aria-hidden="true">${r.icon}</span> ${r.text}</div>
+                    <div class="rule-row${r.negative ? ' rule-row--no' : ''}"><i class="${r.icon}" aria-hidden="true"></i> ${r.text}</div>
                   `).join('')}
                 </div>
                 <h3 class="card-h3">Saúde e segurança</h3>
                 <div class="rules-list">
                   ${extras.safetyRules.map((r) => `
-                    <div class="rule-row"><span aria-hidden="true">${r.icon}</span> ${r.text}</div>
+                    <div class="rule-row"><i class="${r.icon}" aria-hidden="true"></i> ${r.text}</div>
                   `).join('')}
                 </div>
                 <h3 class="card-h3">Política de cancelamento</h3>
@@ -348,15 +327,15 @@ class RFApartmentDetail extends HTMLElement {
                   </div>
                 </div>
                 <button type="button" class="btn-reserve" data-reserve-btn>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A10 10 0 0 0 3.6 17l-1.6 5 5.1-1.6A10 10 0 1 0 20.5 3.5z"/></svg>
+                  <i class="fab fa-whatsapp" style="font-size:1.2rem" aria-hidden="true"></i>
                   Reservar via WhatsApp
                 </button>
                 <p class="booking-notice">Você não será cobrado agora · Sem taxas extras</p>
                 ${breakdownHtml}
                 <div class="booking-trust">
-                  <div class="trust-item">🔒 Reserva 100% segura</div>
-                  <div class="trust-item">↩️ Cancelamento conforme combinado</div>
-                  <div class="trust-item">💬 Suporte direto no WhatsApp</div>
+                  <div class="trust-item"><i class="fas fa-lock" aria-hidden="true"></i> Reserva 100% segura</div>
+                  <div class="trust-item"><i class="fas fa-undo" aria-hidden="true"></i> Cancelamento conforme combinado</div>
+                  <div class="trust-item"><i class="fas fa-headset" aria-hidden="true"></i> Suporte direto no WhatsApp</div>
                 </div>
               </div>
             </aside>
@@ -369,7 +348,7 @@ class RFApartmentDetail extends HTMLElement {
               <h3>Pronto para reservar?</h3>
               <p>Fale direto conosco pelo WhatsApp — sem taxas, sem intermediários.</p>
               <a href="${waBase}" class="cta-btn" target="_blank" rel="noopener noreferrer">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A10 10 0 0 0 3.6 17l-1.6 5 5.1-1.6A10 10 0 1 0 20.5 3.5z"/></svg>
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
                 ${BUSINESS.phoneDisplay}
               </a>
             </div>

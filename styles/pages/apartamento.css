@@ -168,6 +168,7 @@
 }
 
 .location-link:hover { text-decoration: underline; }
+.location-link i { font-size: 0.85rem; }
 
 .apt-badges {
   display: flex;
@@ -303,29 +304,6 @@
 }
 
 /* --- Especificações do apartamento --- */
-.specs-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 10px;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid rgba(13, 13, 13, 0.06);
-}
-
-.spec-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 12px;
-  background: var(--cream);
-  border: 1px solid rgba(13, 13, 13, 0.06);
-  border-radius: var(--radius-md);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-}
-
-.spec-item__icon { font-size: 1.1rem; }
-
 /* --- Highlights --- */
 .highlights {
   display: grid;
@@ -349,6 +327,7 @@
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   display: grid;
   place-items: center;
+  color: var(--white);
   font-size: 1.1rem;
   flex-shrink: 0;
 }
@@ -577,6 +556,7 @@
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   display: grid;
   place-items: center;
+  color: var(--white);
   font-size: 1rem;
   flex-shrink: 0;
 }
@@ -617,7 +597,15 @@
   font-size: var(--fs-sm);
 }
 
+.rule-row i {
+  width: 18px;
+  text-align: center;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
 .rule-row--no { color: var(--text-muted); }
+.rule-row--no i { color: #ef4444; }
 
 .cancel-text {
   font-size: var(--fs-sm);
@@ -841,8 +829,18 @@
 }
 
 .trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.75rem;
   color: var(--text-muted);
+}
+
+.trust-item i {
+  color: var(--accent);
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
 }
 
 /* --- CTA WhatsApp --- */
