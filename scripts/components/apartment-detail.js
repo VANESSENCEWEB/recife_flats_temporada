@@ -1,5 +1,5 @@
 /**
- * <rf-apartment-detail> — Página individual estilo template (galeria, booking, seções).
+ * <rf-apartment-detail> — Template completo (mosaico, reserva fixa, specs, mapa, etc.)
  */
 
 import { getApartmentBySlug, resolveImages, FALLBACK_IMAGE, APARTAMENTOS } from '../data/apartamentos.js';
@@ -8,73 +8,111 @@ import { getNeighborhood, apartmentUrl, pageHref } from '../data/site-structure.
 import { BUSINESS, whatsappUrl, MAPS_EMBED_URL } from '../data/location.js';
 import { initApartmentDetailPage } from '../utils/apartment-detail-page.js';
 
+const TICKER_ITEMS = [
+  '🏠 Flats mobiliados em Boa Viagem',
+  '🌊 A 100m da praia',
+  '📶 WiFi 300Mbps',
+  '🏊 Piscina e academia',
+  '🔒 Segurança 24h',
+  '⭐ Nota 4.9',
+  '💬 Reserva direta sem taxas',
+];
+
 function stars(rating) {
-  const full = Math.round(rating);
-  return '★'.repeat(full) + '☆'.repeat(5 - full);
+  const n = Math.round(rating);
+  return '★'.repeat(n) + '☆'.repeat(5 - n);
 }
 
-function renderMosaicGallery(images) {
+function renderTicker() {
+  const items = [...TICKER_ITEMS, ...TICKER_ITEMS]
+    .map((t) => `<span class="apt-ticker__item">${t}</span>`)
+    .join('');
+  return `<div class="apt-ticker" aria-hidden="true"><div class="apt-ticker__track">${items}</div></div>`;
+}
+
+function renderGallery(images) {
   const tiles = images.slice(0, 5);
-  while (tiles.length < 5 && images.length) {
-    tiles.push(images[tiles.length % images.length]);
-  }
+  while (tiles.length < 5 && images.length) tiles.push(images[tiles.length % images.length]);
 
   const cells = tiles.map((img, i) => `
-    <button type="button" class="apt-mosaic__item${i === 0 ? ' apt-mosaic__item--hero' : ''}" data-gallery-tile aria-label="Ver foto ${i + 1}">
+    <div class="gallery-item${i === 0 ? ' gallery-item--hero' : ''}" data-gallery-tile role="button" tabindex="0" aria-label="Ver foto ${i + 1}">
       <img src="${img.src}" alt="${img.alt}" loading="${i === 0 ? 'eager' : 'lazy'}" onerror="this.onerror=null;this.src='${img.placeholder}'">
-    </button>
+    </div>
   `).join('');
 
   const modalItems = images.map((img, i) => `
-    <figure class="apt-gallery-modal__item">
+    <div class="modal-gallery-item">
       <img src="${img.src}" alt="${img.alt}" loading="lazy" onerror="this.onerror=null;this.src='${img.placeholder}'">
-      <figcaption>${img.alt || `Foto ${i + 1}`}</figcaption>
-    </figure>
+      <span class="modal-image-label">${img.alt || `Foto ${i + 1}`}</span>
+    </div>
   `).join('');
 
   return `
-    <div class="apt-mosaic" data-apt-gallery>
+    <div class="gallery" data-apt-gallery>
       ${cells}
       ${images.length > 1 ? `
-        <button type="button" class="apt-mosaic__all" data-gallery-open>
+        <button type="button" class="show-all-photos" data-gallery-open>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-          Mostrar todas as fotos (${images.length})
+          Mostrar todas as fotos
         </button>
       ` : ''}
     </div>
-    <div class="apt-gallery-modal" data-gallery-modal role="dialog" aria-modal="true" aria-label="Galeria de fotos">
-      <div class="apt-gallery-modal__header">
-        <span class="apt-gallery-modal__title">Todas as fotos</span>
-        <button type="button" class="apt-gallery-modal__close" data-gallery-close aria-label="Fechar galeria">×</button>
+    <div class="gallery-modal" data-gallery-modal role="dialog" aria-modal="true" aria-label="Galeria de fotos">
+      <div class="modal-header">
+        <span class="modal-title">Todas as fotos do apartamento</span>
+        <button type="button" class="modal-close" data-gallery-close aria-label="Fechar">×</button>
       </div>
-      <div class="apt-gallery-modal__grid">${modalItems}</div>
+      <div class="modal-gallery">${modalItems}</div>
     </div>
   `;
 }
 
+function renderSpecs(apt) {
+  const items = [
+    { icon: '🛏️', label: `${apt.bedrooms} quarto${apt.bedrooms > 1 ? 's' : ''}` },
+    { icon: '🛁', label: `${apt.bathrooms} banheiro${apt.bathrooms > 1 ? 's' : ''}` },
+    { icon: '👥', label: `Até ${apt.guests} hóspedes` },
+    { icon: '📐', label: apt.size },
+    { icon: '🛋️', label: `${apt.beds} cama${apt.beds > 1 ? 's' : ''}` },
+    apt.pool ? { icon: '🏊', label: 'Piscina' } : null,
+    apt.parking ? { icon: '🅿️', label: 'Garagem' } : null,
+    apt.petFriendly ? { icon: '🐾', label: 'Pet friendly' } : null,
+  ].filter(Boolean);
+
+  return items.map((s) => `
+    <div class="spec-item">
+      <span class="spec-item__icon" aria-hidden="true">${s.icon}</span>
+      <span class="spec-item__label">${s.label}</span>
+    </div>
+  `).join('');
+}
+
 function renderOtherApartments(currentSlug) {
-  const others = APARTAMENTOS.filter((a) => a.slug !== currentSlug).slice(0, 3);
-  return others.map((a) => {
+  return APARTAMENTOS.filter((a) => a.slug !== currentSlug).map((a) => {
     const cover = resolveImages(a)[0];
+    const chips = a.amenities.slice(0, 4);
     return `
-    <a href="${apartmentUrl(a.slug)}" class="apt-related-card">
-      <div class="apt-related-card__media">
-        <img src="${cover.src}" alt="${a.name}" loading="lazy" onerror="this.onerror=null;this.src='${cover.placeholder}'">
-        ${a.badge ? `<span class="apt-related-card__tag">${a.badge}</span>` : ''}
-      </div>
-      <div class="apt-related-card__body">
-        <h3 class="apt-related-card__title">${a.name}</h3>
-        <p class="apt-related-card__meta">${a.neighborhood} · ${a.building}</p>
-        <div class="apt-related-card__chips">
-          ${a.amenities.slice(0, 3).map((x) => `<span>${x}</span>`).join('')}
+      <a href="${apartmentUrl(a.slug)}" class="apt-card-link">
+        <div class="apt-card-link__img">
+          <img src="${cover.src}" alt="${a.name}" loading="lazy" onerror="this.onerror=null;this.src='${cover.placeholder}'">
+          ${a.badge ? `<span class="apt-card-link__tag">${a.badge}</span>` : ''}
         </div>
-        <div class="apt-related-card__footer">
-          <span class="apt-related-card__price">${a.priceFrom ? `${a.priceFrom}${a.priceNote}` : a.priceNote}</span>
-          <span class="apt-related-card__rating">★ ${a.rating.toFixed(1)}</span>
+        <div class="apt-card-link__body">
+          <h3 class="apt-card-link__title">${a.name}</h3>
+          <p class="apt-card-link__meta">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            ${a.neighborhood} · ${a.building}
+          </p>
+          <div class="apt-card-link__chips">
+            ${chips.map((c) => `<span class="apt-amenity-chip">${c}</span>`).join('')}
+          </div>
+          <div class="apt-card-link__footer">
+            <span class="apt-card-link__price">${a.priceFrom ? `${a.priceFrom}<span>${a.priceNote}</span>` : a.priceNote}</span>
+            <span class="apt-card-link__rating">★ ${a.rating.toFixed(1)}${a.reviewCount ? ` · ${a.reviewCount} avl.` : ''}</span>
+          </div>
         </div>
-      </div>
-    </a>
-  `;
+      </a>
+    `;
   }).join('');
 }
 
@@ -88,311 +126,270 @@ class RFApartmentDetail extends HTMLElement {
     if (!apt || !extras) {
       this.innerHTML = `
         <section class="apt-page apt-page--error">
-          <div class="container">
-            <h1>Apartamento não encontrado</h1>
-            <p><a href="${pageHref('./apartamentos.html')}" class="btn btn--primary">Ver apartamentos</a></p>
-          </div>
-        </section>
-      `;
+          <div class="container"><h1>Apartamento não encontrado</h1>
+          <p><a href="${pageHref('./apartamentos.html')}" class="btn btn--primary">Ver apartamentos</a></p></div>
+        </section>`;
       return;
     }
 
     const images = resolveImages(apt);
     const n = getNeighborhood(apt.neighborhoodSlug);
     const waBase = whatsappUrl(`Olá! Tenho interesse no ${apt.name}.`);
-    const priceDisplay = apt.priceFrom
-      ? `<span class="apt-booking__amount">${apt.priceFrom}</span><span class="apt-booking__unit">${apt.priceNote}</span>`
-      : `<span class="apt-booking__amount apt-booking__amount--consult">${apt.priceNote}</span>`;
 
     document.title = `${extras.seoTitle} — Recife Flats Temporada`;
     const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.content = `${apt.tagline}. ${apt.building}, ${apt.neighborhood}. Reserve direto com a Recife Flats Temporada.`;
-    }
+    if (meta) meta.content = `${apt.tagline}. ${apt.building}, ${apt.neighborhood}. Reserve direto.`;
 
-    const badges = [
-      apt.bedrooms ? `🛏️ ${apt.bedrooms} quarto${apt.bedrooms > 1 ? 's' : ''}` : null,
+    const titleBadges = [
+      `🏠 ${apt.bedrooms} quarto${apt.bedrooms > 1 ? 's' : ''}`,
       `👥 até ${apt.guests} pessoas`,
       apt.pool ? '🏊 Piscina' : null,
-      '📶 WiFi',
+      '📶 WiFi 300Mbps',
       apt.parking ? '🅿️ Estacionamento' : null,
-      apt.petFriendly ? '🐾 Pet friendly' : null,
     ].filter(Boolean);
 
-    const schema = {
-      '@context': 'https://schema.org',
-      '@type': 'Accommodation',
-      name: apt.name,
-      description: apt.description,
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: apt.neighborhood,
-        addressRegion: 'PE',
-        addressCountry: 'BR',
-      },
-      numberOfRooms: String(apt.bedrooms),
-      occupancy: { '@type': 'QuantitativeValue', maxValue: String(apt.guests) },
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: String(apt.rating),
-        reviewCount: String(apt.reviewCount || 1),
-      },
-    };
-    if (extras.pricePerNight) {
-      schema.offers = {
-        '@type': 'Offer',
-        price: String(extras.pricePerNight),
-        priceCurrency: 'BRL',
-        availability: 'https://schema.org/InStock',
-      };
-    }
+    const priceHtml = apt.priceFrom
+      ? `<span class="price">${apt.priceFrom}</span><span class="price-label"> ${apt.priceNote}</span>`
+      : `<span class="price price--consult">${apt.priceNote}</span>`;
+
+    const breakdownHtml = extras.pricePerNight ? `
+      <div class="price-breakdown">
+        <div class="price-row"><span>${apt.priceFrom} × <span data-nights-count>5</span> noites</span><span data-subtotal>—</span></div>
+        ${extras.cleaningFee ? `<div class="price-row"><span>Taxa de limpeza</span><span>${formatBRL(extras.cleaningFee)}</span></div>` : ''}
+        <div class="price-total"><span>Total</span><span data-total>—</span></div>
+      </div>
+    ` : '';
 
     this.innerHTML = `
       <article class="apt-page" data-apt-page>
 
-        <nav class="apt-page-nav" aria-label="Seções do apartamento">
-          <div class="container apt-page-nav__inner">
-            <a href="#visao-geral" class="apt-page-nav__link is-active" data-apt-nav>Visão geral</a>
-            <a href="#comodidades" class="apt-page-nav__link" data-apt-nav>Comodidades</a>
-            <a href="#avaliacoes" class="apt-page-nav__link" data-apt-nav>Avaliações</a>
-            <a href="#localizacao" class="apt-page-nav__link" data-apt-nav>Localização</a>
-            <a href="#regras" class="apt-page-nav__link" data-apt-nav>Regras</a>
-            <a href="#reserva" class="apt-page-nav__link" data-apt-nav>Reservar</a>
+        ${renderTicker()}
+
+        <nav class="apt-nav" aria-label="Seções do apartamento">
+          <div class="container apt-nav__inner">
+            <a href="#visao-geral" class="apt-nav__link is-active" data-apt-nav>Visão Geral</a>
+            <a href="#comodidades" class="apt-nav__link" data-apt-nav>Comodidades</a>
+            <a href="#avaliacoes" class="apt-nav__link" data-apt-nav>Avaliações</a>
+            <a href="#localizacao" class="apt-nav__link" data-apt-nav>Localização</a>
+            <a href="#regras" class="apt-nav__link" data-apt-nav>Regras</a>
+            <a href="#reserva" class="apt-nav__link" data-apt-nav>Reservar</a>
           </div>
         </nav>
 
-        <div class="container apt-page__container">
+        <div class="container apt-page__body">
 
-          <header class="apt-page__title" id="visao-geral">
-            <h1 class="apt-page__h1">${extras.seoTitle.replace(/ \|.*/, '')}</h1>
-            <div class="apt-page__meta">
-              <div class="apt-page__rating">
-                <span class="apt-page__rating-badge">${apt.rating.toFixed(1)} ★</span>
-                <span class="apt-page__rating-label">${extras.ratingLabel}</span>
-                ${apt.reviewCount ? `<span class="apt-page__rating-count">· ${apt.reviewCount} avaliações</span>` : ''}
+          <header class="title-section" id="visao-geral">
+            <h1>${extras.seoTitle.replace(/ \|.*/, '')}</h1>
+            <div class="rating-location">
+              <div class="rating">
+                <span class="rating-badge">${apt.rating.toFixed(1)} ★</span>
+                <span class="rating-text">${extras.ratingLabel}</span>
+                ${apt.reviewCount ? `<span class="rating-count">· ${apt.reviewCount} avaliações</span>` : ''}
               </div>
-              <a href="#localizacao" class="apt-page__location">
+              <a href="#localizacao" class="location-link">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                 ${apt.neighborhood}, Recife — PE
               </a>
             </div>
-            <div class="apt-page__badges">
-              ${badges.map((b) => `<span class="apt-page__badge">${b}</span>`).join('')}
+            <div class="apt-badges">
+              ${titleBadges.map((b) => `<span class="apt-badge">${b}</span>`).join('')}
             </div>
           </header>
 
-          ${renderMosaicGallery(images)}
+          ${renderGallery(images)}
 
-          <div class="apt-page__layout">
+          <div class="main-content">
 
-            <div class="apt-page__main">
+            <div class="left-column">
 
-              <section class="apt-card" id="visao-geral-card">
-                <h2 class="apt-card__title">${extras.overviewTitle}</h2>
-                <p class="apt-card__subtitle">${extras.overviewSubtitle}</p>
-                <div class="apt-highlights">
+              <section class="card">
+                <h2>${extras.overviewTitle}</h2>
+                <p class="card-subtitle">${extras.overviewSubtitle}</p>
+                <div class="specs-grid">${renderSpecs(apt)}</div>
+                <div class="highlights">
                   ${extras.highlights.map((h) => `
-                    <div class="apt-highlight">
-                      <span class="apt-highlight__icon" aria-hidden="true">${h.icon}</span>
-                      <div>
-                        <h3 class="apt-highlight__title">${h.title}</h3>
-                        <p class="apt-highlight__text">${h.text}</p>
+                    <div class="highlight-item">
+                      <div class="highlight-icon" aria-hidden="true">${h.icon}</div>
+                      <div class="highlight-content">
+                        <h4>${h.title}</h4>
+                        <p>${h.text}</p>
                       </div>
                     </div>
                   `).join('')}
                 </div>
               </section>
 
-              <section class="apt-card">
-                <h2 class="apt-card__title">Sobre este espaço</h2>
-                <div class="apt-description">
+              <section class="card">
+                <h2>Sobre este espaço</h2>
+                <div class="description">
                   ${extras.extendedDescription.map((p) => `<p>${p}</p>`).join('')}
                   <p>${apt.description}</p>
                 </div>
               </section>
 
-              <section class="apt-card" id="comodidades">
-                <h2 class="apt-card__title">O que este lugar oferece</h2>
-                <p class="apt-card__subtitle">Tudo o que você precisa para uma estadia confortável</p>
-                <div class="apt-amenities">
+              <section class="card" id="comodidades">
+                <h2>O que este lugar oferece</h2>
+                <p class="card-subtitle">Tudo o que você precisa para uma estadia perfeita</p>
+                <div class="amenities-grid">
                   ${extras.amenityItems.map((a) => `
-                    <div class="apt-amenity"><span class="apt-amenity__icon">${a.icon}</span><span>${a.label}</span></div>
+                    <div class="amenity-item"><span class="amenity-icon">${a.icon}</span><span>${a.label}</span></div>
                   `).join('')}
                 </div>
               </section>
 
-              <section class="apt-card" id="avaliacoes">
-                <div class="apt-reviews-score">
-                  <span class="apt-reviews-score__big">${apt.rating.toFixed(1)}</span>
+              <section class="card" id="avaliacoes">
+                <div class="review-score-big">
+                  <div class="big-score">${apt.rating.toFixed(1)}</div>
                   <div>
-                    <div class="apt-reviews-score__stars" aria-hidden="true">${stars(apt.rating)}</div>
-                    <p class="apt-reviews-score__label">${extras.ratingLabel}
-                      ${apt.reviewCount ? `<span>· ${apt.reviewCount} avaliações</span>` : ''}
-                    </p>
+                    <div class="review-stars-big" aria-hidden="true">${stars(apt.rating)}</div>
+                    <div class="score-label">${extras.ratingLabel}
+                      ${apt.reviewCount ? `<span>${apt.reviewCount} avaliações verificadas</span>` : ''}
+                    </div>
                   </div>
                 </div>
-                <h2 class="apt-card__title">Avaliações</h2>
-                <div class="apt-reviews-bars">
+                <h2>Avaliações</h2>
+                <div class="reviews-summary">
                   ${extras.ratingCategories.map((c) => `
-                    <div class="apt-review-bar">
-                      <span class="apt-review-bar__name">${c.name}</span>
-                      <div class="apt-review-bar__track"><div class="apt-review-bar__fill" style="width:${(c.score / 5) * 100}%"></div></div>
-                      <span class="apt-review-bar__score">${c.score.toFixed(1)}</span>
+                    <div class="review-category">
+                      <span class="category-name">${c.name}</span>
+                      <div class="category-bar"><div class="category-fill" style="width:${(c.score / 5) * 100}%"></div></div>
+                      <span class="category-score">${c.score.toFixed(1)}</span>
                     </div>
                   `).join('')}
                 </div>
-                <div class="apt-reviews-list">
+                <div class="reviews-list">
                   ${extras.sampleReviews.length
     ? extras.sampleReviews.map((r) => `
-                      <blockquote class="apt-review">
-                        <header class="apt-review__head">
-                          <span class="apt-review__avatar" aria-hidden="true">${r.author.charAt(0)}</span>
-                          <div>
-                            <strong class="apt-review__author">${r.author}</strong>
-                            <span class="apt-review__date">${r.date}</span>
-                          </div>
-                          <span class="apt-review__stars" aria-label="Nota ${r.rating}">${stars(r.rating)}</span>
-                        </header>
-                        <p>${r.text}</p>
-                      </blockquote>
-                    `).join('')
-    : `<p class="apt-reviews-empty">Veja avaliações reais no <a href="${BUSINESS.website}" target="_blank" rel="noopener noreferrer">Google Business Profile</a>.</p>`}
+                    <div class="review-card">
+                      <div class="review-header">
+                        <div class="review-avatar">${r.author.charAt(0)}</div>
+                        <div class="review-author"><h4>${r.author}</h4><span class="review-date">${r.date}</span></div>
+                        <div class="review-stars">${stars(r.rating)}</div>
+                      </div>
+                      <p class="review-text">${r.text}</p>
+                    </div>
+                  `).join('')
+    : `<p class="reviews-empty">Veja avaliações no <a href="${MAPS_EMBED_URL}" target="_blank" rel="noopener noreferrer">Google Maps</a>.</p>`}
                 </div>
               </section>
 
-              <section class="apt-card" id="localizacao">
-                <h2 class="apt-card__title">Localização</h2>
-                <p class="apt-card__subtitle">${apt.neighborhood}, Recife — PE · ${apt.building}</p>
-                <div class="apt-map">
+              <section class="card" id="localizacao">
+                <h2>Localização</h2>
+                <p class="card-subtitle">${apt.neighborhood}, Recife — PE · ${apt.building}</p>
+                <div class="location-map">
                   <iframe src="${MAPS_EMBED_URL}" title="Mapa — ${apt.name}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
-                <div class="apt-nearby">
+                <div class="nearby-places">
                   ${extras.nearby.map((p) => `
-                    <div class="apt-nearby__item">
-                      <span class="apt-nearby__icon" aria-hidden="true">${p.icon}</span>
-                      <div><strong>${p.title}</strong><span>${p.distance}</span></div>
+                    <div class="place-item">
+                      <div class="place-icon" aria-hidden="true">${p.icon}</div>
+                      <div class="place-info"><h4>${p.title}</h4><p>${p.distance}</p></div>
                     </div>
                   `).join('')}
                 </div>
-                ${n ? `<p class="apt-nb-blurb">${n.intro}</p>` : ''}
+                ${n ? `<p class="neighborhood-blurb">${n.intro}</p>` : ''}
               </section>
 
-              <section class="apt-card" id="regras">
-                <h2 class="apt-card__title">O que você precisa saber</h2>
-                <h3 class="apt-card__h3">Regras da casa</h3>
-                <ul class="apt-rules">
+              <section class="card" id="regras">
+                <h2>O que você precisa saber</h2>
+                <h3 class="card-h3">Regras da casa</h3>
+                <div class="rules-list">
                   ${extras.rules.map((r) => `
-                    <li class="apt-rules__item${r.negative ? ' apt-rules__item--no' : ''}">
-                      <span aria-hidden="true">${r.icon}</span> ${r.text}
-                    </li>
+                    <div class="rule-row${r.negative ? ' rule-row--no' : ''}"><span aria-hidden="true">${r.icon}</span> ${r.text}</div>
                   `).join('')}
-                </ul>
-                <h3 class="apt-card__h3">Saúde e segurança</h3>
-                <ul class="apt-rules">
+                </div>
+                <h3 class="card-h3">Saúde e segurança</h3>
+                <div class="rules-list">
                   ${extras.safetyRules.map((r) => `
-                    <li class="apt-rules__item"><span aria-hidden="true">${r.icon}</span> ${r.text}</li>
+                    <div class="rule-row"><span aria-hidden="true">${r.icon}</span> ${r.text}</div>
                   `).join('')}
-                </ul>
-                <h3 class="apt-card__h3">Política de cancelamento</h3>
-                <p class="apt-cancel">${extras.cancellation}</p>
+                </div>
+                <h3 class="card-h3">Política de cancelamento</h3>
+                <p class="cancel-text">${extras.cancellation}</p>
               </section>
 
             </div>
 
-            <aside class="apt-page__aside" id="reserva">
-              <div class="apt-booking">
-                <div class="apt-booking__price">${priceDisplay}</div>
-
-                <div class="apt-booking__form">
-                  <label class="apt-booking__field">
-                    <span>Check-in</span>
-                    <input type="date" class="apt-booking__input" data-checkin>
-                  </label>
-                  <label class="apt-booking__field">
-                    <span>Check-out</span>
-                    <input type="date" class="apt-booking__input" data-checkout>
-                  </label>
-                  <div class="apt-booking__field apt-booking__guests">
-                    <span>Hóspedes</span>
-                    <button type="button" class="apt-booking__input apt-booking__guests-btn" data-guests-toggle>
+            <aside class="booking-aside" id="reserva">
+              <div class="booking-card">
+                <div class="price-section">${priceHtml}</div>
+                <div class="booking-form">
+                  <div class="form-group">
+                    <label>Check-in</label>
+                    <input type="date" class="form-input" data-checkin>
+                  </div>
+                  <div class="form-group">
+                    <label>Check-out</label>
+                    <input type="date" class="form-input" data-checkout>
+                  </div>
+                  <div class="form-group guests-selector">
+                    <label>Hóspedes</label>
+                    <button type="button" class="form-input guests-trigger" data-guests-toggle>
                       <span data-guests-display>2 adultos · 0 crianças</span>
                     </button>
-                    <div class="apt-booking__guests-panel" data-guests-panel>
-                      <div class="apt-booking__guest-row">
-                        <div><strong>Adultos</strong><small>13 anos ou mais</small></div>
-                        <div class="apt-booking__counter">
-                          <button type="button" data-adults-down aria-label="Menos adultos">−</button>
-                          <span data-adults-count>2</span>
-                          <button type="button" data-adults-up aria-label="Mais adultos">+</button>
+                    <div class="guests-panel" data-guests-panel>
+                      <div class="guest-row">
+                        <div class="guest-info"><h4>Adultos</h4><p>13 anos ou mais</p></div>
+                        <div class="guest-counter">
+                          <button type="button" class="counter-btn" data-adults-down aria-label="Menos adultos">−</button>
+                          <span class="counter-value" data-adults-count>2</span>
+                          <button type="button" class="counter-btn" data-adults-up aria-label="Mais adultos">+</button>
                         </div>
                       </div>
-                      <div class="apt-booking__guest-row">
-                        <div><strong>Crianças</strong><small>2 a 12 anos</small></div>
-                        <div class="apt-booking__counter">
-                          <button type="button" data-children-down aria-label="Menos crianças">−</button>
-                          <span data-children-count>0</span>
-                          <button type="button" data-children-up aria-label="Mais crianças">+</button>
+                      <div class="guest-row">
+                        <div class="guest-info"><h4>Crianças</h4><p>2 a 12 anos</p></div>
+                        <div class="guest-counter">
+                          <button type="button" class="counter-btn" data-children-down aria-label="Menos crianças">−</button>
+                          <span class="counter-value" data-children-count>0</span>
+                          <button type="button" class="counter-btn" data-children-up aria-label="Mais crianças">+</button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <button type="button" class="apt-booking__reserve btn btn--primary btn--block" data-reserve-btn>
+                <button type="button" class="btn-reserve" data-reserve-btn>
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A10 10 0 0 0 3.6 17l-1.6 5 5.1-1.6A10 10 0 1 0 20.5 3.5z"/></svg>
                   Reservar via WhatsApp
                 </button>
-                <p class="apt-booking__notice">Você não será cobrado agora · Sem taxas de plataforma</p>
-
-                ${extras.pricePerNight ? `
-                  <div class="apt-booking__breakdown">
-                    <div class="apt-booking__row">
-                      <span>${apt.priceFrom} × <span data-nights-count>5</span> noites</span>
-                      <span data-subtotal>—</span>
-                    </div>
-                    ${extras.cleaningFee ? `<div class="apt-booking__row"><span>Taxa de limpeza</span><span>${formatBRL(extras.cleaningFee)}</span></div>` : ''}
-                    <div class="apt-booking__total">
-                      <span>Total estimado</span>
-                      <span data-total>—</span>
-                    </div>
-                  </div>
-                ` : ''}
-
-                <div class="apt-booking__trust">
-                  <p>🔒 Reserva segura e direta</p>
-                  <p>💬 Suporte pelo WhatsApp</p>
-                  <p>📋 Regras claras antes de fechar</p>
+                <p class="booking-notice">Você não será cobrado agora · Sem taxas extras</p>
+                ${breakdownHtml}
+                <div class="booking-trust">
+                  <div class="trust-item">🔒 Reserva 100% segura</div>
+                  <div class="trust-item">↩️ Cancelamento conforme combinado</div>
+                  <div class="trust-item">💬 Suporte direto no WhatsApp</div>
                 </div>
               </div>
             </aside>
 
           </div>
 
-          <div class="apt-cta-wa">
-            <span class="apt-cta-wa__icon" aria-hidden="true">💬</span>
+          <div class="cta-whatsapp">
+            <div class="cta-icon" aria-hidden="true">💬</div>
             <div>
               <h3>Pronto para reservar?</h3>
               <p>Fale direto conosco pelo WhatsApp — sem taxas, sem intermediários.</p>
-              <a href="${waBase}" class="btn btn--secondary" target="_blank" rel="noopener noreferrer">${BUSINESS.phoneDisplay}</a>
+              <a href="${waBase}" class="cta-btn" target="_blank" rel="noopener noreferrer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A10 10 0 0 0 3.6 17l-1.6 5 5.1-1.6A10 10 0 1 0 20.5 3.5z"/></svg>
+                ${BUSINESS.phoneDisplay}
+              </a>
             </div>
           </div>
 
         </div>
 
-        <section class="apt-related">
+        <section class="outros-apts">
           <div class="container">
-            <header class="apt-related__header">
-              <h2>Outros apartamentos disponíveis</h2>
-              <p>Explore mais opções da Recife Flats Temporada</p>
+            <header class="section-header">
+              <h2>Outros Apartamentos Disponíveis</h2>
+              <p>Explore mais opções da Recife Flats Temporada · Reserva direta</p>
             </header>
-            <div class="apt-related__grid">${renderOtherApartments(apt.slug)}</div>
-            <p class="apt-related__cta">
-              <a href="${pageHref('./apartamentos.html')}" class="btn btn--primary">Ver todos os apartamentos</a>
-            </p>
+            <div class="apts-grid">${renderOtherApartments(apt.slug)}</div>
+            <div class="apts-cta">
+              <a href="${pageHref('./apartamentos.html')}" class="btn-ver-todos">Ver todos os apartamentos</a>
+            </div>
           </div>
         </section>
 
-        <script type="application/ld+json">${JSON.stringify(schema)}</script>
       </article>
     `;
 
