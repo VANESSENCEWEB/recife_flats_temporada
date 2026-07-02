@@ -18,10 +18,11 @@ import { BUSINESS, whatsappUrl } from '../data/location.js';
 
 const NAV_ITEMS = [
   { num: '01', label: 'Início',       href: '/'              },
-  { num: '02', label: 'Apartamentos', href: '/apartamentos.html' },
-  { num: '03', label: 'Sobre nós',    href: '/sobre.html'    },
-  { num: '04', label: 'Localização',  href: '/#localizacao'  },
-  { num: '05', label: 'Contato',      href: '/contato.html'  },
+  { num: '02', label: 'ApartMatch',   href: '/apartmatch.html', badge: 'Novidade' },
+  { num: '03', label: 'Apartamentos', href: '/apartamentos.html' },
+  { num: '04', label: 'Sobre nós',    href: '/sobre.html'    },
+  { num: '05', label: 'Localização',  href: '/#localizacao'  },
+  { num: '06', label: 'Contato',      href: '/contato.html'  },
 ];
 
 class RFMenu extends HTMLElement {
@@ -56,7 +57,10 @@ class RFMenu extends HTMLElement {
               <div class="menu-overlay__item">
                 <span class="menu-overlay__num">${item.num}</span>
                 <div class="menu-overlay__link-wrap">
-                  <a href="${item.href}" class="menu-overlay__link" data-menu-link>${item.label}</a>
+                  <a href="${item.href}" class="menu-overlay__link" data-menu-link>
+                    ${item.label}
+                    ${item.badge ? `<span class="menu-overlay__badge">${item.badge}</span>` : ''}
+                  </a>
                 </div>
                 <span class="menu-overlay__arrow" aria-hidden="true">→</span>
               </div>
