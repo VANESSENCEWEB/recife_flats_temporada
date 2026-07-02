@@ -34,7 +34,9 @@ class RFMatchingTeaser extends HTMLElement {
               <button type="button" class="btn btn--sun btn--lg" data-open-matching>
                 <span aria-hidden="true">⚡</span> Fazer Matching agora
               </button>
-              <a href="./apartmatch.html" class="btn btn--outline btn--lg">Saiba mais</a>
+              <a href="./apartmatch.html" class="btn btn--outline btn--lg">
+                <span aria-hidden="true">🧭</span> Saiba mais
+              </a>
             </div>
             <div class="matching-simple__badge">
               <span class="matching-simple__spinner" aria-hidden="true"></span>
