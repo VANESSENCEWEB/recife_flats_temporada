@@ -31,11 +31,11 @@ export const NEIGHBORHOODS = {
     description:
       'Apartamento para temporada no Pina, Recife — ao lado do RioMar e bem conectado à cidade.',
     intro:
-      'O Pina combina localização estratégica com acesso rápido ao RioMar Shopping, vias principais e a orla de Boa Viagem. Excelente para estadias médias e longas, com tudo que você precisa no entorno.',
+      'O Pina combina localização estratégica com acesso rápido ao RioMar Shopping, ao Centro do Recife e à orla de Boa Viagem. Excelente para estadias médias e longas, com tudo que você precisa no entorno.',
     highlights: [
       'Ao lado do RioMar Shopping',
+      'O bairro mais próximo do Centro do Recife entre nossas opções',
       'Boa conexão com vias principais e aeroporto',
-      'Excelente para estadias médias e longas',
     ],
   },
 };

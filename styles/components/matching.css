@@ -15,71 +15,73 @@ rf-matching-wizard {
   position: relative;
   min-height: 100vh;
   min-height: 100dvh;
-  display: flex;
-  align-items: center;
   background: var(--ocean);
   color: var(--white);
   overflow: hidden;
   isolation: isolate;
 }
 
-/* --- Foto de fundo em tela cheia --- */
-.matching-simple__bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
+/* --- Divisão 50/50: foto à esquerda, texto à direita --- */
+.matching-simple__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
-.matching-simple__bg img {
+.matching-simple__photo-col {
+  position: relative;
+  overflow: hidden;
+}
+
+.matching-simple__photo-col picture,
+.matching-simple__photo-col img {
+  display: block;
   width: 100%;
   height: 100%;
+}
+
+.matching-simple__photo-col img {
   object-fit: cover;
-  object-position: 30% 30%;
-  transform: scale(1.06);
+  object-position: 40% 25%;
+  transform: scale(1.05);
   animation: matching-kenburns 18s ease-in-out infinite alternate;
 }
 
 @keyframes matching-kenburns {
-  from { transform: scale(1.06) translate(0, 0); }
-  to   { transform: scale(1.14) translate(-1%, -1%); }
+  from { transform: scale(1.05) translate(0, 0); }
+  to   { transform: scale(1.12) translate(-1.5%, -1%); }
 }
 
-.matching-simple__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(90deg,
-    rgba(7, 47, 51, 0.35) 0%,
-    rgba(7, 47, 51, 0.65) 45%,
-    rgba(7, 47, 51, 0.92) 75%,
-    var(--accent-darker) 100%);
-}
-
-.matching-simple__inner {
-  width: 100%;
-  padding-block: clamp(var(--space-9), 10vw, var(--space-11));
+.matching-simple__text-col {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(155deg, var(--ocean) 0%, var(--accent-dark) 65%, var(--accent-darker) 100%);
+  padding: clamp(var(--space-6), 5vw, var(--space-9));
 }
 
 .matching-simple__content {
-  max-width: 520px;
-  margin-left: auto;
+  max-width: 480px;
 }
 
-/* --- Selo de "calculando" --- */
+/* --- Selo de "calculando" (sobre a foto) --- */
 .matching-simple__badge {
+  position: absolute;
+  left: var(--space-5);
+  bottom: var(--space-5);
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: var(--space-6);
   padding: 8px 16px;
   border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(7, 47, 51, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.18);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   font-size: var(--fs-xs);
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .matching-simple__spinner {
@@ -136,21 +138,29 @@ rf-matching-wizard {
 }
 
 @media (max-width: 899px) {
-  .matching-simple__inner { text-align: center; }
+  .matching-simple__grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 42vh 1fr;
+  }
+
+  .matching-simple__photo-col { height: 42vh; }
+
+  .matching-simple__text-col {
+    text-align: center;
+    justify-content: center;
+    padding: var(--space-7) var(--space-5);
+  }
+
   .matching-simple__content { max-width: 100%; margin-inline: auto; }
   .matching-simple__text { margin-inline: auto; }
   .matching-simple__actions { justify-content: center; }
-  .matching-simple__overlay {
-    background: linear-gradient(180deg,
-      rgba(7, 47, 51, 0.35) 0%,
-      rgba(7, 47, 51, 0.7) 55%,
-      var(--accent-darker) 100%);
-  }
-  .matching-simple__bg img { object-position: 65% 30%; }
+  .matching-simple__badge { left: 50%; transform: translateX(-50%); }
 }
 
 @media (max-width: 480px) {
   .matching-simple { min-height: 100svh; }
+  .matching-simple__grid { min-height: 100svh; grid-template-rows: 38vh 1fr; }
+  .matching-simple__photo-col { height: 38vh; }
   .matching-simple__actions { flex-direction: column; width: 100%; }
   .matching-simple__actions .btn { width: 100%; justify-content: center; }
   .matching-simple__badge {
@@ -161,7 +171,7 @@ rf-matching-wizard {
 
 @media (prefers-reduced-motion: reduce) {
   .matching-simple__spinner,
-  .matching-simple__bg img { animation: none; }
+  .matching-simple__photo-col img { animation: none; }
 }
 
 /* --- Modal --- */

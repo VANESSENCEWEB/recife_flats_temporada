@@ -1,6 +1,8 @@
 /* ============================================================
    WAVE DIVIDER — Transição animada entre seções (3 ondas SVG)
    Inspirado em https://vanessenceweb.github.io/ALIQUOTA/
+   Cada camada tem 2 cópias do mesmo desenho lado a lado (tiling
+   real), então o loop não estica nem corta a onda.
 ============================================================ */
 
 .wave-divider {
@@ -19,9 +21,17 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  display: flex;
   width: 200%;
   height: 100%;
   animation: wave-drift linear infinite;
+}
+
+.wave-divider__layer svg {
+  width: 50%;
+  height: 100%;
+  flex-shrink: 0;
+  display: block;
 }
 
 .wave-divider__layer--a {
