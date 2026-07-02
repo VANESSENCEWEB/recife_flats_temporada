@@ -30,9 +30,9 @@ export const MATCHING_PROFILES = {
     objectiveFit: { familia: 0.9, casal: 0.55, trabalho_remoto: 0.6, turismo: 0.65 },
     highlightReasons: {
       familia: 'Apartamento com 2 quartos e cozinha completa — ótimo para famílias de até 4 pessoas aproveitarem Boa Viagem.',
-      casal: 'Espaço confortável e privativo, no Edifício Ipê, a 5 minutos da orla de Boa Viagem.',
+      casal: 'Espaço confortável e privativo, no Edifício Ipê, a 100 m da orla de Boa Viagem.',
       trabalho_remoto: 'Wi-Fi de alta velocidade e ambiente tranquilo em Boa Viagem para render no home office.',
-      turismo: 'A 5 minutos da praia de Boa Viagem, em cima do comércio do bairro e perto de restaurantes.',
+      turismo: 'A 100 m da praia de Boa Viagem, em cima do comércio do bairro e perto de restaurantes.',
     },
   },
 
@@ -51,14 +51,14 @@ export const MATCHING_PROFILES = {
   },
 
   'studio-203-boa-viagem': {
-    parkingType: 'nenhum',
+    parkingType: 'rotativo',
     poolType: 'nenhum',
     wifiTier: 'padrao',
     budgetTier: 'economico',
     objectiveFit: { familia: 0.15, casal: 1, trabalho_remoto: 0.5, turismo: 0.6 },
     highlightReasons: {
-      casal: 'Studio aconchegante e privativo, pensado especialmente para casais.',
-      turismo: 'Ótima localização em Boa Viagem, perto da praia e com acesso rápido ao aeroporto.',
+      casal: 'Studio aconchegante e privativo no Edifício Ipê, a 100 m da praia — pensado especialmente para casais.',
+      turismo: 'A 100 m da praia de Boa Viagem, no mesmo prédio do Apartamento 105, com acesso rápido ao aeroporto.',
       trabalho_remoto: 'Ambiente silencioso (22h–7h) para quem precisa de foco durante a estadia.',
       familia: 'Studio compacto para até 2 pessoas — para famílias maiores, considere um apartamento com mais quartos.',
     },

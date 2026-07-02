@@ -30,7 +30,7 @@
 /** @type {Record<string, ApartmentDetailExtras>} */
 export const APARTMENT_DETAIL_EXTRAS = {
   'apartamento-2-quartos-boa-viagem': {
-    seoTitle: 'Apartamento 2 Quartos Boa Viagem — 5 min da Praia | Temporada Recife',
+    seoTitle: 'Apartamento 2 Quartos Boa Viagem — 100m da Praia | Temporada Recife',
     overviewTitle: 'Apartamento completo em Boa Viagem',
     overviewSubtitle: '4 hóspedes · 2 quartos · 2 camas de casal · 1 banheiro',
     pricePerNight: 350,
@@ -39,13 +39,13 @@ export const APARTMENT_DETAIL_EXTRAS = {
     checkOut: '11h00',
     highlights: [
       { icon: 'fas fa-key', title: 'Autoatendimento', text: 'Check-in independente com orientações claras — sem espera' },
-      { icon: 'fas fa-map-marker-alt', title: '5 min da praia', text: 'Edifício Ipê, em cima do comércio de Boa Viagem' },
+      { icon: 'fas fa-map-marker-alt', title: '100 m da praia', text: 'Edifício Ipê, em cima do comércio de Boa Viagem' },
       { icon: 'fas fa-calendar-check', title: 'Check-in flexível', text: 'Horários adaptáveis conforme disponibilidade' },
       { icon: 'fas fa-shield-alt', title: 'Reserva direta', text: 'Fale conosco pelo WhatsApp — sem intermediários' },
     ],
     extendedDescription: [
       '<strong>Apartamento no Edifício Ipê, em Boa Viagem</strong>, ideal para famílias ou grupos de até 4 pessoas. Dois quartos com cama de casal cada, ar-condicionado nos dois ambientes, cozinha completa e Wi-Fi.',
-      'Localização prática: a 5 minutos da praia, em cima do comércio do bairro (padaria, mercado), perto de farmácias, restaurantes e do Shopping Recife. Prédio pequeno, com elevador.',
+      'Localização prática: a 100 metros da praia, em cima do comércio do bairro (padaria, mercado), perto de farmácias, restaurantes e do Shopping Recife. Prédio pequeno, com elevador.',
       'Pet friendly sob pedido. Estacionamento rotativo na área externa do prédio. <strong>Reserva direta sem taxas de plataforma</strong> — atendimento humano do início ao check-out.',
     ],
     amenityItems: [
@@ -55,7 +55,7 @@ export const APARTMENT_DETAIL_EXTRAS = {
       { icon: '📺', label: 'Smart TV' },
       { icon: '🅿️', label: 'Estacionamento rotativo (área externa)' },
       { icon: '🐾', label: 'Pet friendly (sob pedido)' },
-      { icon: '🌊', label: '5 min da praia' },
+      { icon: '🌊', label: '100 m da praia' },
       { icon: '🛗', label: 'Elevador' },
       { icon: '🧺', label: 'Máquina de lavar' },
       { icon: '🛁', label: 'Banheiro completo' },
@@ -63,7 +63,7 @@ export const APARTMENT_DETAIL_EXTRAS = {
       { icon: '📏', label: '72 m²' },
     ],
     nearby: [
-      { icon: 'fas fa-umbrella-beach', title: 'Praia de Boa Viagem', distance: '~5 min' },
+      { icon: 'fas fa-umbrella-beach', title: 'Praia de Boa Viagem', distance: '100 m' },
       { icon: 'fas fa-bread-slice', title: 'Padaria e mercado', distance: 'Em cima do prédio' },
       { icon: 'fas fa-shopping-bag', title: 'Shopping Recife', distance: '~10 min a pé' },
       { icon: 'fas fa-plane', title: 'Aeroporto dos Guararapes', distance: '~8 min de carro' },
@@ -161,35 +161,36 @@ export const APARTMENT_DETAIL_EXTRAS = {
   },
 
   'studio-203-boa-viagem': {
-    seoTitle: 'Studio 203 Boa Viagem — Ideal Casal | Temporada Recife',
-    overviewTitle: 'Studio compacto em Boa Viagem',
+    seoTitle: 'Studio 203 Boa Viagem — 100m da Praia | Ideal Casal | Temporada Recife',
+    overviewTitle: 'Studio compacto no Edifício Ipê',
     overviewSubtitle: '2 hóspedes · 1 quarto · 1 cama · 1 banheiro',
     pricePerNight: null,
     cleaningFee: 0,
     checkIn: '15h00',
     checkOut: '11h00',
     highlights: [
-      { icon: 'fas fa-heart', title: 'Ideal para casal', text: 'Layout inteligente para 1 ou 2 hóspedes' },
-      { icon: 'fas fa-plane', title: 'Acesso rápido', text: 'Perto da praia e com boa ligação ao aeroporto' },
+      { icon: 'fas fa-heart', title: 'Ideal para casal', text: 'Layout inteligente para até 2 hóspedes' },
+      { icon: 'fas fa-map-marker-alt', title: '100 m da praia', text: 'Mesmo Edifício Ipê do Apartamento 105' },
+      { icon: 'fas fa-square-parking', title: 'Estacionamento', text: 'Vaga rotativa na área externa do prédio' },
       { icon: 'fas fa-moon', title: 'Ambiente tranquilo', text: 'Silêncio entre 22h e 7h' },
-      { icon: 'fas fa-comments', title: 'Consulte valores', text: 'Disponibilidade e preço sob consulta no WhatsApp' },
     ],
     extendedDescription: [
-      '<strong>Studio 203</strong> em Boa Viagem — opção enxuta e bem localizada para casais ou viagens curtas a trabalho.',
-      'Wi-Fi, cozinha e ambiente climatizado. Pets sob pedido. Check-in entre 15h e 22h; check-out entre 9h e 11h.',
+      '<strong>Studio 203</strong> no Edifício Ipê, em Boa Viagem — mesmo prédio do Apartamento 105, a 100 metros da praia. Opção enxuta e bem localizada para casais ou viagens curtas a trabalho.',
+      'Wi-Fi, cozinha e ambiente climatizado. Estacionamento rotativo na área externa do prédio. Pets sob pedido. Check-in entre 15h e 22h; check-out entre 9h e 11h.',
       'Consulte disponibilidade e condições para suas datas. <strong>Atendimento direto</strong> sem taxas de plataforma.',
     ],
     amenityItems: [
       { icon: '📶', label: 'WiFi' },
       { icon: '❄️', label: 'Ar-condicionado' },
       { icon: '🍳', label: 'Cozinha' },
-      { icon: '🌊', label: 'Perto da praia' },
+      { icon: '🌊', label: '100 m da praia' },
+      { icon: '🅿️', label: 'Estacionamento rotativo' },
       { icon: '🐾', label: 'Pet sob pedido' },
       { icon: '🛏️', label: '1 quarto studio' },
       { icon: '📏', label: '35 m²' },
     ],
     nearby: [
-      { icon: 'fas fa-umbrella-beach', title: 'Praia de Boa Viagem', distance: 'Poucos minutos a pé' },
+      { icon: 'fas fa-umbrella-beach', title: 'Praia de Boa Viagem', distance: '100 m' },
       { icon: 'fas fa-plane', title: 'Aeroporto', distance: 'Acesso rápido' },
       { icon: 'fas fa-store', title: 'Comércio local', distance: 'Mercados e farmácias próximos' },
     ],
