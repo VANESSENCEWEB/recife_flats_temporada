@@ -7,6 +7,7 @@
  */
 
 import { prefersReducedMotion } from '../utils/dom.js';
+import { renderWaveDivider } from '../utils/wave-divider.js';
 
 const THREE_CDN = 'https://unpkg.com/three@0.161.0/build/three.module.js';
 
@@ -54,10 +55,7 @@ class RFApartmatchHero extends HTMLElement {
           </div>
         </div>
 
-        <div class="apartmatch-hero__scroll" aria-hidden="true">
-          <span>Role para descobrir</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-        </div>
+        ${renderWaveDivider('var(--cream)')}
       </section>
     `;
 

@@ -4,6 +4,7 @@
 
 import { whatsappUrl } from '../data/location.js';
 import { prefersReducedMotion } from '../utils/dom.js';
+import { renderWaveDivider } from '../utils/wave-divider.js';
 
 const STEPS = [
   {
@@ -48,7 +49,6 @@ class RFReservationSteps extends HTMLElement {
 
     this.innerHTML = `
       <section class="reservation-steps" id="como-funciona" aria-labelledby="reservation-heading">
-        <div class="reservation-steps__fade" aria-hidden="true"></div>
         <div class="container reservation-steps__inner">
           <header class="reservation-steps__header" data-reservation-reveal>
             <span class="eyebrow eyebrow--on-dark">Reserva direta</span>
@@ -71,6 +71,7 @@ class RFReservationSteps extends HTMLElement {
             <a href="./apartamentos.html" class="btn btn--outline">Comparar apartamentos</a>
           </div>
         </div>
+        ${renderWaveDivider('var(--cream)')}
       </section>
     `;
 

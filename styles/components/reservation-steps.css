@@ -10,17 +10,6 @@
   overflow: hidden;
 }
 
-.reservation-steps__fade {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 8rem;
-  background: linear-gradient(180deg, transparent 0%, var(--cream) 100%);
-  pointer-events: none;
-  z-index: 1;
-}
-
 .reservation-steps__inner {
   position: relative;
   z-index: 2;
