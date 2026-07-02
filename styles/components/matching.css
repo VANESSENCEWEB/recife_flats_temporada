@@ -8,310 +8,421 @@ rf-matching-wizard {
 }
 
 /* ============================================================
-   TEASER — Seção full-screen (stop-scroll) do Matching Inteligente
+   TEASER — "Scroll story" do Matching Inteligente
+   Desktop: seção fixa (pin) enquanto rola, trocando de cena.
+   Mobile: cenas empilhadas normalmente, mockup cicla sozinho.
 ============================================================ */
 
-.matching-hero {
+.matching-story {
   position: relative;
   min-height: 100vh;
   min-height: 100dvh;
   display: flex;
   align-items: center;
+  background: linear-gradient(155deg, var(--ocean) 0%, var(--accent-dark) 55%, var(--accent-darker) 100%);
   color: var(--white);
   overflow: hidden;
   isolation: isolate;
   padding-block: var(--space-9);
 }
 
-.matching-hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background: linear-gradient(155deg, var(--ocean) 0%, var(--accent-dark) 55%, var(--accent-darker) 100%);
-}
-
-.matching-hero__glow {
-  position: absolute;
-  z-index: -1;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
-  pointer-events: none;
-}
-
-.matching-hero__glow--a {
-  width: 480px;
-  height: 480px;
-  top: -10%;
-  right: -8%;
-  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
-}
-
-.matching-hero__glow--b {
-  width: 420px;
-  height: 420px;
-  bottom: -15%;
-  left: -10%;
-  background: radial-gradient(circle, var(--sun) 0%, transparent 70%);
-  opacity: 0.16;
-}
-
-.matching-hero__inner {
+.matching-story__grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 0.95fr 1.05fr;
   align-items: center;
-  gap: var(--space-8);
+  gap: var(--space-9);
   width: 100%;
 }
 
-.matching-hero__title {
-  font-size: clamp(2rem, 4.2vw, var(--fs-2xl));
-  font-weight: 600;
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.12;
-  color: var(--white);
-  margin-block: var(--space-3) var(--space-4);
-  max-width: 16ch;
+/* --- Coluna visual: foto + mockup de celular --- */
+.matching-story__visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-.matching-hero__title em {
+.matching-story__photo {
+  position: relative;
+  width: min(420px, 100%);
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.matching-story__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(7, 47, 51, 0) 40%, rgba(7, 47, 51, 0.55) 100%);
+}
+
+.matching-story__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.matching-story__phone {
+  position: absolute;
+  bottom: -8%;
+  right: -6%;
+  width: clamp(150px, 15vw, 190px);
+  aspect-ratio: 9 / 18.5;
+  background: #0d1418;
+  border-radius: 28px;
+  padding: 10px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(255, 255, 255, 0.08);
+  z-index: 2;
+}
+
+.matching-story__phone-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44%;
+  height: 16px;
+  background: #0d1418;
+  border-radius: 0 0 12px 12px;
+  z-index: 2;
+}
+
+.matching-story__phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--white);
+}
+
+/* --- Telas do celular (empilhadas, uma ativa por vez) --- */
+.phone-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 22px 12px 12px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 420ms var(--ease-out), transform 420ms var(--ease-out);
+  pointer-events: none;
+}
+
+.phone-screen.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.phone-screen__pin {
+  font-size: 1.4rem;
+  margin-bottom: 2px;
+}
+
+.phone-screen__title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.phone-screen__options {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.phone-screen__option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 10px;
+  background: var(--cream);
+  border: 1px solid rgba(13, 13, 13, 0.06);
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.phone-screen__option span { font-size: 0.75rem; }
+
+.phone-screen__option.is-selected {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-darker);
+}
+
+.phone-screen__ring-wrap {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+}
+
+.phone-screen__ring {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.phone-screen__ring-track {
+  fill: none;
+  stroke: rgba(13, 13, 13, 0.08);
+  stroke-width: 8;
+}
+
+.phone-screen__ring-fill {
+  fill: none;
+  stroke: url(#matchRingGrad);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 314;
+  stroke-dashoffset: 314;
+}
+
+.phone-screen.is-active .phone-screen__ring-fill {
+  animation: phone-ring-fill 2.4s ease-out forwards;
+}
+
+@keyframes phone-ring-fill {
+  to { stroke-dashoffset: 60; }
+}
+
+.phone-screen__ring-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px rgba(27, 154, 170, 0.18);
+}
+
+.phone-screen__caption {
+  font-size: 0.6rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.phone-screen__check {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #22c55e;
+  color: var(--white);
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.4);
+}
+
+.phone-screen__results-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.phone-screen__results-label strong { color: var(--accent-dark); }
+
+.phone-screen__results-grid {
+  display: flex;
+  gap: 6px;
+}
+
+.phone-screen__result {
+  width: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+
+.phone-screen__result img {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.phone-screen__result span {
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: var(--accent-darker);
+}
+
+/* --- Coluna de conteúdo: cenas que trocam --- */
+.matching-story__content {
+  position: relative;
+}
+
+.matching-story__scenes {
+  position: relative;
+  min-height: 260px;
+}
+
+.matching-story__scene {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(18px);
+  pointer-events: none;
+  transition: opacity 480ms var(--ease-out), transform 480ms var(--ease-out);
+}
+
+.matching-story__scene.is-active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  position: relative;
+}
+
+.matching-story__eyebrow {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sun-light);
+  background: rgba(245, 194, 78, 0.14);
+  border: 1px solid rgba(245, 194, 78, 0.3);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: var(--space-4);
+}
+
+.matching-story__title {
+  font-size: clamp(1.9rem, 4vw, var(--fs-2xl));
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.15;
+  color: var(--white);
+  margin-bottom: var(--space-4);
+  max-width: 15ch;
+}
+
+.matching-story__title em {
   font-family: var(--font-italic);
   font-style: italic;
   color: var(--sun-light);
 }
 
-.matching-hero__lead {
-  color: rgba(255, 255, 255, 0.85);
+.matching-story__text {
+  color: rgba(255, 255, 255, 0.82);
   max-width: 46ch;
   font-size: var(--fs-md);
   line-height: 1.65;
-  margin-bottom: var(--space-6);
 }
 
-.matching-hero__steps {
+.matching-story__actions {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  margin-bottom: var(--space-7);
-  padding-bottom: var(--space-7);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
 }
 
-.matching-hero__step {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
-}
-
-.matching-hero__step-num {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: var(--fs-xs);
-  font-weight: 700;
-  color: var(--sun-light);
-}
-
-.matching-hero__step h3 {
-  font-size: var(--fs-sm);
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 2px;
-}
-
-.matching-hero__step p {
-  font-size: var(--fs-xs);
-  color: rgba(255, 255, 255, 0.72);
-  line-height: 1.5;
-}
-
-.matching-hero__cta {
+.matching-story__actions .btn--primary {
   background: var(--white);
   color: var(--accent-dark);
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
 }
 
-.matching-hero__cta:hover {
+.matching-story__actions .btn--primary:hover {
   background: var(--cream);
   color: var(--accent-darker);
 }
 
-/* --- Visual: fotos + anel de score --- */
-.matching-hero__visual {
-  position: relative;
-  height: clamp(320px, 34vw, 440px);
+.matching-story__actions .btn--outline {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
-.matching-hero__card {
-  position: absolute;
-  width: clamp(150px, 15vw, 190px);
-  aspect-ratio: 3 / 4;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-  border: 3px solid rgba(255, 255, 255, 0.15);
-  animation: matching-float 6s ease-in-out infinite;
+.matching-story__actions .btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
-.matching-hero__card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* --- Dots de progresso --- */
+.matching-story__dots {
+  display: flex;
+  gap: 8px;
+  margin-top: var(--space-7);
 }
 
-.matching-hero__card--a {
-  top: 0;
-  left: 8%;
-  z-index: 3;
-  transform: rotate(-4deg);
-  animation-delay: 0s;
+.matching-story__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background var(--dur-base), width var(--dur-base);
 }
 
-.matching-hero__card--b {
-  bottom: 0;
-  right: 4%;
-  z-index: 2;
-  transform: rotate(5deg);
-  animation-delay: -3s;
-}
-
-.matching-hero__score {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 52px;
-  padding: 6px 10px;
+.matching-story__dot.is-active {
+  background: var(--sun-light);
+  width: 26px;
   border-radius: var(--radius-pill);
-  background: var(--white);
-  color: var(--accent-darker);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: var(--fs-sm);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
 
-.matching-hero__ring {
-  position: absolute;
-  top: 44%;
-  left: 42%;
-  width: clamp(96px, 9vw, 120px);
-  height: clamp(96px, 9vw, 120px);
-  z-index: 4;
-  display: grid;
-  place-items: center;
-  animation: matching-float 6s ease-in-out infinite;
-  animation-delay: -1.5s;
-}
-
-.matching-hero__ring-svg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-
-.matching-hero__ring-track {
-  fill: rgba(255, 255, 255, 0.95);
-  stroke: rgba(27, 154, 170, 0.15);
-  stroke-width: 6;
-}
-
-.matching-hero__ring-fill {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 6;
-  stroke-linecap: round;
-}
-
-.matching-hero__ring-label {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.6rem;
-  font-weight: 600;
-  color: var(--accent-darker);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  line-height: 1.3;
-}
-
-.matching-hero__ring-label strong {
-  font-size: 0.8rem;
-  font-weight: 800;
-}
-
-@keyframes matching-float {
-  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
-  50%      { transform: translateY(-12px) rotate(var(--rot, 0deg)); }
-}
-
-.matching-hero__card--a { --rot: -4deg; }
-.matching-hero__card--b { --rot: 5deg; }
-
-/* --- Dica de rolagem --- */
-.matching-hero__scroll-hint {
-  position: absolute;
-  bottom: var(--space-5);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: rgba(255, 255, 255, 0.6);
-  animation: matching-bounce 2s ease-in-out infinite;
-}
-
-@keyframes matching-bounce {
-  0%, 100% { transform: translate(-50%, 0); }
-  50%      { transform: translate(-50%, 6px); }
-}
-
-@media (max-width: 900px) {
-  .matching-hero__inner {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .matching-hero__lead { margin-inline: auto; }
-  .matching-hero__steps { text-align: left; }
-  .matching-hero__cta { margin-inline: auto; }
-  .matching-hero__visual { margin-inline: auto; width: 100%; max-width: 380px; }
-}
-
-@media (max-width: 560px) {
-  .matching-hero {
-    padding-block: var(--space-8);
+/* --- Responsivo --- */
+@media (max-width: 899px) {
+  .matching-story {
     min-height: auto;
+    padding-block: var(--space-8);
   }
 
-  .matching-hero__visual {
-    height: 280px;
+  .matching-story__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
   }
 
-  .matching-hero__scroll-hint { display: none; }
+  .matching-story__visual { margin-bottom: var(--space-4); }
+
+  .matching-story__photo { width: min(320px, 80vw); margin-inline: auto; }
+
+  .matching-story__content { text-align: center; }
+
+  .matching-story__title,
+  .matching-story__text { margin-inline: auto; }
+
+  .matching-story__actions,
+  .matching-story__dots { justify-content: center; }
+
+  .matching-story__scenes {
+    min-height: 0;
+  }
+
+  .matching-story__scene {
+    position: static;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    margin-bottom: var(--space-8);
+  }
+
+  .matching-story__scene:last-child { margin-bottom: 0; }
+}
+
+@media (max-width: 480px) {
+  .matching-story__phone {
+    width: 120px;
+    right: 0;
+    bottom: -6%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .matching-hero__card,
-  .matching-hero__ring,
-  .matching-hero__scroll-hint {
-    animation: none;
-  }
+  .phone-screen__ring-fill { animation: none; stroke-dashoffset: 60; }
 }
 
 /* --- Modal --- */
