@@ -97,3 +97,39 @@
   width: 100%;
   justify-content: center;
 }
+
+/* Destaque — amarelo vibrante, para CTAs de "ação imediata" */
+.btn--sun {
+  background: var(--sun);
+  color: var(--ocean);
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(245, 194, 78, 0.45);
+  animation: btn-sun-pulse 2.4s ease-in-out infinite;
+}
+.btn--sun::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transition: left var(--dur-slow);
+}
+.btn--sun:hover::before { left: 100%; }
+.btn--sun:hover {
+  background: var(--sun-light);
+  transform: translateY(-3px) scale(1.035);
+  box-shadow: 0 14px 34px rgba(245, 194, 78, 0.6);
+  animation-play-state: paused;
+}
+.btn--sun:active {
+  transform: translateY(-1px) scale(1);
+}
+
+@keyframes btn-sun-pulse {
+  0%, 100% { box-shadow: 0 8px 24px rgba(245, 194, 78, 0.45), 0 0 0 0 rgba(245, 194, 78, 0.35); }
+  50%      { box-shadow: 0 8px 24px rgba(245, 194, 78, 0.45), 0 0 0 10px rgba(245, 194, 78, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn--sun { animation: none; }
+}
