@@ -4,6 +4,7 @@
  */
 
 import { prefersReducedMotion } from '../utils/dom.js';
+import { assetUrl } from '../utils/paths.js';
 
 const STEPS = [
   { num: '01', icon: '✍️', title: 'Responda rapidinho', text: 'Algumas perguntas sobre a sua viagem — leva menos de 1 minuto.' },
@@ -21,7 +22,26 @@ class RFApartmatchSections extends HTMLElement {
       </article>
     `).join('');
 
+    const illustrationSrc = assetUrl('./assets/images/apartmatch/apartmatch-illustration.jpg');
+    const illustrationSrcWebp = assetUrl('./assets/images/apartmatch/apartmatch-illustration.webp');
+
     this.innerHTML = `
+      <section class="apartmatch-illustration" aria-labelledby="am-illustration-heading">
+        <div class="container apartmatch-illustration__inner">
+          <div class="apartmatch-illustration__media" data-am-reveal>
+            <picture>
+              <source srcset="${illustrationSrcWebp}" type="image/webp">
+              <img src="${illustrationSrc}" alt="Ilustração de prédios de apartamentos à beira-mar em Boa Viagem, com um pin indicando o apartamento ideal" loading="lazy">
+            </picture>
+          </div>
+          <div class="apartmatch-illustration__copy" data-am-reveal>
+            <span class="eyebrow eyebrow--pill">De verdade, do jeito certo</span>
+            <h2 id="am-illustration-heading">Seu próximo apê à beira-mar em Recife</h2>
+            <p>Apartamentos mobiliados em Boa Viagem e Pina, prontos pra você chegar e curtir. O ApartMatch encontra qual deles combina com a sua viagem.</p>
+          </div>
+        </div>
+      </section>
+
       <section class="apartmatch-steps" id="como-funciona" aria-labelledby="am-steps-heading">
         <div class="container">
           <h2 id="am-steps-heading" class="apartmatch-steps__heading" data-am-reveal>Como funciona</h2>

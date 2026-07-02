@@ -13,6 +13,10 @@ rf-matching-wizard {
 
 .matching-simple {
   position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
   background: linear-gradient(155deg, var(--ocean) 0%, var(--accent-dark) 65%, var(--accent-darker) 100%);
   color: var(--white);
   padding-block: clamp(var(--space-8), 8vw, var(--space-9));
@@ -24,6 +28,7 @@ rf-matching-wizard {
   grid-template-columns: 0.85fr 1.15fr;
   align-items: center;
   gap: var(--space-8);
+  width: 100%;
 }
 
 /* --- Foto + selo de "calculando" --- */
@@ -132,7 +137,7 @@ rf-matching-wizard {
 }
 
 @media (max-width: 480px) {
-  .matching-simple { padding-block: var(--space-7); }
+  .matching-simple { padding-block: var(--space-7); min-height: 100svh; }
   .matching-simple__photo { width: min(180px, 55vw); }
   .matching-simple__badge {
     font-size: 0.65rem;

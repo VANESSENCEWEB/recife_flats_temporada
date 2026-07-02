@@ -6,6 +6,7 @@
 
 import { assetUrl } from '../utils/paths.js';
 import { prefersReducedMotion } from '../utils/dom.js';
+import { renderWaveDivider } from '../utils/wave-divider.js';
 
 class RFMatchingTeaser extends HTMLElement {
   connectedCallback() {
@@ -43,6 +44,8 @@ class RFMatchingTeaser extends HTMLElement {
           </div>
 
         </div>
+
+        ${renderWaveDivider('var(--ocean)')}
       </section>
     `;
 
