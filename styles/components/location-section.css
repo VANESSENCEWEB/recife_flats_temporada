@@ -5,8 +5,6 @@
 .location-section {
   background: linear-gradient(180deg, var(--cream) 0%, var(--white) 8rem);
   padding-block: var(--space-10);
-  margin-top: -4rem;
-  padding-top: calc(var(--space-10) + 4rem);
   position: relative;
 }
 

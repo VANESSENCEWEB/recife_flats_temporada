@@ -14,23 +14,4 @@
 
 rf-apartments-teaser {
   background: var(--white);
-  position: relative;
-  z-index: 2;
-}
-
-rf-reservation-steps {
-  display: block;
-  margin-top: -2rem;
-  position: relative;
-  z-index: 1;
-}
-
-rf-location-section {
-  background: var(--cream);
-  position: relative;
-  z-index: 2;
-}
-
-.site-content > rf-apartments-teaser + rf-reservation-steps {
-  margin-top: 0;
 }
