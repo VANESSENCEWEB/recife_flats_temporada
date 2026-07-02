@@ -13,6 +13,8 @@ import './components/booking-search.js';
 import './components/hero.js';
 import './components/location-section.js';
 import './components/reservation-steps.js';
+import './components/matching-teaser.js';
+import './components/matching-wizard.js';
 import './components/footer.js';
 import './components/floating-whatsapp.js';
 import './components/breadcrumbs.js';
