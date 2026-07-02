@@ -45,6 +45,7 @@ function emptyAnswers() {
     pool: null,
     wifi: null,
     budget: null,
+    freeText: '',
   };
 }
 
@@ -133,7 +134,8 @@ class RFMatchingWizard extends HTMLElement {
     const idx = QUESTION_ORDER.indexOf(currentStep);
     if (idx === -1) return;
     if (idx === QUESTION_ORDER.length - 1) {
-      this._finish();
+      this.step = 'details';
+      this._render();
       return;
     }
     this.step = QUESTION_ORDER[idx + 1];
@@ -143,7 +145,8 @@ class RFMatchingWizard extends HTMLElement {
   _goBack(currentStep) {
     if (currentStep === 'dates') { this.step = 'intro'; this._render(); return; }
     if (currentStep === 'dates-from-results') { this.step = 'results'; this._render(); return; }
-    if (currentStep === 'results') { this.step = 'budget'; this._render(); return; }
+    if (currentStep === 'results') { this.step = 'details'; this._render(); return; }
+    if (currentStep === 'details') { this.step = 'budget'; this._render(); return; }
     const idx = QUESTION_ORDER.indexOf(currentStep);
     if (idx === 0) {
       this.step = this.answers.hasDates ? 'dates' : 'intro';
@@ -231,6 +234,14 @@ class RFMatchingWizard extends HTMLElement {
       this._render();
       return;
     }
+
+    const detailsDone = e.target.closest('[data-action="details-continue"], [data-action="details-skip"]');
+    if (detailsDone) {
+      const ta = this.querySelector('[data-freetext]');
+      this.answers.freeText = ta ? ta.value.trim() : '';
+      this._finish();
+      return;
+    }
   }
 
   async _handleSubmit(e) {
@@ -284,6 +295,7 @@ class RFMatchingWizard extends HTMLElement {
     if (this.step === 'intro') return this._renderIntro();
     if (this.step === 'dates') return this._renderDates();
     if (this.step === 'dates-from-results') return this._renderDatesFromResults();
+    if (this.step === 'details') return this._renderDetails();
     if (this.step === 'results') return this._renderResults();
     return this._renderQuestion(this.step);
   }
@@ -389,6 +401,29 @@ class RFMatchingWizard extends HTMLElement {
         <div class="matching-options${isNumeric ? ' matching-options--numeric' : ''}">${optionsHtml}</div>
         <div class="matching-nav">
           <button type="button" class="matching-nav__back" data-action="back">← Voltar</button>
+        </div>
+      </div>
+    `;
+  }
+
+  _renderDetails() {
+    const value = this.answers.freeText || '';
+    return `
+      <div class="matching-step">
+        <span class="matching-step__eyebrow">Detalhe extra (opcional)</span>
+        <h3 class="matching-step__title">Quer contar mais alguma coisa?</h3>
+        <p class="matching-step__lead">
+          Ex.: "queremos ficar bem perto da praia" ou "viajamos com um cachorro pequeno".
+          Isso ajuda a explicar melhor por que um apê combina com você.
+        </p>
+        <textarea class="matching-input matching-textarea" data-freetext rows="3"
+                  placeholder="Escreva aqui, se quiser (opcional)…">${value}</textarea>
+        <div class="matching-nav">
+          <button type="button" class="matching-nav__back" data-action="back">← Voltar</button>
+          <div class="matching-nav__group">
+            <button type="button" class="matching-link-btn" data-action="details-skip">Pular</button>
+            <button type="button" class="btn btn--primary" data-action="details-continue">Ver resultados</button>
+          </div>
         </div>
       </div>
     `;

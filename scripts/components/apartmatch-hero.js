@@ -27,9 +27,8 @@ class RFApartmatchHero extends HTMLElement {
           </h1>
 
           <p class="apartmatch-hero__lead">
-            O jeito mais inteligente de encontrar o apartamento perfeito para a sua
-            viagem em Recife — um questionário rápido, um algoritmo de compatibilidade
-            e uma recomendação sob medida em menos de 1 minuto.
+            Responda rapidinho e descubra o apartamento ideal pra sua viagem em Recife —
+            em menos de 1 minuto.
           </p>
 
           <div class="apartmatch-hero__actions">

@@ -8,6 +8,7 @@
 
 import { APARTAMENTOS } from '../data/apartamentos.js';
 import { MATCHING_PROFILES } from '../data/matching-profiles.js';
+import { NEIGHBORHOODS } from '../data/site-structure.js';
 
 export const OBJECTIVE_OPTIONS = [
   { value: 'familia', label: 'Viagem em família', icon: '👨‍👩‍👧‍👦' },
@@ -102,21 +103,106 @@ function scoreLocation(objective, objectiveFit) {
   return objectiveFit?.[objective] ?? 0.6;
 }
 
-function buildReason(answers, apt, profile, sub) {
+/**
+ * "Insights" usados para transformar o texto livre do hóspede em explicações
+ * concretas — usa as próprias palavras dele (ou o que ele marcou) para dizer
+ * *por que* aquele apartamento combina, e não só o percentual.
+ */
+const KEYWORD_INSIGHTS = [
+  {
+    keywords: ['praia', 'beira mar', 'orla', 'mar', 'beach'],
+    match: () => true,
+    sentence: (apt) => `Você mencionou querer ficar perto da praia — o ${apt.building} fica bem posicionado em ${apt.neighborhood}, pertinho da orla.`,
+  },
+  {
+    keywords: ['pet', 'cachorro', 'gato', 'cachorrinho', 'animal de estimação'],
+    match: (apt) => apt.petFriendly,
+    sentence: () => 'Você mencionou viajar com pet — boa notícia: aqui pets são bem-vindos (sob combinação).',
+  },
+  {
+    keywords: ['trabalho', 'remoto', 'home office', 'reunião', 'call', 'notebook'],
+    match: (apt, profile) => profile.wifiTier === 'alta',
+    sentence: () => 'Pensando no seu trabalho remoto, a internet aqui é de alta velocidade.',
+  },
+  {
+    keywords: ['silêncio', 'tranquilo', 'sossegado', 'descanso', 'quieto'],
+    match: (apt) => apt.slug === 'studio-203-boa-viagem',
+    sentence: () => 'Você busca tranquilidade — este é um dos pontos fortes por aqui (silêncio garantido à noite).',
+  },
+  {
+    keywords: ['aeroporto', 'voo', 'avião', 'chegada tarde'],
+    match: () => true,
+    sentence: () => 'Fica a poucos minutos do Aeroporto dos Guararapes.',
+  },
+  {
+    keywords: ['piscina', 'nadar', 'pool'],
+    match: (apt) => apt.pool,
+    sentence: () => 'Você mencionou piscina — este apartamento tem exatamente isso.',
+  },
+  {
+    keywords: ['shopping', 'riomar', 'compras', 'cinema'],
+    match: (apt) => apt.neighborhoodSlug === 'pina',
+    sentence: () => 'Fica pertinho do RioMar Shopping — ótimo pra compras e lazer.',
+  },
+  {
+    keywords: ['família', 'crianças', 'filhos', 'bebê'],
+    match: (apt) => apt.guests >= 4,
+    sentence: () => 'Espaço com boa capacidade — confortável pra viajar em família.',
+  },
+  {
+    keywords: ['carro', 'estacionar', 'garagem', 'vaga'],
+    match: (apt) => apt.parking,
+    sentence: () => 'Você mencionou o carro — este apê conta com vaga de estacionamento.',
+  },
+];
+
+/**
+ * Lê o texto livre do hóspede e retorna frases + um pequeno bônus de score
+ * quando o que ele escreveu bate com um atributo real do apartamento.
+ */
+function matchFreeText(freeText, apt, profile) {
+  if (!freeText || !freeText.trim()) return { sentences: [], bonus: 0 };
+
+  const normalized = freeText.toLowerCase();
+  const sentences = [];
+  let bonus = 0;
+
+  for (const insight of KEYWORD_INSIGHTS) {
+    const mentioned = insight.keywords.some((k) => normalized.includes(k));
+    if (!mentioned) continue;
+    if (insight.match(apt, profile)) {
+      sentences.push(insight.sentence(apt));
+      bonus += 2;
+    }
+  }
+
+  return { sentences: sentences.slice(0, 2), bonus: Math.min(bonus, 6) };
+}
+
+function buildReason(answers, apt, profile, sub, freeTextSentences = []) {
   if (sub.capacity < 0.4) {
     return `Este apartamento comporta até ${apt.guests} hóspedes — pode ser apertado para o seu grupo de ${answers.guests}.`;
   }
   if (answers.parking === 'essencial' && sub.parking < 0.3) {
     return 'Não possui vaga de estacionamento — vale considerar se isso for essencial pra você.';
   }
+
   const highlight = profile.highlightReasons?.[answers.objective];
-  if (highlight) return highlight;
-  return apt.tagline;
+  const neighborhood = NEIGHBORHOODS[apt.neighborhoodSlug];
+  const localInsight = neighborhood?.highlights?.[0];
+
+  const parts = [...freeTextSentences, highlight, localInsight].filter(Boolean);
+  const unique = [...new Set(parts)];
+
+  return unique.slice(0, 2).join(' ') || apt.tagline;
 }
 
 /**
  * Calcula o match de um apartamento específico contra as respostas do hóspede.
- * @param {object} answers { objective, guests, parking, pool, wifi, budget }
+ * @param {object} answers { objective, guests, parking, pool, wifi, budget, freeText? }
+ *   `freeText` é opcional — usado para personalizar a explicação e dar um
+ *   pequeno bônus de score quando o hóspede escreve algo que bate com um
+ *   atributo real do apartamento.
  * @param {object} apt item de APARTAMENTOS
  */
 export function computeMatch(answers, apt) {
@@ -135,14 +221,16 @@ export function computeMatch(answers, apt) {
   const rawScore = Object.entries(WEIGHTS)
     .reduce((sum, [key, weight]) => sum + sub[key] * weight, 0);
 
-  const score = Math.round(clamp01(rawScore / 100) * 100);
+  const { sentences: freeTextSentences, bonus } = matchFreeText(answers.freeText, apt, profile);
+
+  const score = Math.round(clamp01((rawScore + bonus) / 100) * 100);
 
   return {
     apt,
     profile,
     sub,
     score,
-    reason: buildReason(answers, apt, profile, sub),
+    reason: buildReason(answers, apt, profile, sub, freeTextSentences),
   };
 }
 
