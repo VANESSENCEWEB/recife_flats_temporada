@@ -1,0 +1,247 @@
+/* ============================================================
+   MATCH — Bloco "Faça um match".
+   Card em teal escuro (ocean/accent) com formulário claro por cima,
+   pra destacar do cream da página. Usado no estado "sem vagas" e
+   como seção padrão no fim das páginas.
+============================================================ */
+
+.match { width: 100%; }
+
+.match__card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(var(--space-6), 4vw, var(--space-9));
+  align-items: center;
+  background:
+    radial-gradient(120% 120% at 0% 0%, var(--accent-dark) 0%, var(--ocean) 55%, var(--accent-darker) 100%);
+  border-radius: var(--radius-xl);
+  padding: clamp(var(--space-6), 4vw, var(--space-9));
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Aura de sol no canto */
+.match__card::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 40%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 194, 78, 0.35), transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Variante "sem vagas": borda de destaque */
+.match--empty .match__card {
+  border: 1.5px solid rgba(245, 194, 78, 0.4);
+}
+
+/* --- Intro --- */
+.match__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--sun-light);
+  margin-bottom: var(--space-4);
+}
+.match__eyebrow-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--sun);
+  box-shadow: 0 0 0 4px rgba(245, 194, 78, 0.25);
+  animation: hero-pulse 2s ease-in-out infinite;
+}
+
+.match__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--white);
+  margin-bottom: var(--space-4);
+}
+
+.match__lead {
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--white-90);
+  max-width: 44ch;
+  margin-bottom: var(--space-5);
+}
+
+.match__perks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  list-style: none;
+}
+.match__perks li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--white-90);
+}
+.match__perks li::before {
+  content: '✓';
+  display: grid;
+  place-items: center;
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(245, 194, 78, 0.2);
+  color: var(--sun-light);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* --- Form (card claro) --- */
+.match__form {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--space-5), 3vw, var(--space-7));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.match__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.match__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.match__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent-dark);
+}
+.match__optional {
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.match__input {
+  font-family: inherit;
+  font-size: var(--fs-base);
+  color: var(--text);
+  background: var(--cream);
+  border: 1px solid rgba(13, 13, 13, 0.1);
+  border-radius: var(--radius-md);
+  padding: 12px var(--space-4);
+  width: 100%;
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast), background var(--dur-fast);
+}
+.match__input::placeholder { color: var(--text-muted); }
+.match__input:focus {
+  outline: none;
+  background: var(--white);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(27, 154, 170, 0.15);
+}
+
+.match__select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230d6b75' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-4) center;
+  padding-right: var(--space-7);
+  cursor: pointer;
+}
+
+.match__textarea {
+  resize: vertical;
+  min-height: 60px;
+  line-height: 1.5;
+}
+
+.match__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--accent);
+  color: var(--white);
+  font-size: var(--fs-base);
+  font-weight: 600;
+  padding: 14px var(--space-6);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 18px rgba(27, 154, 170, 0.35);
+  transition: background var(--dur-base), transform var(--dur-fast), box-shadow var(--dur-base);
+}
+.match__submit svg { width: 18px; height: 18px; }
+.match__submit:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(27, 154, 170, 0.45);
+}
+.match__submit:active { transform: scale(0.99); }
+
+.match__hint {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  min-height: 1em;
+}
+.match__hint.is-error { color: var(--clay-light); font-weight: 600; }
+
+/* --- Success --- */
+.match__success {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--space-6), 4vw, var(--space-8));
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+.match__success-icon {
+  display: grid;
+  place-items: center;
+  width: 56px; height: 56px;
+  margin: 0 auto var(--space-4);
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+}
+.match__success-icon svg { width: 28px; height: 28px; }
+.match__success-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+.match__success-text {
+  font-size: var(--fs-base);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.match__success-text a { color: var(--accent-dark); font-weight: 600; text-decoration: underline; }
+
+/* --- Responsivo --- */
+@media (max-width: 860px) {
+  .match__card { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .match__row { grid-template-columns: 1fr; }
+}

@@ -13,3 +13,6 @@ import './components/navbar.js';
 import './components/menu.js';
 import './components/booking-search.js';
 import './components/hero.js';
+import './components/match.js';
+import './components/apartments.js';
+import './components/apartment-detail.js';

@@ -1,0 +1,123 @@
+/* ============================================================
+   APARTAMENTOS — Página de listagem.
+   Header editorial (mesma linguagem da home: eyebrow + display),
+   toolbar com resumo da busca + buscador, grade de cards e o
+   bloco de matching quando nada está livre.
+============================================================ */
+
+.site-content { background: var(--cream); min-height: 100vh; }
+
+/* --- Cabeçalho da página --- */
+.page-header {
+  padding-block: calc(var(--nav-height) + var(--space-8)) var(--space-7);
+}
+.page-header__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 62rem;
+}
+.page-header__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-2xl);
+  font-weight: 300;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.05;
+  color: var(--text);
+  max-width: 20ch;
+}
+.page-header__title em {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--accent-dark);
+}
+.page-header__lead {
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--text-muted);
+  max-width: 52ch;
+}
+
+/* --- Toolbar: resumo da busca + refino --- */
+.apts { padding-bottom: var(--space-10); }
+
+.apts__toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  margin-bottom: var(--space-8);
+  background: var(--white);
+  border: 1px solid rgba(13, 13, 13, 0.06);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.apts__summary {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.apts__summary-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent-dark);
+}
+.apts__summary-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.apts__chip {
+  padding: 5px var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--cream-dark);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+.apts__chip--result {
+  background: var(--accent-soft);
+  color: var(--accent-darker);
+  font-weight: 700;
+}
+
+.apts__refine {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.apts__refine-label {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+/* Na listagem o buscador vive sobre cream: borda suave em vez de sombra forte */
+.apts__refine .booking-search {
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(13, 13, 13, 0.08);
+}
+
+/* --- Estado sem vagas (matching no topo) --- */
+.apts__empty { margin-bottom: var(--space-8); }
+
+/* Seção de matching no fim da página */
+.apts-match { padding-bottom: var(--space-10); }
+
+/* --- Grade --- */
+.apts__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-6);
+}
+
+@media (max-width: 700px) {
+  .page-header { padding-block: calc(var(--nav-height-mobile) + var(--space-7)) var(--space-6); }
+  .apts__toolbar { padding: var(--space-4); }
+  .apts__grid { grid-template-columns: 1fr; gap: var(--space-5); }
+}
