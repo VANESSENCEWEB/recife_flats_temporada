@@ -67,6 +67,23 @@ function renderGallery(images) {
   `;
 }
 
+function renderMatchingCta() {
+  return `
+    <section class="apt-matching-cta">
+      <div class="container apt-matching-cta__inner">
+        <div class="apt-matching-cta__icon" aria-hidden="true">🎯</div>
+        <div class="apt-matching-cta__text">
+          <h3>Em dúvida se este é o apartamento certo pra você?</h3>
+          <p>Responda 6 perguntas rápidas e descubra, em menos de 1 minuto, qual apê da Recife Flats combina mais com a sua viagem.</p>
+        </div>
+        <button type="button" class="btn btn--sun apt-matching-cta__btn" data-open-matching>
+          <span aria-hidden="true">⚡</span> Fazer Matching agora
+        </button>
+      </div>
+    </section>
+  `;
+}
+
 function renderOtherApartments(currentSlug) {
   return APARTAMENTOS.filter((a) => a.slug !== currentSlug).map((a) => {
     const cover = resolveImages(a)[0];
@@ -355,6 +372,8 @@ class RFApartmentDetail extends HTMLElement {
           </div>
 
         </div>
+
+        ${renderMatchingCta()}
 
         <section class="outros-apts">
           <div class="container">
