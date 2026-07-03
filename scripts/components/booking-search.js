@@ -15,12 +15,15 @@ class RFBookingSearch extends HTMLElement {
   connectedCallback() {
     const action = this.getAttribute('action') || '/apartamentos.html';
 
-    // datas padrão: hoje e daqui a 3 dias, para iniciar o campo válido
+    // datas padrão: hoje e daqui a 3 dias, para iniciar o campo válido.
+    // Se vierem os atributos checkin/checkout/guests, eles têm prioridade
+    // (usado para pré-preencher o buscador na página de apartamentos).
     const today = new Date();
-    const inDef = today.toISOString().slice(0, 10);
+    const inDef = this.getAttribute('checkin') || today.toISOString().slice(0, 10);
     const out = new Date(today);
     out.setDate(out.getDate() + 3);
-    const outDef = out.toISOString().slice(0, 10);
+    const outDef = this.getAttribute('checkout') || out.toISOString().slice(0, 10);
+    const guestsDef = this.getAttribute('guests') || '2';
 
     this.innerHTML = /* html */`
       <form class="booking-search" action="${action}" method="GET" data-booking>
@@ -85,12 +88,9 @@ class RFBookingSearch extends HTMLElement {
             <select class="booking-search__select"
                     name="guests"
                     aria-label="Quantidade de hóspedes">
-              <option value="1">1 hóspede</option>
-              <option value="2" selected>2 hóspedes</option>
-              <option value="3">3 hóspedes</option>
-              <option value="4">4 hóspedes</option>
-              <option value="5">5 hóspedes</option>
-              <option value="6">6 hóspedes</option>
+              ${[1, 2, 3, 4, 5, 6].map((n) =>
+                `<option value="${n}" ${String(n) === guestsDef ? 'selected' : ''}>${n} ${n === 1 ? 'hóspede' : 'hóspedes'}</option>`
+              ).join('')}
             </select>
           </label>
 
