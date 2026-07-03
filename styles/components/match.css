@@ -106,6 +106,10 @@
 }
 
 /* --- Form (card claro) --- */
+/* [hidden] precisa vencer o display:flex do form ao trocar por sucesso */
+.match__form[hidden],
+.match__success[hidden] { display: none !important; }
+
 .match__form {
   background: var(--white);
   border-radius: var(--radius-lg);
