@@ -6,6 +6,17 @@
   background: var(--cream);
 }
 
+/* A <rf-announcement> não reserva altura no fluxo (é position:fixed) */
+.site-content:has(.announcement) {
+  padding-top: var(--announcement-height);
+}
+
+@media (max-width: 600px) {
+  .site-content:has(.announcement) {
+    padding-top: var(--announcement-height-mobile);
+  }
+}
+
 .about-hero {
   padding: clamp(var(--space-8), 10vw, var(--space-10)) 0 var(--space-8);
 }
