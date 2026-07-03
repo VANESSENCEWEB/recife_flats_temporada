@@ -4,7 +4,7 @@
 
 import { BUSINESS, whatsappUrl } from '../data/location.js';
 import { APARTAMENTOS } from '../data/apartamentos.js';
-import { apartmentUrl } from '../data/site-structure.js';
+import { apartmentUrl, pageHref } from '../data/site-structure.js';
 
 class RFFooter extends HTMLElement {
   connectedCallback() {
@@ -58,17 +58,17 @@ class RFFooter extends HTMLElement {
             <div class="site-footer__col">
               <h4>Apartamentos</h4>
               <ul>${aptLinks}
-                <li><a href="./apartamentos.html"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> Ver todos</a></li>
+                <li><a href="${pageHref('./apartamentos.html')}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> Ver todos</a></li>
               </ul>
             </div>
 
             <div class="site-footer__col">
               <h4>Navegação</h4>
               <ul>
-                <li><a href="./index.html"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> Início</a></li>
-                <li><a href="./apartamentos.html"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> Apartamentos</a></li>
-                <li><a href="./sobre.html"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> Sobre</a></li>
-                <li><a href="./contato.html"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> Contato</a></li>
+                <li><a href="${pageHref('./index.html')}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> Início</a></li>
+                <li><a href="${pageHref('./apartamentos.html')}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> Apartamentos</a></li>
+                <li><a href="${pageHref('./sobre.html')}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> Sobre</a></li>
+                <li><a href="${pageHref('./contato.html')}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg> Contato</a></li>
               </ul>
             </div>
 

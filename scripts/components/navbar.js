@@ -13,6 +13,7 @@
  */
 
 import { BUSINESS, whatsappUrl } from '../data/location.js';
+import { pageHref } from '../data/site-structure.js';
 
 const WHATSAPP_DEFAULT = BUSINESS.whatsapp;
 
@@ -26,7 +27,7 @@ class RFNavbar extends HTMLElement {
       <header class="navbar ${overHero ? 'is-over-hero' : ''}" data-navbar>
         <div class="navbar__inner container">
 
-          <a href="/" class="navbar__logo" aria-label="Recife Flats — Início">
+          <a href="${pageHref('./index.html')}" class="navbar__logo" aria-label="Recife Flats — Início">
             <span class="navbar__logo-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <rect x="3" y="8"  width="7" height="10" rx="1" fill="white" fill-opacity="0.9"/>

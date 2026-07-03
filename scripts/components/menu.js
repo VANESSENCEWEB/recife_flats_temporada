@@ -15,14 +15,15 @@
  */
 
 import { BUSINESS, whatsappUrl } from '../data/location.js';
+import { pageHref } from '../data/site-structure.js';
 
 const NAV_ITEMS = [
-  { num: '01', label: 'Início',       href: '/'              },
-  { num: '02', label: 'ApartMatch',   href: '/apartmatch.html', badge: 'Novidade' },
-  { num: '03', label: 'Apartamentos', href: '/apartamentos.html' },
-  { num: '04', label: 'Sobre nós',    href: '/sobre.html'    },
-  { num: '05', label: 'Localização',  href: '/#localizacao'  },
-  { num: '06', label: 'Contato',      href: '/contato.html'  },
+  { num: '01', label: 'Início',       href: pageHref('./index.html')                },
+  { num: '02', label: 'ApartMatch',   href: pageHref('./apartmatch.html'), badge: 'Novidade' },
+  { num: '03', label: 'Apartamentos', href: pageHref('./apartamentos.html')         },
+  { num: '04', label: 'Sobre nós',    href: pageHref('./sobre.html')                },
+  { num: '05', label: 'Localização',  href: pageHref('./index.html#localizacao')    },
+  { num: '06', label: 'Contato',      href: pageHref('./contato.html')              },
 ];
 
 class RFMenu extends HTMLElement {

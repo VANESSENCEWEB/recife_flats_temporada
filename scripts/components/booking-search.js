@@ -13,7 +13,7 @@
 
 class RFBookingSearch extends HTMLElement {
   connectedCallback() {
-    const action = this.getAttribute('action') || '/apartamentos.html';
+    const action = this.getAttribute('action') || './apartamentos.html';
 
     // datas padrão: hoje e daqui a 3 dias, para iniciar o campo válido
     const today = new Date();
