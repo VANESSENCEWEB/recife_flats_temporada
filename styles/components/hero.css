@@ -33,6 +33,20 @@
 }
 .hero__video { filter: saturate(1.05) contrast(1.02); }
 
+/* Tom mais escuro quando o período noturno está ativo */
+rf-hero[data-period="night"] .hero__video {
+  filter: saturate(0.9) contrast(1.05) brightness(0.82);
+}
+
+rf-hero[data-period="night"] .hero__overlay {
+  background:
+    linear-gradient(180deg,
+      rgba(13, 13, 13, 0.45) 0%,
+      rgba(13, 13, 13, 0.15) 30%,
+      rgba(13, 13, 13, 0.25) 70%,
+      rgba(13, 13, 13, 0.70) 100%);
+}
+
 .hero__overlay {
   position: absolute;
   inset: 0;
