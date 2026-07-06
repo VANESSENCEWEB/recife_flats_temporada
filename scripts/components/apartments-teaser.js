@@ -4,7 +4,6 @@
 
 import { APARTAMENTOS } from '../data/apartamentos.js';
 import { NEIGHBORHOODS } from '../data/site-structure.js';
-import { prefersReducedMotion } from '../utils/dom.js';
 
 class RFApartmentsTeaser extends HTMLElement {
   connectedCallback() {
@@ -25,7 +24,7 @@ class RFApartmentsTeaser extends HTMLElement {
     this.innerHTML = `
       <section class="home-section home-section--white apt-teaser" id="apartamentos" aria-labelledby="apt-teaser-heading">
         <div class="container apt-teaser__inner">
-          <header class="section-head" data-apt-teaser-reveal>
+          <header class="section-head animate-on-scroll">
             <span class="eyebrow eyebrow--pill">Nossa coleção</span>
             <h2 class="section-head__title" id="apt-teaser-heading">
               Flats para toda <em>ocasião</em>
@@ -35,16 +34,16 @@ class RFApartmentsTeaser extends HTMLElement {
             </p>
           </header>
 
-          <div class="apt-teaser__nb-row" data-apt-teaser-reveal>
+          <div class="apt-teaser__nb-row animate-on-scroll aos-delay-2">
             ${neighborhoodLinks}
           </div>
 
-          <div class="apt-teaser__grid" data-apt-teaser-reveal>
+          <div class="apt-teaser__grid" data-aos-stagger>
             ${cards}
           </div>
 
-          <footer class="apt-teaser__footer" data-apt-teaser-reveal>
-            <a href="./apartamentos.html" class="btn btn--secondary btn--lg">
+          <footer class="apt-teaser__footer animate-on-scroll aos-delay-4">
+            <a href="./apartamentos.html" class="btn btn--secondary btn--lg btn--beam">
               Ver todos os apartamentos
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
@@ -52,20 +51,6 @@ class RFApartmentsTeaser extends HTMLElement {
         </div>
       </section>
     `;
-
-    this._animate();
-  }
-
-  _animate() {
-    if (prefersReducedMotion() || !window.gsap) return;
-    gsap.from(this.querySelectorAll('[data-apt-teaser-reveal]'), {
-      opacity: 0,
-      y: 28,
-      duration: 0.65,
-      stagger: 0.1,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: this, start: 'top 85%', once: true },
-    });
   }
 }
 

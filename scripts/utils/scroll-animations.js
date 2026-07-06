@@ -25,9 +25,10 @@ export function initScrollAnimations(root = document) {
   root.querySelectorAll('.reveal').forEach((el) => {
     gsap.from(el, {
       opacity: 0,
-      y: 28,
-      duration: 1,
-      ease: 'expo.out',
+      y: 24,
+      filter: 'blur(5px)',
+      duration: 0.9,
+      ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 90%', once: true },
       delay: parseFloat(el.dataset.delay || 0),
     });
@@ -36,19 +37,21 @@ export function initScrollAnimations(root = document) {
   root.querySelectorAll('.reveal-x').forEach((el) => {
     gsap.from(el, {
       opacity: 0,
-      x: 28,
-      duration: 1,
-      ease: 'expo.out',
+      x: 24,
+      filter: 'blur(4px)',
+      duration: 0.9,
+      ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 88%', once: true },
     });
   });
 
   root.querySelectorAll('[data-stagger]').forEach((group) => {
     gsap.from(group.children, {
-      y: 40,
+      y: 32,
       opacity: 0,
-      duration: 0.9,
-      ease: 'expo.out',
+      filter: 'blur(4px)',
+      duration: 0.85,
+      ease: 'power3.out',
       stagger: 0.08,
       scrollTrigger: { trigger: group, start: 'top 85%', once: true },
     });

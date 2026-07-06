@@ -32,7 +32,7 @@ class RFApartmentGridCard extends HTMLElement {
       : '';
 
     this.innerHTML = `
-      <article class="apt-grid-card"
+      <article class="apt-grid-card spotlight-card"
                data-apt-grid-card
                data-bedrooms="${apt.bedrooms}"
                data-pool="${apt.pool}"

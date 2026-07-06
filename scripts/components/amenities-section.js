@@ -2,8 +2,6 @@
  * <rf-amenities-section> — Grade de comodidades "Tudo que você precisa".
  */
 
-import { prefersReducedMotion } from '../utils/dom.js';
-
 const AMENITIES = [
   { icon: '📶', label: 'Wi-Fi 300Mbps' },
   { icon: '❄️', label: 'Ar-condicionado' },
@@ -20,7 +18,7 @@ const AMENITIES = [
 class RFAmenitiesSection extends HTMLElement {
   connectedCallback() {
     const items = AMENITIES.map((a) => `
-      <li class="amenities__item" data-amenities-reveal>
+      <li class="amenities__item spotlight-card">
         <span class="amenities__icon" aria-hidden="true">${a.icon}</span>
         <span class="amenities__label">${a.label}</span>
       </li>
@@ -29,7 +27,7 @@ class RFAmenitiesSection extends HTMLElement {
     this.innerHTML = `
       <section class="home-section home-section--cream amenities" id="comodidades" aria-labelledby="amenities-heading">
         <div class="container">
-          <header class="section-head" data-amenities-reveal>
+          <header class="section-head animate-on-scroll">
             <span class="eyebrow eyebrow--pill">Comodidades</span>
             <h2 class="section-head__title" id="amenities-heading">
               Tudo que você <em>precisa</em>
@@ -38,24 +36,10 @@ class RFAmenitiesSection extends HTMLElement {
               Flats mobiliados e equipados para você chegar, descansar e aproveitar Recife sem dor de cabeça.
             </p>
           </header>
-          <ul class="section-body amenities__grid">${items}</ul>
+          <ul class="section-body amenities__grid" data-aos-stagger>${items}</ul>
         </div>
       </section>
     `;
-
-    this._animate();
-  }
-
-  _animate() {
-    if (prefersReducedMotion() || !window.gsap) return;
-    gsap.from(this.querySelectorAll('[data-amenities-reveal]'), {
-      opacity: 0,
-      y: 20,
-      duration: 0.55,
-      stagger: 0.05,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: this, start: 'top 85%', once: true },
-    });
   }
 }
 

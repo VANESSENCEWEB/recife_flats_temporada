@@ -167,6 +167,10 @@
   gap: var(--space-5);
 }
 
+rf-apartment-grid-card {
+  display: block;
+}
+
 @media (min-width: 640px) {
   .apt-teaser__grid,
   .apt-hub__grid {

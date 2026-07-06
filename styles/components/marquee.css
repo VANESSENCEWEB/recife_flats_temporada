@@ -1,0 +1,76 @@
+/* ============================================================
+   MARQUEE — Faixa de localidades (loop infinito com máscara)
+============================================================ */
+
+.rf-marquee {
+  overflow: hidden;
+  background: var(--ocean);
+  color: var(--white);
+  padding-block: 0.875rem;
+  border-block: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.rf-marquee::before,
+.rf-marquee::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(2rem, 8vw, 5rem);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.rf-marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--ocean), transparent);
+}
+
+.rf-marquee::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--ocean), transparent);
+}
+
+.rf-marquee__track {
+  display: flex;
+  gap: 2.5rem;
+  width: max-content;
+  animation: rf-marquee-scroll 32s linear infinite;
+}
+
+.rf-marquee__item {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.88;
+}
+
+.rf-marquee__item::before {
+  content: '·';
+  margin-right: 2.5rem;
+  opacity: 0.35;
+}
+
+@keyframes rf-marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rf-marquee__track {
+    animation: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem 2rem;
+    padding-inline: var(--container-px);
+  }
+
+  .rf-marquee__item::before {
+    display: none;
+  }
+}

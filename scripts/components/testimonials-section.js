@@ -2,8 +2,6 @@
  * <rf-testimonials-section> — Depoimentos de hóspedes (seção própria).
  */
 
-import { prefersReducedMotion } from '../utils/dom.js';
-
 const TESTIMONIALS = [
   {
     initials: 'MR',
@@ -28,7 +26,7 @@ const TESTIMONIALS = [
 class RFTestimonialsSection extends HTMLElement {
   connectedCallback() {
     const cards = TESTIMONIALS.map((t) => `
-      <article class="review-card" data-reveal>
+      <article class="review-card spotlight-card">
         <div class="review-card__stars" aria-label="5 de 5 estrelas">★★★★★</div>
         <blockquote class="review-card__quote">"${t.quote}"</blockquote>
         <div class="review-card__author">
@@ -44,7 +42,7 @@ class RFTestimonialsSection extends HTMLElement {
     this.innerHTML = `
       <section class="home-section home-section--white testimonials" id="depoimentos" aria-labelledby="reviews-heading">
         <div class="container">
-          <header class="section-head" data-reveal>
+          <header class="section-head animate-on-scroll">
             <span class="eyebrow eyebrow--pill">Avaliações</span>
             <h2 class="section-head__title" id="reviews-heading">
               O que dizem nossos <em>hóspedes</em>
@@ -53,24 +51,10 @@ class RFTestimonialsSection extends HTMLElement {
               Nota <strong class="testimonials__score">4.9</strong> no Google — avaliações reais de quem já se hospedou.
             </p>
           </header>
-          <div class="section-body testimonials__grid">${cards}</div>
+          <div class="section-body testimonials__grid" data-aos-stagger>${cards}</div>
         </div>
       </section>
     `;
-
-    this._animate();
-  }
-
-  _animate() {
-    if (prefersReducedMotion() || !window.gsap) return;
-    gsap.from(this.querySelectorAll('[data-reveal]'), {
-      opacity: 0,
-      y: 20,
-      duration: 0.55,
-      stagger: 0.08,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: this, start: 'top 88%', once: true },
-    });
   }
 }
 

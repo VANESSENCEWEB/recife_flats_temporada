@@ -1,0 +1,146 @@
+/* ============================================================
+   ANIMATIONS — Scroll reveals, text clips, border beam, spotlight
+   Inspirado em padrões modernos (fade + slide + blur on view)
+============================================================ */
+
+@keyframes rf-animation-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes rf-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rf-clip-reveal {
+  from { clip-path: inset(100% 0 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* Scroll-triggered — pausado até .is-visible (JS) */
+.animate-on-scroll {
+  animation: rf-animation-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-play-state: paused;
+}
+
+.animate-on-scroll.is-visible {
+  animation-play-state: running;
+}
+
+.aos-delay-1 { animation-delay: 0.08s; }
+.aos-delay-2 { animation-delay: 0.16s; }
+.aos-delay-3 { animation-delay: 0.24s; }
+.aos-delay-4 { animation-delay: 0.32s; }
+.aos-delay-5 { animation-delay: 0.4s; }
+.aos-delay-6 { animation-delay: 0.48s; }
+
+/* Texto — linha deslizando de baixo (overflow no pai) */
+.text-reveal {
+  overflow: hidden;
+  display: block;
+}
+
+.text-reveal__line {
+  display: block;
+  animation: rf-fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-play-state: paused;
+}
+
+.is-visible .text-reveal__line,
+.text-reveal.is-visible .text-reveal__line,
+.animate-on-scroll.is-visible .text-reveal__line {
+  animation-play-state: running;
+}
+
+.text-reveal__line--delay { animation-delay: 0.12s; }
+
+/* Clip decorativo (colunas, barras) */
+.animate-clip {
+  animation: rf-clip-reveal 1.4s cubic-bezier(0.77, 0, 0.175, 1) infinite alternate;
+}
+
+/* Spotlight — brilho que segue o mouse */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(27, 154, 170, 0.12),
+    transparent 42%
+  );
+}
+
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+.home-section--ocean .spotlight-card::after,
+.home-section--cream .spotlight-card::after {
+  background: radial-gradient(
+    420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.14),
+    transparent 42%
+  );
+}
+
+[data-aos-stagger].is-visible > .animate-on-scroll,
+[data-aos-stagger].is-visible > * {
+  animation-play-state: running;
+}
+
+[data-aos-stagger] > .animate-on-scroll,
+[data-aos-stagger] > *:not(.is-visible) {
+  animation: rf-animation-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-play-state: paused;
+}
+
+[data-aos-stagger] > *:nth-child(1) { animation-delay: 0.05s; }
+[data-aos-stagger] > *:nth-child(2) { animation-delay: 0.12s; }
+[data-aos-stagger] > *:nth-child(3) { animation-delay: 0.19s; }
+[data-aos-stagger] > *:nth-child(4) { animation-delay: 0.26s; }
+[data-aos-stagger] > *:nth-child(5) { animation-delay: 0.33s; }
+[data-aos-stagger] > *:nth-child(6) { animation-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll,
+  .text-reveal__line,
+  [data-aos-stagger] > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .animate-clip {
+    animation: none;
+    clip-path: none;
+  }
+
+  .spotlight-card::after {
+    display: none;
+  }
+}

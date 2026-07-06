@@ -15,7 +15,8 @@
 /*
   Ordem e superfície:
   1. Hero          — vídeo (full bleed)
-  2. Apartamentos  — branco
+  2. Marquee       — faixa oceano
+  3. Apartamentos  — branco
   3. Comodidades   — creme
   4. Matching      — creme (container, foto contida)
   5. Destinos      — branco
@@ -28,6 +29,7 @@
 */
 
 rf-apartments-teaser,
+rf-home-marquee,
 rf-amenities-section,
 rf-neighborhoods-showcase,
 rf-testimonials-section,

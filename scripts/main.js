@@ -31,5 +31,7 @@ import './components/testimonials-section.js';
 import './components/faq-section.js';
 import './components/stats-banner.js';
 import './components/booking-promo.js';
+import './components/home-marquee.js';
+import './components/site-animations.js';
 import './components/apartment-detail.js';
 import './components/contact-page.js';

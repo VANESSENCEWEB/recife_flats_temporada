@@ -2,8 +2,6 @@
  * <rf-faq-section> — Perguntas frequentes (seção própria).
  */
 
-import { prefersReducedMotion } from '../utils/dom.js';
-
 const FAQ = [
   {
     q: 'Como faço para reservar?',
@@ -26,7 +24,7 @@ const FAQ = [
 class RFFaqSection extends HTMLElement {
   connectedCallback() {
     const items = FAQ.map((item, i) => `
-      <details class="faq__item" data-reveal ${i === 0 ? 'open' : ''}>
+      <details class="faq__item" ${i === 0 ? 'open' : ''}>
         <summary class="faq__question">${item.q}</summary>
         <p class="faq__answer">${item.a}</p>
       </details>
@@ -35,29 +33,15 @@ class RFFaqSection extends HTMLElement {
     this.innerHTML = `
       <section class="home-section home-section--cream faq-section" id="faq" aria-labelledby="faq-heading">
         <div class="container">
-          <header class="section-head section-head--center" data-reveal>
+          <header class="section-head section-head--center animate-on-scroll">
             <span class="eyebrow eyebrow--pill">Dúvidas</span>
             <h2 class="section-head__title" id="faq-heading">Perguntas frequentes</h2>
             <p class="section-head__lead">Respostas objetivas para você reservar com tranquilidade.</p>
           </header>
-          <div class="section-body faq-section__list">${items}</div>
+          <div class="section-body faq-section__list" data-aos-stagger>${items}</div>
         </div>
       </section>
     `;
-
-    this._animate();
-  }
-
-  _animate() {
-    if (prefersReducedMotion() || !window.gsap) return;
-    gsap.from(this.querySelectorAll('[data-reveal]'), {
-      opacity: 0,
-      y: 18,
-      duration: 0.5,
-      stagger: 0.06,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: this, start: 'top 88%', once: true },
-    });
   }
 }
 

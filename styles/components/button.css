@@ -154,3 +154,40 @@
   background: #25965B;
   transform: translateY(-2px);
 }
+
+/* Border beam — anel giratório no hover (CTAs de destaque) */
+.btn--beam::after {
+  content: '';
+  position: absolute;
+  inset: -120%;
+  z-index: 0;
+  background: conic-gradient(
+    from 90deg at 50% 50%,
+    transparent 0%,
+    transparent 70%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  animation: btn-beam-spin 2.8s linear infinite;
+  animation-play-state: paused;
+  pointer-events: none;
+}
+
+.btn--beam:hover::after {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+.btn--beam > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes btn-beam-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn--beam::after { display: none; }
+}
