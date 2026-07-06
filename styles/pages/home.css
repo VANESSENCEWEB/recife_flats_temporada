@@ -1,5 +1,5 @@
 /* ============================================================
-   HOME — Ritmo visual entre seções (sketch: azul → branco → creme → azul)
+   HOME — Ritmo: branco ↔ creme ↔ oceano (hierarquia clara)
 ============================================================ */
 
 .site-content:has(.announcement) {
@@ -12,17 +12,28 @@
   }
 }
 
-rf-apartments-teaser { background: var(--white); }
-rf-amenities-section { background: var(--white); }
-rf-matching-teaser { display: block; }
-rf-neighborhoods-showcase { display: block; }
-rf-social-proof-section { display: block; }
-rf-location-section { display: block; }
-rf-stats-banner { display: block; }
-rf-booking-promo { display: block; }
+/*
+  Ordem e superfície:
+  1. Hero          — vídeo (full bleed)
+  2. Apartamentos  — branco
+  3. Comodidades   — creme
+  4. Matching      — componente próprio (split)
+  5. Destinos      — branco
+  6. Depoimentos   — branco (separador automático)
+  7. FAQ           — creme
+  8. Localização   — branco
+  9. Números       — sand (creme suave)
+  10. Reserva      — oceano
+  11. Footer       — escuro
+*/
 
-/* Espaçamento suave entre blocos claros */
-rf-apartments-teaser + rf-amenities-section,
-rf-amenities-section + rf-matching-teaser {
-  margin-top: 0;
+rf-apartments-teaser,
+rf-amenities-section,
+rf-neighborhoods-showcase,
+rf-testimonials-section,
+rf-faq-section,
+rf-location-section,
+rf-stats-banner,
+rf-booking-promo {
+  display: block;
 }

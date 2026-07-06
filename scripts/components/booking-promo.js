@@ -7,18 +7,18 @@ import { prefersReducedMotion } from '../utils/dom.js';
 class RFBookingPromo extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <section class="booking-promo" id="reservar" aria-labelledby="booking-promo-heading">
+      <section class="home-section home-section--ocean booking-promo" id="reservar" aria-labelledby="booking-promo-heading">
         <div class="container booking-promo__inner">
-          <div class="booking-promo__copy" data-promo-reveal>
-            <span class="eyebrow eyebrow--on-dark">Reserva direta</span>
-            <h2 class="booking-promo__title" id="booking-promo-heading">
-              Economize até <em>20%</em> reservando direto conosco
+          <header class="section-head" data-promo-reveal>
+            <span class="eyebrow eyebrow--pill">Reserva direta</span>
+            <h2 class="section-head__title" id="booking-promo-heading">
+              Economize até <em>20%</em> reservando direto
             </h2>
-            <p class="booking-promo__text">
+            <p class="section-head__lead">
               Sem taxas de plataforma. Informe suas datas e receba disponibilidade em até 1 hora.
             </p>
-          </div>
-          <div class="booking-promo__form-wrap" data-promo-reveal>
+          </header>
+          <div class="section-body booking-promo__form-wrap" data-promo-reveal>
             <rf-booking-search action="./apartamentos.html"></rf-booking-search>
           </div>
         </div>

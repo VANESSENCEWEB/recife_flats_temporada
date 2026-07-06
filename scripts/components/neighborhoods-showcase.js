@@ -34,17 +34,14 @@ class RFNeighborhoodsShowcase extends HTMLElement {
     }).join('');
 
     this.innerHTML = `
-      <section class="destinations" id="destinos" aria-labelledby="dest-heading">
-        <div class="destinations__banner" aria-hidden="true">
-          <span class="destinations__banner-logo">Recife Flats</span>
-          <span class="destinations__banner-region">Pernambuco</span>
-        </div>
-        <div class="container destinations__inner">
-          <header class="destinations__header" data-dest-reveal>
-            <span class="eyebrow eyebrow--pill">Onde ficar</span>
-            <h2 class="destinations__title" id="dest-heading">Principais <em class="title-accent">destinos</em></h2>
+      <section class="home-section home-section--white destinations" id="destinos" aria-labelledby="dest-heading">
+        <div class="container">
+          <header class="section-head" data-dest-reveal>
+            <span class="eyebrow eyebrow--pill">Pernambuco · Recife</span>
+            <h2 class="section-head__title" id="dest-heading">Principais <em>destinos</em></h2>
+            <p class="section-head__lead">Bairros onde nossos apartamentos estão localizados.</p>
           </header>
-          <div class="destinations__grid">${cards}</div>
+          <div class="section-body destinations__grid">${cards}</div>
         </div>
       </section>
     `;

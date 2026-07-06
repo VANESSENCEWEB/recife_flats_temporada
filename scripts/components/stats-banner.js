@@ -22,7 +22,7 @@ class RFStatsBanner extends HTMLElement {
     `).join('');
 
     this.innerHTML = `
-      <section class="stats" aria-label="Números do Recife Flats">
+      <section class="home-section home-section--sand stats" aria-label="Números do Recife Flats">
         <div class="container stats__inner">${items}</div>
       </section>
     `;

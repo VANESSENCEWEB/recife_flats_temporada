@@ -1,0 +1,109 @@
+/* ============================================================
+   SECTION SHELL — Container, ritmo e hierarquia visual da home
+   Toda seção de conteúdo usa .home-section + .container
+============================================================ */
+
+:root {
+  --section-py: clamp(2.75rem, 5vw, 4.5rem);
+  --fs-section-title: clamp(1.625rem, 2.4vw, 2.25rem);
+  --fs-section-lead: 1rem;
+}
+
+/* Base: padding vertical consistente, largura total do fundo */
+.home-section {
+  padding-block: var(--section-py);
+  width: 100%;
+}
+
+/* Superfícies — alternância clara (branco ↔ creme) */
+.home-section--white {
+  background: var(--white);
+  color: var(--text);
+}
+
+.home-section--cream {
+  background: var(--cream);
+  color: var(--text);
+}
+
+.home-section--ocean {
+  background: var(--ocean);
+  color: var(--white);
+}
+
+.home-section--sand {
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
+  color: var(--text);
+}
+
+/* Cabeçalho de seção — alinhado à esquerda, mesma escala em todo o site */
+.section-head {
+  max-width: 36rem;
+  margin-bottom: var(--space-6);
+}
+
+.section-head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-head__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-section-title);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  margin-block: var(--space-3) var(--space-3);
+}
+
+.section-head__title em,
+.section-head__title .title-accent {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent-dark);
+}
+
+.home-section--ocean .section-head__title em,
+.home-section--ocean .section-head__title .title-accent {
+  color: var(--sun);
+}
+
+.section-head__lead {
+  font-size: var(--fs-section-lead);
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 42ch;
+  margin: 0;
+}
+
+.home-section--ocean .section-head__lead {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.home-section--ocean .eyebrow--pill {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Corpo da seção — sempre dentro do container */
+.section-body {
+  width: 100%;
+}
+
+/* Separador sutil entre faixas claras iguais */
+.home-section--white + .home-section--white,
+.home-section--cream + .home-section--cream {
+  border-top: 1px solid rgba(13, 13, 13, 0.06);
+}
+
+@media (max-width: 600px) {
+  .section-head {
+    margin-bottom: var(--space-5);
+  }
+
+  .section-head--center .section-head__lead {
+    margin-inline: auto;
+  }
+}

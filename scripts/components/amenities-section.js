@@ -27,18 +27,18 @@ class RFAmenitiesSection extends HTMLElement {
     `).join('');
 
     this.innerHTML = `
-      <section class="amenities" id="comodidades" aria-labelledby="amenities-heading">
-        <div class="container amenities__inner">
-          <header class="amenities__header" data-amenities-reveal>
+      <section class="home-section home-section--cream amenities" id="comodidades" aria-labelledby="amenities-heading">
+        <div class="container">
+          <header class="section-head" data-amenities-reveal>
             <span class="eyebrow eyebrow--pill">Comodidades</span>
-            <h2 class="amenities__title" id="amenities-heading">
-              Tudo que você <em class="title-accent">precisa</em>
+            <h2 class="section-head__title" id="amenities-heading">
+              Tudo que você <em>precisa</em>
             </h2>
-            <p class="amenities__lead">
+            <p class="section-head__lead">
               Flats mobiliados e equipados para você chegar, descansar e aproveitar Recife sem dor de cabeça.
             </p>
           </header>
-          <ul class="amenities__grid">${items}</ul>
+          <ul class="section-body amenities__grid">${items}</ul>
         </div>
       </section>
     `;

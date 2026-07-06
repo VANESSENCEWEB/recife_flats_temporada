@@ -23,14 +23,14 @@ class RFApartmentsTeaser extends HTMLElement {
     }).join('');
 
     this.innerHTML = `
-      <section class="apt-teaser" id="apartamentos" aria-labelledby="apt-teaser-heading">
+      <section class="home-section home-section--white apt-teaser" id="apartamentos" aria-labelledby="apt-teaser-heading">
         <div class="container apt-teaser__inner">
-          <header class="apt-teaser__header" data-apt-teaser-reveal>
+          <header class="section-head" data-apt-teaser-reveal>
             <span class="eyebrow eyebrow--pill">Nossa coleção</span>
-            <h2 class="apt-teaser__title" id="apt-teaser-heading">
-              Flats para toda <em class="title-accent">ocasião</em>
+            <h2 class="section-head__title" id="apt-teaser-heading">
+              Flats para toda <em>ocasião</em>
             </h2>
-            <p class="apt-teaser__lead">
+            <p class="section-head__lead">
               Do casal ao grupo em família — escolha o apartamento ideal em Boa Viagem ou Pina e reserve direto.
             </p>
           </header>

@@ -1,17 +1,11 @@
 /* ============================================================
-   STATS BANNER — Faixa de números
+   STATS
 ============================================================ */
-
-.stats {
-  background: linear-gradient(135deg, var(--sun-light) 0%, var(--sun) 45%, #fff8e8 100%);
-  padding-block: var(--space-9);
-  border-block: 1px solid rgba(217, 162, 47, 0.25);
-}
 
 .stats__inner {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-6);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-5);
 }
 
 .stats__item {
@@ -19,31 +13,26 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
 }
 
-.stats__icon { font-size: 1.5rem; }
+.stats__icon { font-size: 1.25rem; }
 
 .stats__value {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   color: var(--ocean);
   line-height: 1;
-  letter-spacing: var(--tracking-tight);
 }
 
 .stats__label {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-xs);
   font-weight: 600;
-  color: var(--ocean-light);
+  color: var(--text-muted);
   max-width: 14ch;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 @media (max-width: 768px) {
-  .stats__inner { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 420px) {
-  .stats__inner { grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+  .stats__inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

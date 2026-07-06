@@ -51,10 +51,10 @@
   --fs-base:  1rem;                 /* 16px  — body */
   --fs-md:    1.0625rem;            /* 17px  — body destaque */
   --fs-lg:    clamp(1.25rem, 1.6vw, 1.5rem);
-  --fs-xl:    clamp(1.75rem, 2.5vw, 2.5rem);
-  --fs-2xl:   clamp(2.5rem, 4vw, 4rem);
-  --fs-3xl:   clamp(3rem, 6.5vw, 5.5rem);
---fs-display: clamp(2.5rem, 7vw, 6rem);
+  --fs-xl:    clamp(1.5rem, 2.2vw, 2rem);
+  --fs-2xl:   clamp(1.75rem, 2.8vw, 2.5rem);
+  --fs-3xl:   clamp(2.25rem, 4vw, 3.25rem);
+  --fs-display: clamp(2rem, 5vw, 3.75rem);
 
   --lh-tight:  1.05;
   --lh-snug:   1.25;
@@ -81,8 +81,8 @@
   --space-11: 8rem;      /* 128 */
 
   /* ---------- LAYOUT ---------- */
-  --container-max: 1440px;        /* largura máxima do conteúdo */
-  --container-px:  clamp(1.25rem, 4vw, 3.75rem);  /* padding horizontal responsivo */
+  --container-max: 1200px;
+  --container-px:  clamp(1rem, 3.5vw, 2.5rem);
   --nav-height:    84px;
   --nav-height-mobile: 68px;
   --announcement-height: 52px;

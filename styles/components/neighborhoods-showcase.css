@@ -1,74 +1,30 @@
 /* ============================================================
-   DESTINATIONS — Bairros em destaque
+   DESTINATIONS
 ============================================================ */
-
-.destinations {
-  background: var(--cream);
-  padding-block: 0 var(--space-10);
-}
-
-.destinations__banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  background: var(--black);
-  color: var(--white);
-  padding: var(--space-4) var(--container-px);
-  margin-bottom: var(--space-8);
-}
-
-.destinations__banner-logo {
-  font-weight: 700;
-  letter-spacing: var(--tracking-wide);
-  text-transform: uppercase;
-  font-size: var(--fs-sm);
-}
-
-.destinations__banner-region {
-  font-size: var(--fs-xs);
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--sun);
-}
-
-.destinations__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-7);
-}
-
-.destinations__title {
-  font-size: var(--fs-2xl);
-  font-weight: 600;
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.08;
-}
 
 .destinations__grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-6);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
 }
 
 .dest-card {
-  background: var(--white);
-  border-radius: var(--radius-xl);
+  background: var(--cream);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  border: 1px solid rgba(13, 13, 13, 0.05);
+  border: 1px solid rgba(13, 13, 13, 0.06);
   transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
 }
 
 .dest-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
 }
 
 .dest-card__media {
   position: relative;
   display: block;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
@@ -79,27 +35,27 @@
   transition: transform var(--dur-slow);
 }
 
-.dest-card:hover .dest-card__media img { transform: scale(1.04); }
+.dest-card:hover .dest-card__media img { transform: scale(1.03); }
 
 .dest-card__count {
   position: absolute;
-  bottom: var(--space-4);
-  left: var(--space-4);
-  padding: 6px 14px;
+  bottom: var(--space-3);
+  left: var(--space-3);
+  padding: 5px 12px;
   border-radius: var(--radius-pill);
   background: rgba(13, 13, 13, 0.72);
   color: var(--white);
   font-size: var(--fs-xs);
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
 }
 
 .dest-card__body {
-  padding: var(--space-5) var(--space-6) var(--space-6);
+  padding: var(--space-4) var(--space-5) var(--space-5);
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-2);
   align-items: flex-start;
 }
 
@@ -112,9 +68,9 @@
 }
 
 .dest-card__title {
-  font-size: var(--fs-xl);
+  font-size: var(--fs-lg);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .dest-card__title a { color: inherit; }
@@ -124,6 +80,7 @@
   font-size: var(--fs-sm);
   color: var(--text-muted);
   line-height: 1.55;
+  margin-bottom: var(--space-2);
 }
 
 @media (max-width: 768px) {
