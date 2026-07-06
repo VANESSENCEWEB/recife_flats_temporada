@@ -93,7 +93,7 @@ class RFLocationSection extends HTMLElement {
         <div class="container location-section__inner">
 
           <header class="location-section__header" data-location-reveal>
-              <span class="section-eyebrow">Recife bem localizado</span>
+              <span class="eyebrow eyebrow--pill">Recife bem localizado</span>
             <h2 class="location-section__title" id="location-heading">
               Perto da praia, shopping, aeroporto e da <em class="display-italic">vida real</em>
             </h2>

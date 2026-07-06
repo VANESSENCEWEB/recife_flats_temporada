@@ -6,18 +6,16 @@
   display: flex;
   flex-direction: column;
   background: var(--white);
-  border: 1px solid rgba(13, 13, 13, 0.08);
+  border: 1px solid rgba(13, 13, 13, 0.06);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base), border-color var(--dur-base);
-  height: 100%;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base);
 }
 
 .apt-grid-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(27, 154, 170, 0.2);
 }
 
 .apt-grid-card.is-hidden {

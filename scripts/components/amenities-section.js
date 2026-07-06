@@ -27,8 +27,8 @@ class RFAmenitiesSection extends HTMLElement {
     this.innerHTML = `
       <section class="home-section home-section--cream amenities" id="comodidades" aria-labelledby="amenities-heading">
         <div class="container">
-          <header class="section-head section-head--center animate-on-scroll">
-            <span class="section-eyebrow">Comodidades</span>
+          <header class="section-head animate-on-scroll">
+            <span class="eyebrow eyebrow--pill">Comodidades</span>
             <h2 class="section-head__title" id="amenities-heading">
               Tudo que você <em>precisa</em>
             </h2>

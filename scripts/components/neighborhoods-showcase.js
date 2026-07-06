@@ -26,24 +26,19 @@ class RFNeighborhoodsShowcase extends HTMLElement {
             <span class="dest-card__region">Pernambuco · Recife</span>
             <h3 class="dest-card__title"><a href="${n.pageUrl}">${n.name}</a></h3>
             <p class="dest-card__text">${n.description}</p>
-            <a href="${n.pageUrl}" class="link-arrow">
-              Explorar ${n.name}
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </a>
+            <a href="${n.pageUrl}" class="btn btn--secondary btn--sm">Explorar ${n.name}</a>
           </div>
         </article>
       `;
     }).join('');
 
     this.innerHTML = `
-      <section class="home-section home-section--muted destinations" id="destinos" aria-labelledby="dest-heading">
+      <section class="home-section home-section--white destinations" id="destinos" aria-labelledby="dest-heading">
         <div class="container">
-          <header class="section-head section-head--split animate-on-scroll">
-            <div>
-              <span class="section-eyebrow">Destinos</span>
-              <h2 class="section-head__title" id="dest-heading">Principais <em>bairros</em></h2>
-              <p class="section-head__lead">Onde nossos apartamentos estão localizados em Recife.</p>
-            </div>
+          <header class="section-head animate-on-scroll">
+            <span class="eyebrow eyebrow--pill">Pernambuco · Recife</span>
+            <h2 class="section-head__title" id="dest-heading">Principais <em>destinos</em></h2>
+            <p class="section-head__lead">Bairros onde nossos apartamentos estão localizados.</p>
           </header>
           <div class="section-body destinations__grid" data-aos-stagger>${cards}</div>
         </div>

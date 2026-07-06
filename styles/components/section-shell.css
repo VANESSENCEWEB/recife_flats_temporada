@@ -1,19 +1,21 @@
 /* ============================================================
-   SECTION SHELL — Ritmo RealZone: eyebrow + título + lead repetidos
+   SECTION SHELL — Container, ritmo e hierarquia visual da home
+   Toda seção de conteúdo usa .home-section + .container
 ============================================================ */
 
 :root {
-  --section-py: clamp(3.5rem, 6vw, 5.5rem);
-  --fs-section-title: clamp(1.75rem, 2.8vw, 2.625rem);
-  --fs-section-lead: 1.0625rem;
-  --section-gap: var(--space-8);
+  --section-py: clamp(2.75rem, 5vw, 4.5rem);
+  --fs-section-title: clamp(1.625rem, 2.4vw, 2.25rem);
+  --fs-section-lead: 1rem;
 }
 
+/* Base: padding vertical consistente, largura total do fundo */
 .home-section {
   padding-block: var(--section-py);
   width: 100%;
 }
 
+/* Superfícies — alternância clara (branco ↔ creme) */
 .home-section--white {
   background: var(--white);
   color: var(--text);
@@ -34,61 +36,24 @@
   color: var(--text);
 }
 
-.home-section--muted {
-  background: #f8f6f2;
-  color: var(--text);
-}
-
-/* Eyebrow padrão — repetido em todas as seções */
-.section-eyebrow {
-  display: block;
-  font-family: var(--font-body);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-dark);
-  margin: 0 0 var(--space-3);
-}
-
-.home-section--ocean .section-eyebrow {
-  color: var(--sun-light);
-}
-
+/* Cabeçalho de seção — mesma borda esquerda que o corpo */
 .section-head {
   width: 100%;
-  margin-bottom: var(--section-gap);
+  margin-bottom: var(--space-6);
 }
 
 .section-head--center {
-  text-align: center;
-}
-
-.section-head--center .section-head__lead {
   margin-inline: auto;
-}
-
-/* Cabeçalho em duas colunas: título à esquerda, ação à direita */
-.section-head--split {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: var(--space-6) var(--space-8);
-  align-items: end;
+  text-align: center;
 }
 
 .section-head__title {
   font-family: var(--font-display);
   font-size: var(--fs-section-title);
   font-weight: 600;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin: 0 0 var(--space-3);
-  max-width: 22ch;
-}
-
-.section-head--center .section-head__title {
-  max-width: none;
-  margin-inline: auto;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-tight);
+  margin-block: var(--space-3) var(--space-3);
 }
 
 .section-head__title em,
@@ -107,8 +72,8 @@
 .section-head__lead {
   font-size: var(--fs-section-lead);
   color: var(--text-muted);
-  line-height: 1.65;
-  max-width: 56ch;
+  line-height: 1.6;
+  max-width: 48ch;
   margin: 0;
 }
 
@@ -116,69 +81,29 @@
   color: rgba(255, 255, 255, 0.78);
 }
 
-.section-head__action {
-  flex-shrink: 0;
-  padding-bottom: var(--space-1);
+.home-section--ocean .eyebrow--pill {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Corpo da seção — sempre dentro do container */
 .section-body {
   width: 100%;
 }
 
-/* Link de seção estilo template */
-.link-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: var(--ocean);
-  text-decoration: none;
-  white-space: nowrap;
-  transition: color var(--dur-fast), gap var(--dur-fast);
-}
-
-.link-arrow:hover {
-  color: var(--accent-dark);
-  gap: var(--space-3);
-}
-
-.link-arrow svg {
-  width: 1rem;
-  height: 1rem;
-  transition: transform var(--dur-fast);
-}
-
-.link-arrow:hover svg {
-  transform: translateX(3px);
-}
-
-.home-section--ocean .link-arrow {
-  color: var(--white);
-}
-
-.home-section--ocean .link-arrow:hover {
-  color: var(--sun-light);
-}
-
-/* Separador entre faixas claras consecutivas */
+/* Separador sutil entre faixas claras iguais */
 .home-section--white + .home-section--white,
-.home-section--cream + .home-section--cream,
-.home-section--muted + .home-section--muted {
+.home-section--cream + .home-section--cream {
   border-top: 1px solid rgba(13, 13, 13, 0.06);
 }
 
-@media (max-width: 768px) {
-  .section-head--split {
-    grid-template-columns: 1fr;
-    align-items: start;
-  }
-
-  .section-head__action {
-    padding-bottom: 0;
-  }
-
+@media (max-width: 600px) {
   .section-head {
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-5);
+  }
+
+  .section-head--center .section-head__lead {
+    margin-inline: auto;
   }
 }
