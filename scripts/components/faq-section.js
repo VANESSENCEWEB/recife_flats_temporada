@@ -1,23 +1,25 @@
 /**
- * <rf-faq-section> — Perguntas frequentes (seção própria).
+ * <rf-faq-section> — Perguntas frequentes (conteúdo do site ao vivo).
  */
+
+import { whatsappUrl } from '../data/location.js';
 
 const FAQ = [
   {
-    q: 'Como faço para reservar?',
-    a: 'Escolha o apartamento, envie suas datas pelo WhatsApp ou formulário e receba disponibilidade e valor total sem surpresas.',
+    q: 'Os apartamentos são exatamente como nas fotos?',
+    a: 'Sim. Trabalhamos com fotos reais dos imóveis e detalhamos localização, estrutura, capacidade e itens de cada unidade antes da confirmação.',
   },
   {
-    q: 'Qual a distância da praia?',
-    a: 'Nossos imóveis em Boa Viagem ficam a cerca de 100 m da orla. No Pina, você está a poucos minutos de Boa Viagem e do RioMar.',
+    q: 'Como funciona a caução?',
+    a: 'Algumas reservas exigem caução e outras não. Quando aplicável, isso é informado antes do fechamento, junto com valor, forma de pagamento e prazo de devolução.',
   },
   {
-    q: 'O que está incluso na diária?',
-    a: 'Wi-Fi, enxoval, utensílios de cozinha e suporte durante a estadia. Taxas e regras são informadas antes da confirmação.',
+    q: 'Posso reservar direto sem plataforma?',
+    a: 'Sim. A proposta da Recife Flats Temporada é facilitar a reserva direta pelo WhatsApp, com atendimento rápido e menos custo operacional.',
   },
   {
-    q: 'Posso levar pet?',
-    a: 'Alguns apartamentos aceitam pets mediante consulta. Informe na reserva para confirmarmos a unidade ideal.',
+    q: 'Atendem viagem a trabalho e estadia longa?',
+    a: 'Sim. Temos unidades com Wi-Fi de alta velocidade, cozinha equipada e localização prática para quem vem a Recife trabalhar ou precisa ficar mais dias.',
   },
 ];
 
@@ -34,11 +36,17 @@ class RFFaqSection extends HTMLElement {
       <section class="home-section home-section--cream faq-section" id="faq" aria-labelledby="faq-heading">
         <div class="container">
           <header class="section-head section-head--center animate-on-scroll">
-            <span class="eyebrow eyebrow--pill">Dúvidas</span>
-            <h2 class="section-head__title" id="faq-heading">Perguntas frequentes</h2>
-            <p class="section-head__lead">Respostas objetivas para você reservar com tranquilidade.</p>
+            <span class="eyebrow eyebrow--pill">FAQ</span>
+            <h2 class="section-head__title" id="faq-heading">Perguntas que fecham a reserva mais <em>rápido</em></h2>
+            <p class="section-head__lead">Respostas diretas para reduzir objeção, alinhar expectativa e facilitar sua decisão.</p>
           </header>
           <div class="section-body faq-section__list" data-aos-stagger>${items}</div>
+          <div class="faq-section__cta animate-on-scroll aos-delay-2">
+            <a href="${whatsappUrl('Olá! Quero disponibilidade para minhas datas.')}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+              Pedir disponibilidade
+            </a>
+            <a href="./apartamentos.html" class="btn btn--secondary">Comparar apartamentos</a>
+          </div>
         </div>
       </section>
     `;

@@ -31,7 +31,7 @@ class RFMatchingTeaser extends HTMLElement {
                 </p>
               </header>
               <div class="matching-contained__actions section-cta">
-                <button type="button" class="btn btn--sun btn--lg btn--beam" data-open-matching>
+                <button type="button" class="btn btn--sun btn--lg" data-open-matching>
                   Fazer Matching agora
                 </button>
                 <a href="./apartmatch.html" class="btn btn--secondary btn--lg">Saiba mais</a>

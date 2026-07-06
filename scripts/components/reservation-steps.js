@@ -3,7 +3,6 @@
  */
 
 import { whatsappUrl } from '../data/location.js';
-import { prefersReducedMotion } from '../utils/dom.js';
 import { renderWaveDivider } from '../utils/wave-divider.js';
 
 const STEPS = [
@@ -33,7 +32,7 @@ const HIGHLIGHTS = [
 class RFReservationSteps extends HTMLElement {
   connectedCallback() {
     const steps = STEPS.map((step) => `
-      <article class="reservation-step" data-reservation-reveal>
+      <article class="reservation-step spotlight-card">
         <span class="reservation-step__num">${step.num}</span>
         <h3 class="reservation-step__title">${step.title}</h3>
         <p class="reservation-step__text">${step.text}</p>
@@ -41,7 +40,7 @@ class RFReservationSteps extends HTMLElement {
     `).join('');
 
     const highlights = HIGHLIGHTS.map((h) => `
-      <div class="reservation-highlight" data-reservation-reveal>
+      <div class="reservation-highlight">
         <h4>${h.title}</h4>
         <p>${h.text}</p>
       </div>
@@ -50,7 +49,7 @@ class RFReservationSteps extends HTMLElement {
     this.innerHTML = `
       <section class="reservation-steps" id="como-funciona" aria-labelledby="reservation-heading">
         <div class="container reservation-steps__inner">
-          <header class="reservation-steps__header" data-reservation-reveal>
+          <header class="reservation-steps__header animate-on-scroll">
             <span class="eyebrow eyebrow--on-dark">Reserva direta</span>
             <h2 class="reservation-steps__title" id="reservation-heading">
               Como funciona sua <em class="display-italic">reserva</em>
@@ -60,11 +59,11 @@ class RFReservationSteps extends HTMLElement {
             </p>
           </header>
 
-          <div class="reservation-steps__grid">${steps}</div>
+          <div class="reservation-steps__grid" data-aos-stagger>${steps}</div>
 
-          <div class="reservation-steps__highlights">${highlights}</div>
+          <div class="reservation-steps__highlights" data-aos-stagger>${highlights}</div>
 
-          <div class="reservation-steps__cta" data-reservation-reveal>
+          <div class="reservation-steps__cta animate-on-scroll aos-delay-3">
             <a href="${whatsappUrl('Olá! Quero verificar disponibilidade para minhas datas.')}" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
               Pedir disponibilidade
             </a>
@@ -74,21 +73,6 @@ class RFReservationSteps extends HTMLElement {
         ${renderWaveDivider('var(--cream)')}
       </section>
     `;
-
-    this._animate();
-  }
-
-  _animate() {
-    if (prefersReducedMotion() || !window.gsap) return;
-
-    gsap.from(this.querySelectorAll('[data-reservation-reveal]'), {
-      opacity: 0,
-      y: 28,
-      duration: 0.65,
-      stagger: 0.08,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: this, start: 'top 85%', once: true },
-    });
   }
 }
 

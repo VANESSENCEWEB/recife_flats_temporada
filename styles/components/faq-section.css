@@ -3,11 +3,19 @@
 ============================================================ */
 
 .faq-section__list {
-  max-width: 40rem;
+  max-width: 44rem;
   margin-inline: auto;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+}
+
+.faq-section__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
 }
 
 .faq__item {

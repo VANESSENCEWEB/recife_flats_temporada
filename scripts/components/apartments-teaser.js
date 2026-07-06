@@ -25,12 +25,12 @@ class RFApartmentsTeaser extends HTMLElement {
       <section class="home-section home-section--white apt-teaser" id="apartamentos" aria-labelledby="apt-teaser-heading">
         <div class="container apt-teaser__inner">
           <header class="section-head animate-on-scroll">
-            <span class="eyebrow eyebrow--pill">Nossa coleção</span>
+            <span class="eyebrow eyebrow--pill">Acomodações Premium</span>
             <h2 class="section-head__title" id="apt-teaser-heading">
-              Flats para toda <em>ocasião</em>
+              Nossos <em>Apartamentos</em>
             </h2>
             <p class="section-head__lead">
-              Do casal ao grupo em família — escolha o apartamento ideal em Boa Viagem ou Pina e reserve direto.
+              Apartamentos mobiliados perfeitos para você, com WiFi gratuito e todas as comodidades incluídas.
             </p>
           </header>
 
@@ -43,7 +43,7 @@ class RFApartmentsTeaser extends HTMLElement {
           </div>
 
           <footer class="apt-teaser__footer animate-on-scroll aos-delay-4">
-            <a href="./apartamentos.html" class="btn btn--secondary btn--lg btn--beam">
+            <a href="./apartamentos.html" class="btn btn--secondary btn--lg">
               Ver todos os apartamentos
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>

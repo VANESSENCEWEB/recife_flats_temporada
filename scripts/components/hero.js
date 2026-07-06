@@ -180,7 +180,7 @@ class RFHero extends HTMLElement {
             </div>
 
             <div class="hero__cta" data-hero-cta>
-              <a href="./apartamentos.html" class="btn btn--primary btn--beam">Ver apartamentos</a>
+              <a href="./apartamentos.html" class="btn btn--primary">Ver apartamentos</a>
               <a href="${waLink}" class="btn btn--outline" target="_blank" rel="noopener noreferrer">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A10 10 0 0 0 3.6 17l-1.6 5 5.1-1.6A10 10 0 1 0 20.5 3.5z"/></svg>
                 Falar no WhatsApp
