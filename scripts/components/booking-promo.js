@@ -1,5 +1,5 @@
 /**
- * <rf-booking-promo> — CTA final com buscador (faixa azul do sketch).
+ * <rf-booking-promo> — CTA final com buscador.
  */
 
 class RFBookingPromo extends HTMLElement {
@@ -7,8 +7,8 @@ class RFBookingPromo extends HTMLElement {
     this.innerHTML = `
       <section class="home-section home-section--ocean booking-promo" id="reservar" aria-labelledby="booking-promo-heading">
         <div class="container booking-promo__inner">
-          <header class="section-head animate-on-scroll">
-            <span class="eyebrow eyebrow--pill">Reserva direta</span>
+          <header class="section-head section-head--center animate-on-scroll">
+            <span class="section-eyebrow">Reserva direta</span>
             <h2 class="section-head__title text-reveal" id="booking-promo-heading">
               <span class="text-reveal__line">Economize até <em>20%</em> reservando direto</span>
             </h2>

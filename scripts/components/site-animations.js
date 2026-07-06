@@ -5,11 +5,13 @@
 import { initInViewAnimations } from '../utils/in-view-animations.js';
 import { initSpotlightCards } from '../utils/spotlight.js';
 import { initScrollAnimations } from '../utils/scroll-animations.js';
+import { initCountUp } from '../utils/count-up.js';
 
 function boot() {
   initInViewAnimations();
   initSpotlightCards();
   initScrollAnimations();
+  initCountUp();
 
   if (window.ScrollTrigger) {
     window.ScrollTrigger.refresh();

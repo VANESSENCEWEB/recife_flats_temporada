@@ -1,5 +1,5 @@
 /* ============================================================
-   HOME — Ritmo: branco ↔ creme ↔ oceano (hierarquia clara)
+   HOME — Ritmo RealZone: repetição de padrões e superfícies
 ============================================================ */
 
 .site-content:has(.announcement) {
@@ -14,28 +14,31 @@
 
 /*
   Ordem e superfície:
-  1. Hero          — vídeo (full bleed)
-  2. Marquee       — faixa oceano
-  3. Apartamentos  — branco
-  3. Comodidades   — creme
-  4. Matching      — creme (container, foto contida)
-  5. Destinos      — branco
-  6. Depoimentos   — branco (separador automático)
-  7. FAQ           — creme
-  8. Localização   — branco
-  9. Números       — sand (creme suave)
-  10. Reserva      — oceano
-  11. Footer       — escuro
+  1. Hero           — vídeo
+  2. Marquee        — oceano
+  3. Apartamentos   — branco
+  4. Números        — muted
+  5. Como funciona  — branco
+  6. Comodidades    — creme
+  7. Matching       — branco
+  8. Destinos       — muted
+  9. Depoimentos    — branco
+  10. FAQ           — creme
+  11. Localização   — branco
+  12. Reserva       — oceano
+  13. Footer        — escuro
 */
 
-rf-apartments-teaser,
 rf-home-marquee,
+rf-apartments-teaser,
+rf-stats-banner,
+rf-reservation-steps,
 rf-amenities-section,
+rf-matching-teaser,
 rf-neighborhoods-showcase,
 rf-testimonials-section,
 rf-faq-section,
 rf-location-section,
-rf-stats-banner,
 rf-booking-promo {
   display: block;
 }

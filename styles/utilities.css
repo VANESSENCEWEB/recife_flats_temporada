@@ -92,6 +92,11 @@
   color: var(--brand-blue);
 }
 
+/* Link de seção — ver também section-shell.css */
+.link-arrow--light {
+  color: var(--white);
+}
+
 /* Grão sutil — overlay opcional sobre qualquer fundo */
 .has-grain { position: relative; }
 .has-grain::after {

@@ -1,5 +1,5 @@
 /**
- * <rf-matching-teaser> — Matching dentro do trilho .container (sem foto esticada).
+ * <rf-matching-teaser> — Matching dentro do trilho .container.
  */
 
 import { assetUrl } from '../utils/paths.js';
@@ -10,7 +10,7 @@ class RFMatchingTeaser extends HTMLElement {
     const photoSrcWebp = assetUrl('./assets/images/matching/matching-couple-doubt.webp');
 
     this.innerHTML = `
-      <section class="home-section home-section--cream matching-contained" id="matching" aria-labelledby="matching-heading">
+      <section class="home-section home-section--white matching-contained" id="matching" aria-labelledby="matching-heading">
         <div class="container">
           <div class="matching-contained__grid">
             <div class="matching-contained__media animate-on-scroll">
@@ -22,7 +22,7 @@ class RFMatchingTeaser extends HTMLElement {
 
             <div class="matching-contained__copy animate-on-scroll aos-delay-2">
               <header class="section-head">
-                <span class="eyebrow eyebrow--pill">Em dúvida?</span>
+                <span class="section-eyebrow">Em dúvida?</span>
                 <h2 class="section-head__title text-reveal" id="matching-heading">
                   <span class="text-reveal__line">Não sabe qual <em>apartamento</em> escolher?</span>
                 </h2>

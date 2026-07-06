@@ -80,7 +80,11 @@
   font-size: var(--fs-sm);
   color: var(--text-muted);
   line-height: 1.55;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.dest-card .link-arrow {
+  margin-top: auto;
 }
 
 @media (max-width: 768px) {
