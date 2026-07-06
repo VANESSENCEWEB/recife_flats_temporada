@@ -1,21 +1,109 @@
 /**
- * <rf-hero> — Hero com vídeo, badges, CTAs e buscador.
+ * <rf-hero> — Hero com vídeo dia/noite, badges, CTAs e buscador.
+ *
+ * Suporta vídeos diferentes para dia e noite, carregados via API
+ * (JSON estático ou CMS) com fallback nos atributos HTML.
+ *
+ * API (duas chamadas em paralelo):
+ *   GET {api-base}/hero/{hero-id}/day.json
+ *   GET {api-base}/hero/{hero-id}/night.json
  */
 
 import { splitTextIntoLetters } from '../utils/split-text.js';
 import { prefersReducedMotion } from '../utils/dom.js';
 import { whatsappUrl } from '../data/location.js';
+import { getTimeOfDay, getTimeOptionsFromElement } from '../utils/time-of-day.js';
+import {
+  applyVideoAsset,
+  fetchHeroAssetsByPeriod,
+  getFallbackAssetsFromElement,
+  pickActiveAsset,
+} from '../modules/hero-assets.js';
+
+const PERIOD_CHECK_MS = 60_000;
 
 class RFHero extends HTMLElement {
   connectedCallback() {
-    const video       = this.getAttribute('video')       || '';
-    const videoWebm   = this.getAttribute('video-webm')  || '';
-    const poster      = this.getAttribute('poster')      || '';
-    const eyebrow     = this.getAttribute('eyebrow')     || 'Recife · Boa Viagem · Pina';
-    const title       = this.getAttribute('title')       || 'Sua estadia em <em>Recife</em> começa aqui.';
+    this._periodCheckInterval = null;
+    this._currentPeriod = null;
+    this._assets = null;
+    this._init();
+  }
+
+  disconnectedCallback() {
+    if (this._periodCheckInterval) {
+      clearInterval(this._periodCheckInterval);
+      this._periodCheckInterval = null;
+    }
+  }
+
+  async _init() {
+    const timeOptions = getTimeOptionsFromElement(this);
+    const period = getTimeOfDay(timeOptions);
+    this._currentPeriod = period;
+
+    const fallback = getFallbackAssetsFromElement(this);
+    const initial = pickActiveAsset(fallback, period);
+
+    this._renderShell(initial);
+    this.dataset.period = period;
+    this._animate();
+
+    const heroId = this.getAttribute('hero-id') || 'home';
+    const apiBase = this.getAttribute('api-base');
+
+    if (apiBase === '' || apiBase === 'false') {
+      this._assets = fallback;
+      this._startPeriodWatcher(timeOptions);
+      return;
+    }
+
+    try {
+      const assets = await fetchHeroAssetsByPeriod(heroId, apiBase || './data');
+      this._assets = assets;
+
+      const active = pickActiveAsset(assets, period);
+      applyVideoAsset(
+        this.querySelector('.hero__video'),
+        this.querySelector('.hero__poster'),
+        active
+      );
+    } catch (err) {
+      console.warn('[rf-hero] API unavailable, using HTML fallbacks', err);
+      this._assets = fallback;
+    }
+
+    this._startPeriodWatcher(timeOptions);
+  }
+
+  _startPeriodWatcher(timeOptions) {
+    this._periodCheckInterval = setInterval(() => {
+      const period = getTimeOfDay(timeOptions);
+      if (period === this._currentPeriod || !this._assets) return;
+
+      this._currentPeriod = period;
+      this.dataset.period = period;
+
+      const active = pickActiveAsset(this._assets, period);
+      applyVideoAsset(
+        this.querySelector('.hero__video'),
+        this.querySelector('.hero__poster'),
+        active
+      );
+    }, PERIOD_CHECK_MS);
+  }
+
+  _renderShell(asset) {
+    const eyebrow = this.getAttribute('eyebrow') || 'Recife · Boa Viagem · Pina';
+    const title = this.getAttribute('title') || this.getAttribute('heading')
+      || 'Sua estadia em <em>Recife</em> começa aqui.';
     const description = this.getAttribute('description') || '';
-    const noSearch    = this.hasAttribute('no-search');
-    const waLink      = whatsappUrl('Olá! Gostaria de saber mais sobre os apartamentos para temporada em Recife.');
+    const noSearch = this.hasAttribute('no-search');
+    const waLink = whatsappUrl('Olá! Gostaria de saber mais sobre os apartamentos para temporada em Recife.');
+
+    const video = asset?.video || '';
+    const videoWebm = asset?.videoWebm || '';
+    const poster = asset?.poster || '';
 
     this.innerHTML = `
       <section class="hero" id="hero" aria-label="Apresentação">
@@ -120,21 +208,18 @@ class RFHero extends HTMLElement {
         </div>
       </section>
     `;
-
-    this._animate();
   }
 
   _animate() {
     const reduce = prefersReducedMotion();
-    const titleEl   = this.querySelector('[data-hero-title]');
+    const titleEl = this.querySelector('[data-hero-title]');
     const eyebrowEl = this.querySelector('[data-hero-eyebrow]');
-    const descEl    = this.querySelector('[data-hero-desc]');
-    const badgesEl  = this.querySelector('[data-hero-badges]');
-    const ctaEl     = this.querySelector('[data-hero-cta]');
-    const searchEl  = this.querySelector('[data-hero-search]');
+    const descEl = this.querySelector('[data-hero-desc]');
+    const badgesEl = this.querySelector('[data-hero-badges]');
+    const ctaEl = this.querySelector('[data-hero-cta]');
+    const searchEl = this.querySelector('[data-hero-search]');
 
     const letters = titleEl ? splitTextIntoLetters(titleEl) : [];
-
     const revealEls = [eyebrowEl, descEl, badgesEl, ctaEl, searchEl].filter(Boolean);
 
     if (reduce) {
@@ -156,10 +241,10 @@ class RFHero extends HTMLElement {
       }, 0);
     }
     if (eyebrowEl) tl.to(eyebrowEl, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.1);
-    if (descEl)    tl.to(descEl,    { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.35);
-    if (badgesEl)  tl.to(badgesEl,  { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.45);
-    if (ctaEl)     tl.to(ctaEl,     { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.55);
-    if (searchEl)  tl.to(searchEl,  { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.65);
+    if (descEl) tl.to(descEl, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.35);
+    if (badgesEl) tl.to(badgesEl, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.45);
+    if (ctaEl) tl.to(ctaEl, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.55);
+    if (searchEl) tl.to(searchEl, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.65);
   }
 }
 
