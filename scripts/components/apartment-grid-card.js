@@ -61,7 +61,7 @@ class RFApartmentGridCard extends HTMLElement {
           ${price}
           <div class="apt-grid-card__actions">
             <a href="${href}" class="btn btn--secondary btn--sm">Ver detalhes</a>
-            <a href="${href}#reservar" class="btn btn--primary btn--sm">Reservar</a>
+            <a href="${href}#reservar" class="btn btn--clay btn--sm">Reservar</a>
           </div>
         </div>
       </article>

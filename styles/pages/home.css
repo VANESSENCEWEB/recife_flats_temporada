@@ -1,5 +1,5 @@
 /* ============================================================
-   HOME — Ritmo visual entre seções (azul → branco → creme)
+   HOME — Ritmo visual entre seções (sketch: azul → branco → creme → azul)
 ============================================================ */
 
 .site-content:has(.announcement) {
@@ -12,6 +12,17 @@
   }
 }
 
-rf-apartments-teaser {
-  background: var(--white);
+rf-apartments-teaser { background: var(--white); }
+rf-amenities-section { background: var(--white); }
+rf-matching-teaser { display: block; }
+rf-neighborhoods-showcase { display: block; }
+rf-social-proof-section { display: block; }
+rf-location-section { display: block; }
+rf-stats-banner { display: block; }
+rf-booking-promo { display: block; }
+
+/* Espaçamento suave entre blocos claros */
+rf-apartments-teaser + rf-amenities-section,
+rf-amenities-section + rf-matching-teaser {
+  margin-top: 0;
 }

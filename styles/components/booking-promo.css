@@ -1,0 +1,74 @@
+/* ============================================================
+   BOOKING PROMO — CTA azul final
+============================================================ */
+
+.booking-promo {
+  background: linear-gradient(160deg, var(--brand-blue) 0%, var(--ocean) 55%, var(--ocean-light) 100%);
+  padding-block: var(--space-10);
+  color: var(--white);
+}
+
+.booking-promo__inner {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.booking-promo__title {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.1;
+  margin-block: var(--space-3) var(--space-4);
+}
+
+.booking-promo__title em {
+  font-family: var(--font-italic);
+  font-style: italic;
+  color: var(--sun);
+}
+
+.booking-promo__text {
+  font-size: var(--fs-md);
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.6;
+  max-width: 42ch;
+}
+
+.booking-promo__form-wrap {
+  position: relative;
+}
+
+.booking-promo__form-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border-radius: calc(var(--radius-lg) + 12px);
+  background: conic-gradient(from 180deg, var(--accent-soft), var(--sun), rgba(255,255,255,0.4), var(--accent-soft));
+  opacity: 0.35;
+  filter: blur(18px);
+  z-index: 0;
+  animation: promo-glow-spin 12s linear infinite;
+}
+
+.booking-promo__form-wrap rf-booking-search,
+.booking-promo__form-wrap .booking-search {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes promo-glow-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-promo__form-wrap::before { animation: none; }
+}
+
+@media (max-width: 900px) {
+  .booking-promo__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}

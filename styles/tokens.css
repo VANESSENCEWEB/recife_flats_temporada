@@ -28,6 +28,11 @@
 --sun-light:  #FAD888;
 --sun-dark:   #D9A22F;
 
+  /* Azul de marca (sketch / seções) */
+  --brand-blue:   #1B6FA8;
+  --sky-soft:     #E8F4FC;
+  --sky-mid:      #5BA3D9;
+
   /* alfa frequentes (evita re-escrever rgba todo lugar) */
   --white-90:     rgba(255, 255, 255, 0.90);
   --white-65:     rgba(255, 255, 255, 0.65);

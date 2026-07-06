@@ -85,6 +85,13 @@
   font-style: italic;
 }
 
+.title-accent {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--brand-blue);
+}
+
 /* Grão sutil — overlay opcional sobre qualquer fundo */
 .has-grain { position: relative; }
 .has-grain::after {
