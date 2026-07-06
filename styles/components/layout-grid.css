@@ -1,0 +1,37 @@
+/* ============================================================
+   LAYOUT GRID — Trilho único de alinhamento (logo ↔ conteúdo ↔ menu)
+   Tudo que é conteúdo editorial usa .container com o mesmo padding.
+============================================================ */
+
+:root {
+  /* Trilho horizontal único — navbar, hero, seções */
+  --container-max: 1120px;
+  --container-px: clamp(1.25rem, 4vw, 2rem);
+}
+
+/* Garante que filhos do container não vazem o trilho */
+.container {
+  box-sizing: border-box;
+}
+
+/* Cabeçalhos e corpos compartilham a mesma borda esquerda */
+.section-head,
+.section-body,
+.section-stack {
+  width: 100%;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+/* Grids alinhados ao trilho esquerdo (ícones/cards não “flutuam” ao centro) */
+.align-grid-start {
+  justify-items: start;
+  align-items: start;
+}
+
+/* Botão/CTA alinhado ao trilho (não centralizado sem motivo) */
+.section-cta {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: var(--space-4);
+}

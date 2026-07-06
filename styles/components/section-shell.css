@@ -36,9 +36,9 @@
   color: var(--text);
 }
 
-/* Cabeçalho de seção — alinhado à esquerda, mesma escala em todo o site */
+/* Cabeçalho de seção — mesma borda esquerda que o corpo */
 .section-head {
-  max-width: 36rem;
+  width: 100%;
   margin-bottom: var(--space-6);
 }
 
@@ -73,7 +73,7 @@
   font-size: var(--fs-section-lead);
   color: var(--text-muted);
   line-height: 1.6;
-  max-width: 42ch;
+  max-width: 48ch;
   margin: 0;
 }
 

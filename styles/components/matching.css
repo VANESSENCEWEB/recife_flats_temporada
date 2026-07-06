@@ -1,180 +1,61 @@
 /* ============================================================
-   MATCHING INTELIGENTE — teaser na home + modal do questionário
+   MATCHING TEASER — Dentro do container (home)
 ============================================================ */
 
-rf-matching-teaser,
-rf-matching-wizard {
+.matching-contained__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-7);
+  align-items: center;
+}
+
+.matching-contained__media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--ocean);
+  box-shadow: var(--shadow-md);
+}
+
+.matching-contained__media picture,
+.matching-contained__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
   display: block;
+}
+
+.matching-contained__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.matching-contained__actions {
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.matching-contained__actions .btn--lg {
+  padding: 14px var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .matching-contained__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .matching-contained__media {
+    aspect-ratio: 16 / 10;
+    max-height: 280px;
+  }
 }
 
 /* ============================================================
-   TEASER — Chamada simples e direta (1 tela, sem scroll longo)
+   MATCHING INTELIGENTE — modal do questionário
 ============================================================ */
-
-.matching-simple {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
-  background: var(--ocean);
-  color: var(--white);
-  overflow: hidden;
-  isolation: isolate;
-}
-
-/* --- Divisão 50/50: foto à esquerda, texto à direita --- */
-.matching-simple__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
-  min-height: 100dvh;
-}
-
-.matching-simple__photo-col {
-  position: relative;
-  overflow: hidden;
-}
-
-.matching-simple__photo-col picture,
-.matching-simple__photo-col img {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.matching-simple__photo-col img {
-  object-fit: cover;
-  object-position: 40% 25%;
-  transform: scale(1.05);
-  animation: matching-kenburns 18s ease-in-out infinite alternate;
-}
-
-@keyframes matching-kenburns {
-  from { transform: scale(1.05) translate(0, 0); }
-  to   { transform: scale(1.12) translate(-1.5%, -1%); }
-}
-
-.matching-simple__text-col {
-  display: flex;
-  align-items: center;
-  background: linear-gradient(155deg, var(--ocean) 0%, var(--accent-dark) 65%, var(--accent-darker) 100%);
-  padding: clamp(var(--space-6), 5vw, var(--space-9));
-}
-
-.matching-simple__content {
-  max-width: 480px;
-}
-
-/* --- Selo de "calculando" (sobre a foto) --- */
-.matching-simple__badge {
-  position: absolute;
-  left: var(--space-5);
-  bottom: var(--space-5);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
-  background: rgba(7, 47, 51, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-}
-
-.matching-simple__spinner {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  border-top-color: var(--sun-light);
-  animation: matching-spin 0.9s linear infinite;
-  flex-shrink: 0;
-}
-
-@keyframes matching-spin {
-  to { transform: rotate(360deg); }
-}
-
-/* --- Texto + CTA --- */
-.matching-simple__title {
-  font-size: clamp(2rem, 4.5vw, var(--fs-2xl));
-  font-weight: 700;
-  letter-spacing: var(--tracking-tight);
-  line-height: 1.12;
-  color: var(--white);
-  margin-block: var(--space-4) var(--space-4);
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-}
-
-.matching-simple__text {
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 42ch;
-  font-size: var(--fs-md);
-  line-height: 1.6;
-  margin-bottom: var(--space-7);
-}
-
-.matching-simple__text strong {
-  color: var(--sun-light);
-}
-
-.matching-simple__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-}
-
-.matching-simple__actions .btn--outline {
-  color: var(--white);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.matching-simple__actions .btn--outline:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.65);
-}
-
-@media (max-width: 899px) {
-  .matching-simple__grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: 42vh 1fr;
-  }
-
-  .matching-simple__photo-col { height: 42vh; }
-
-  .matching-simple__text-col {
-    text-align: center;
-    justify-content: center;
-    padding: var(--space-7) var(--space-5);
-  }
-
-  .matching-simple__content { max-width: 100%; margin-inline: auto; }
-  .matching-simple__text { margin-inline: auto; }
-  .matching-simple__actions { justify-content: center; }
-  .matching-simple__badge { left: 50%; transform: translateX(-50%); }
-}
-
-@media (max-width: 480px) {
-  .matching-simple { min-height: 100svh; }
-  .matching-simple__grid { min-height: 100svh; grid-template-rows: 38vh 1fr; }
-  .matching-simple__photo-col { height: 38vh; }
-  .matching-simple__actions { flex-direction: column; width: 100%; }
-  .matching-simple__actions .btn { width: 100%; justify-content: center; }
-  .matching-simple__badge {
-    font-size: 0.65rem;
-    padding: 6px 12px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .matching-simple__spinner,
-  .matching-simple__photo-col img { animation: none; }
-}
-
-/* --- Modal --- */
 .matching-modal {
   position: fixed;
   inset: 0;
