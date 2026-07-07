@@ -180,7 +180,7 @@ class RFHero extends HTMLElement {
 
           ${noSearch ? '' : `
             <div class="hero__search" data-hero-search>
-              <rf-booking-search action="./apartamentos.html"></rf-booking-search>
+              <rf-booking-search variant="hero" action="./apartamentos.html"></rf-booking-search>
             </div>
           `}
         </div>

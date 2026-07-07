@@ -136,15 +136,25 @@ rf-hero[data-period="night"] .hero__overlay {
   position: relative;
   z-index: 6;
   flex: 1;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  align-content: end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
   padding-block: calc(var(--hero-header-offset) + 2.75rem + var(--space-3)) calc(var(--hero-cloud-reserve, 5.5rem) + var(--space-3));
-  gap: var(--space-4);
+  gap: var(--space-6);
   min-height: min(100dvh, 100%);
 }
 
-/* Elementos decorativos de praia */
+.hero__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  padding-bottom: 0;
+}
 .hero__beach {
   position: absolute;
   inset: 0;
@@ -194,9 +204,11 @@ rf-hero[data-period="night"] .hero__overlay {
 .hero__text {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  align-self: end;
-  max-width: 880px;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
   padding-bottom: 0;
 }
 
@@ -205,17 +217,27 @@ rf-hero[data-period="night"] .hero__overlay {
   opacity: 0;
   transform: translateY(20px);
   margin-bottom: var(--space-5);
+  justify-content: center;
+}
+
+.hero__description {
+  display: none;
+}
+
+.hero__cta {
+  display: none;
 }
 
 .hero__title {
   font-family: var(--font-display);
   font-size: var(--fs-display);
-  font-weight: 600;
-  line-height: 1.05;
+  font-weight: 500;
+  line-height: 1.08;
   color: var(--branco);
   letter-spacing: -0.02em;
   margin-bottom: var(--space-4);
-  max-width: 16ch;
+  max-width: 14ch;
+  margin-inline: auto;
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.5),
     0 4px 24px rgba(0, 0, 0, 0.45);
@@ -265,30 +287,12 @@ rf-hero[data-period="night"] .hero__overlay {
   will-change: opacity, transform;
 }
 
-.hero__description {
-  font-size: clamp(1rem, 1.25vw, 1.15rem);
-  line-height: 1.55;
-  color: #E7EFEC;
-  max-width: 32ch;
-  margin-bottom: var(--space-5);
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* --- CTAs --- */
-.hero__cta {
-  display: flex;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* --- Buscador no rodapé do hero (full bleed) --- */
+/* --- Buscador no rodapé do hero --- */
 .hero__search {
   position: relative;
   z-index: 7;
   width: 100%;
+  max-width: 100%;
   opacity: 0;
   transform: translateY(20px);
   margin-top: 0;
@@ -312,22 +316,17 @@ rf-hero[data-period="night"] .hero__overlay {
 
 @media (max-width: 700px) {
   .hero {
-    --hero-cloud-reserve: 3.5rem;
+    --hero-cloud-reserve: 4.5rem;
     min-height: 100svh;
     min-height: 100dvh;
   }
 
   .hero__container {
-    grid-template-rows: minmax(0, 1fr) auto;
-    align-content: stretch;
-    padding-block: calc(var(--hero-header-offset) + var(--space-2)) calc(var(--hero-cloud-reserve) + var(--space-2));
-    gap: var(--space-3);
+    padding-block: calc(var(--hero-header-offset) + var(--space-3)) calc(var(--hero-cloud-reserve) + var(--space-3));
+    gap: var(--space-4);
   }
 
   .hero__text {
-    align-self: center;
-    justify-content: flex-start;
-    margin-block: auto 0;
     padding-top: var(--space-2);
   }
 
@@ -336,30 +335,17 @@ rf-hero[data-period="night"] .hero__overlay {
     font-size: clamp(1.875rem, 8.5vw, 2.75rem);
     max-width: 100%;
     letter-spacing: -0.02em;
-    line-height: 1.05;
-    margin-bottom: var(--space-2);
-  }
-  .hero__title em { font-size: 0.95em; }
-  .hero__description {
-    max-width: 100%;
-    font-size: 0.9375rem;
-    line-height: 1.5;
+    line-height: 1.1;
     margin-bottom: var(--space-3);
   }
-  .hero__cta {
+  .hero__title em { font-size: 0.95em; }
+
+  .hero__search {
     width: 100%;
-    gap: var(--space-2);
-    margin-bottom: var(--space-2);
-  }
-  .hero__cta .btn {
-    flex: 1;
-    justify-content: center;
-    padding: 12px var(--space-4);
-    font-size: var(--fs-xs);
+    margin-bottom: 0;
   }
 
   .hero__beach-palm { display: none; }
-  .hero__search { margin-bottom: 0; }
 }
 
 @media (max-width: 480px) {

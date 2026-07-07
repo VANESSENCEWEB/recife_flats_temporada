@@ -193,78 +193,51 @@ rf-navbar {
   .menu-toggle__label { display: none; }
 }
 
-.btn--phone {
-  display: flex;
+.btn--whatsapp {
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
-  background: transparent;
-  color: var(--ink);
-  padding: 6px var(--space-5) 6px 6px;
+  gap: 8px;
+  padding: 8px 18px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(27, 36, 32, 0.15);
-  transition: background var(--dur-base), border-color var(--dur-base);
+  border: 1.5px solid rgba(42, 33, 24, 0.18);
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: transparent;
+  transition: background var(--dur-base), border-color var(--dur-base), color var(--dur-base);
 }
 
-.btn--phone:hover {
-  background: rgba(27, 36, 32, 0.05);
-  border-color: rgba(27, 36, 32, 0.28);
+.btn--whatsapp:hover {
+  background: rgba(42, 33, 24, 0.06);
+  border-color: rgba(42, 33, 24, 0.3);
 }
 
-.navbar.is-over-hero:not(.is-scrolled) .btn--phone,
-.navbar.is-scrolled .btn--phone {
-  color: var(--branco);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.navbar.is-over-hero:not(.is-scrolled) .btn--phone:hover,
-.navbar.is-scrolled .btn--phone:hover {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.btn--phone__icon {
-  width: 36px;
-  height: 36px;
-  background: var(--terracotta-600);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: var(--branco);
+.btn--whatsapp__icon {
   flex-shrink: 0;
-  transition: background var(--dur-base);
 }
 
-.btn--phone:hover .btn--phone__icon { background: var(--tijolo-escuro); }
-
-.btn--phone__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
-  text-align: left;
+.navbar.is-over-hero:not(.is-scrolled) .btn--whatsapp,
+.navbar.is-scrolled .btn--whatsapp {
+  color: var(--paper);
+  border-color: rgba(251, 246, 236, 0.45);
 }
 
-.btn--phone__label {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--text-muted);
-}
-
-.navbar.is-over-hero:not(.is-scrolled) .btn--phone__label,
-.navbar.is-scrolled .btn--phone__label {
-  color: var(--mare-text-soft);
-}
-
-.btn--phone__number {
-  font-size: var(--fs-sm);
-  font-weight: 600;
-  color: inherit;
+.navbar.is-over-hero:not(.is-scrolled) .btn--whatsapp:hover,
+.navbar.is-scrolled .btn--whatsapp:hover {
+  background: rgba(251, 246, 236, 0.12);
+  border-color: rgba(251, 246, 236, 0.65);
 }
 
 @media (max-width: 768px) {
-  .btn--phone__text { display: none; }
-  .btn--phone {
-    padding: 6px;
-    border: none;
+  .btn--whatsapp__text { display: none; }
+  .btn--whatsapp {
+    padding: 8px 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
   }
 }
+
+/* legado — removido do markup, mantido vazio */
+.btn--phone { display: none; }
