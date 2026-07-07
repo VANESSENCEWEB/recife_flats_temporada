@@ -12,7 +12,7 @@
  *   rf-menu-toggle  : disparado ao clicar no botão "Menu" (detail: { open: boolean })
  */
 
-import { whatsappUrl } from '../data/location.js';
+import { BUSINESS, whatsappUrl } from '../data/location.js';
 import { pageHref } from '../data/site-structure.js';
 
 const WHATSAPP_DEFAULT = BUSINESS.whatsapp;
