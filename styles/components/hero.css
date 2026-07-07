@@ -27,12 +27,12 @@
   margin-top: calc(-1 * var(--hero-header-offset));
 }
 
-.site-content--house:has(rf-hero-roof) .hero {
+.site-content--house .hero {
   --hero-header-offset: calc(var(--roof-height) + var(--nav-height) + var(--announcement-height));
   margin-top: calc(-1 * var(--hero-header-offset));
 }
 
-.site-content--house:not(:has(.announcement)):has(rf-hero-roof) .hero {
+.site-content--house:not(:has(.announcement)) .hero {
   --hero-header-offset: calc(var(--roof-height) + var(--nav-height));
   margin-top: calc(-1 * var(--hero-header-offset));
 }
@@ -51,12 +51,12 @@
     margin-top: calc(-1 * var(--hero-header-offset));
   }
 
-  .site-content--house:has(rf-hero-roof) .hero {
+  .site-content--house .hero {
     --hero-header-offset: calc(var(--nav-height-mobile) + var(--announcement-height-mobile));
     margin-top: calc(-1 * var(--hero-header-offset));
   }
 
-  .site-content--house:not(:has(.announcement)):has(rf-hero-roof) .hero {
+  .site-content--house:not(:has(.announcement)) .hero {
     --hero-header-offset: var(--nav-height-mobile);
     margin-top: calc(-1 * var(--hero-header-offset));
   }

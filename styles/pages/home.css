@@ -2,24 +2,20 @@
    HOME — Ritmo: branco ↔ creme ↔ oceano (hierarquia clara)
 ============================================================ */
 
-.site-content:has(.announcement) {
-  padding-top: var(--announcement-height);
-}
-
-.site-content--house:has(rf-hero-roof) {
+.site-content--house {
   padding-top: calc(var(--roof-height) + var(--announcement-height));
 }
 
-.site-content--house:not(:has(.announcement)):has(rf-hero-roof) {
+.site-content--house:not(:has(.announcement)) {
   padding-top: var(--roof-height);
 }
 
 @media (max-width: 900px) {
-  .site-content--house:has(rf-hero-roof) {
+  .site-content--house {
     padding-top: var(--announcement-height);
   }
 
-  .site-content--house:not(:has(.announcement)):has(rf-hero-roof) {
+  .site-content--house:not(:has(.announcement)) {
     padding-top: 0;
   }
 }
@@ -29,7 +25,7 @@
     padding-top: var(--announcement-height-mobile);
   }
 
-  .site-content--house:has(rf-hero-roof) {
+  .site-content--house {
     padding-top: var(--announcement-height-mobile);
   }
 }

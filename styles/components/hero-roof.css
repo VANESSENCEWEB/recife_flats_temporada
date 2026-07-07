@@ -3,11 +3,6 @@
    Apenas na home com .site-content--house
 ============================================================ */
 
-rf-hero-roof {
-  display: block;
-  height: 0;
-}
-
 .hero-roof {
   position: fixed;
   top: 0;
