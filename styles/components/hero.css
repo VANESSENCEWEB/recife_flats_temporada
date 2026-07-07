@@ -13,7 +13,7 @@
   margin-top: calc(-1 * var(--hero-header-offset));
   overflow: hidden;
   isolation: isolate;
-  background-color: var(--mare-escuro);
+  background-color: var(--mangue-900);
   display: flex;
   flex-direction: column;
 }
@@ -57,7 +57,7 @@ rf-hero[data-period="night"] .hero__video {
 }
 
 rf-hero[data-period="night"] .hero__overlay {
-  background: linear-gradient(180deg, rgba(8, 46, 44, 0.65) 0%, rgba(8, 46, 44, 0.88) 100%);
+  background: linear-gradient(180deg, rgba(26, 46, 34, 0.62) 0%, rgba(26, 46, 34, 0.88) 100%);
 }
 
 .hero__overlay {
@@ -65,7 +65,7 @@ rf-hero[data-period="night"] .hero__overlay {
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(8, 46, 44, 0.55) 0%, rgba(8, 46, 44, 0.78) 100%);
+  background: linear-gradient(180deg, rgba(26, 46, 34, 0.5) 0%, rgba(26, 46, 34, 0.78) 100%);
 }
 
 .hero::after {
@@ -98,7 +98,7 @@ rf-hero[data-period="night"] .hero__overlay {
   z-index: 7;
   overflow: hidden;
   padding-block: 10px;
-  background: rgba(8, 46, 44, 0.55);
+  background: rgba(26, 46, 34, 0.55);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -432,7 +432,7 @@ rf-hero[data-period="night"] .hero__overlay {
 .hero + rf-apartments-teaser,
 .hero + section,
 .hero + .next-section {
-  background: var(--white);
+  background: var(--paper);
   position: relative;
 }
 
@@ -453,7 +453,7 @@ rf-hero[data-period="night"] .hero__overlay {
 .site-content {
   position: relative;
   z-index: 2;
-  background-color: var(--areia);
+  background-color: var(--sand-200);
   min-height: 100vh;
   transform-origin: right center;
   will-change: transform, filter;

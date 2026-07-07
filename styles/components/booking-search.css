@@ -37,7 +37,7 @@
 .booking-search__title svg {
   width: 15px;
   height: 15px;
-  color: var(--sol);
+  color: var(--gold);
   flex-shrink: 0;
 }
 
@@ -163,8 +163,8 @@
 
 /* --- Hero: painel de maré --- */
 .hero .booking-search {
-  background: rgba(8, 46, 44, 0.72);
-  border: 1px solid rgba(232, 163, 61, 0.35);
+  background: rgba(26, 46, 34, 0.78);
+  border: 1px solid rgba(240, 199, 154, 0.35);
   border-radius: var(--radius-m);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -196,7 +196,7 @@
   font-size: 0.66rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--sol);
+  color: var(--gold);
   margin-bottom: 0;
 }
 

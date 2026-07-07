@@ -30,12 +30,12 @@ class RFAmenitiesSection extends HTMLElement {
       <section class="home-section home-section--cream amenities" id="comodidades" aria-labelledby="amenities-heading">
         <div class="container">
           <header class="section-head" data-amenities-reveal>
-            <span class="eyebrow eyebrow--pill">Comodidades</span>
+            <span class="eyebrow eyebrow--pill">Garantimos tudo</span>
             <h2 class="section-head__title" id="amenities-heading">
-              Tudo que você <em>precisa</em>
+              Tudo o que você <em>precisa</em>
             </h2>
             <p class="section-head__lead">
-              Flats mobiliados e equipados para você chegar, descansar e aproveitar Recife sem dor de cabeça.
+              Apartamentos mobiliados, prontos pra usar, com fotos reais e estrutura completa pra sua estadia em Recife.
             </p>
           </header>
           <ul class="section-body amenities__grid">${items}</ul>

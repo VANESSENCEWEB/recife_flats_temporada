@@ -18,7 +18,7 @@ rf-navbar {
   display: flex;
   align-items: center;
   padding: 18px 0;
-  background: rgba(243, 234, 217, 0.94);
+  background: rgba(242, 232, 216, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 1px 0 rgba(27, 36, 32, 0.08);
@@ -42,7 +42,7 @@ rf-navbar {
 
 /* Após scroll ou páginas internas — maré sólida */
 .navbar.is-scrolled {
-  background: var(--mare);
+  background: var(--mangue-600);
   padding: 12px 0;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
@@ -65,7 +65,7 @@ rf-navbar {
 .navbar__logo-icon {
   width: 36px;
   height: 36px;
-  background: var(--tijolo);
+  background: var(--terracotta-600);
   border-radius: var(--radius-s);
   display: grid;
   place-items: center;
@@ -73,7 +73,7 @@ rf-navbar {
   transition: background var(--dur-base);
 }
 
-.navbar__logo:hover .navbar__logo-icon { background: var(--tijolo-escuro); }
+.navbar__logo:hover .navbar__logo-icon { background: var(--terracotta-800); }
 
 .navbar__logo-text {
   display: flex;
@@ -85,7 +85,7 @@ rf-navbar {
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 600;
-  color: var(--mare-escuro);
+  color: var(--ink);
   letter-spacing: var(--tracking-tight);
 }
 
@@ -100,7 +100,7 @@ rf-navbar {
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--tijolo);
+  color: var(--terracotta-800);
   margin-top: 3px;
 }
 
@@ -134,7 +134,7 @@ rf-navbar {
   font-weight: 700;
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--mare-escuro);
+  color: var(--ink);
 }
 
 .menu-toggle__icon {
@@ -198,7 +198,7 @@ rf-navbar {
   align-items: center;
   gap: var(--space-3);
   background: transparent;
-  color: var(--mare-escuro);
+  color: var(--ink);
   padding: 6px var(--space-5) 6px 6px;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(27, 36, 32, 0.15);
@@ -224,7 +224,7 @@ rf-navbar {
 .btn--phone__icon {
   width: 36px;
   height: 36px;
-  background: var(--tijolo);
+  background: var(--terracotta-600);
   border-radius: 50%;
   display: grid;
   place-items: center;

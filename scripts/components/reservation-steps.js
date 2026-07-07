@@ -71,7 +71,7 @@ class RFReservationSteps extends HTMLElement {
             <a href="./apartamentos.html" class="btn btn--outline">Comparar apartamentos</a>
           </div>
         </div>
-        ${renderWaveDivider('var(--cream)')}
+        ${renderWaveDivider('var(--sand-200)')}
       </section>
     `;
 

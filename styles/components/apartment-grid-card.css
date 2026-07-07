@@ -49,7 +49,7 @@
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: var(--coco);
+  background: var(--mangue-600);
   color: var(--branco);
   border-radius: 20px;
   z-index: 2;
@@ -82,7 +82,7 @@
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--tijolo);
+  color: var(--terracotta-800);
 }
 
 .apt-grid-card__title {
@@ -145,7 +145,7 @@
 
 .apt-grid-card__price strong {
   font-size: 1.25rem;
-  color: var(--tijolo);
+  color: var(--terracotta-800);
 }
 
 .apt-grid-card__price--consult {

@@ -1,30 +1,29 @@
 /* ============================================================
-   SECTION SHELL — Ritmo e superfícies
+   SECTION SHELL — Ritmo paper / sand / mangue
 ============================================================ */
 
 .home-section {
   padding-block: var(--section-py);
   width: 100%;
+  position: relative;
 }
 
-.home-section--white {
-  background: var(--branco);
-  color: var(--tinta);
+.home-section--white,
+.home-section--paper {
+  background: var(--paper);
+  color: var(--ink);
 }
 
-.home-section--cream {
-  background: var(--areia);
-  color: var(--tinta);
-}
-
-.home-section--ocean {
-  background: var(--mare);
-  color: var(--branco);
-}
-
+.home-section--cream,
 .home-section--sand {
-  background: var(--areia-escura);
-  color: var(--tinta);
+  background: var(--sand-200);
+  color: var(--ink);
+}
+
+.home-section--ocean,
+.home-section--mangue {
+  background: var(--mangue-600);
+  color: var(--paper);
 }
 
 .section-head {
@@ -44,9 +43,9 @@
 .section-head__title {
   font-family: var(--font-display);
   font-size: var(--fs-section-title);
-  font-weight: 600;
-  line-height: 1.15;
-  color: var(--mare-escuro);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--ink);
   margin-block: var(--space-3);
 }
 
@@ -54,27 +53,31 @@
 .section-head__title .title-accent {
   font-style: italic;
   font-weight: 400;
-  color: var(--tijolo);
+  color: var(--terracotta-600);
 }
 
 .home-section--ocean .section-head__title,
-.home-section--ocean .section-head__title em {
-  color: var(--branco);
+.home-section--mangue .section-head__title,
+.home-section--ocean .section-head__title em,
+.home-section--mangue .section-head__title em {
+  color: var(--paper);
 }
 
-.home-section--ocean .section-head__title em {
-  color: var(--sol);
+.home-section--ocean .section-head__title em,
+.home-section--mangue .section-head__title em {
+  color: var(--gold);
 }
 
 .section-head__lead {
   font-size: var(--fs-section-lead);
-  color: var(--text-muted);
+  color: var(--ink-soft);
   line-height: 1.65;
   max-width: 56ch;
   margin: 0;
 }
 
-.home-section--ocean .section-head__lead {
+.home-section--ocean .section-head__lead,
+.home-section--mangue .section-head__lead {
   color: var(--mare-text-soft);
 }
 
@@ -82,9 +85,9 @@
   width: 100%;
 }
 
-.home-section--white + .home-section--white,
-.home-section--cream + .home-section--cream {
-  border-top: 1px solid var(--areia-escura);
+.home-section--paper + .home-section--paper,
+.home-section--sand + .home-section--sand {
+  border-top: 1px solid var(--line);
 }
 
 @media (max-width: 600px) {

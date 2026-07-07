@@ -1,11 +1,11 @@
 /* ============================================================
-   RESERVATION STEPS — Como funciona (fundo azul → transição)
+   RESERVATION STEPS — Como funciona (mangue + ondas)
 ============================================================ */
 
 .reservation-steps {
   position: relative;
-  background: var(--mare);
-  color: var(--branco);
+  background: linear-gradient(165deg, var(--mangue-600) 0%, var(--mangue-800) 100%);
+  color: var(--paper);
   padding-block: var(--space-10);
   overflow: hidden;
 }
@@ -19,24 +19,24 @@
 }
 
 .reservation-steps__title {
+  font-family: var(--font-display);
   font-size: var(--fs-2xl);
-  font-weight: 600;
-  line-height: 1.08;
-  max-width: 16ch;
+  font-weight: 500;
+  line-height: 1.1;
+  max-width: 18ch;
   margin-block: var(--space-3) var(--space-4);
-  color: var(--white);
+  color: var(--paper);
 }
 
 .reservation-steps__title em {
-  font-family: var(--font-display);
   font-style: italic;
-  color: var(--sol);
+  color: var(--gold);
 }
 
 .reservation-steps__lead {
   font-size: var(--fs-md);
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--mare-text-soft);
   max-width: 52ch;
 }
 
@@ -48,33 +48,38 @@
 
 .reservation-step {
   padding: var(--space-6);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-lg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(251, 246, 236, 0.06);
+  border: 1px solid rgba(251, 246, 236, 0.12);
+  border-radius: var(--radius-m);
 }
 
 .reservation-step__num {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: 700;
-  letter-spacing: var(--tracking-wider);
-  color: var(--sun);
-  margin-bottom: var(--space-3);
+  font-weight: 600;
+  color: var(--gold);
+  background: var(--mangue-900);
+  margin-bottom: var(--space-4);
 }
 
 .reservation-step__title {
+  font-family: var(--font-display);
   font-size: var(--fs-lg);
   font-weight: 600;
   margin-bottom: var(--space-2);
-  color: var(--white);
+  color: var(--paper);
 }
 
 .reservation-step__text {
   font-size: var(--fs-sm);
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--mare-text-soft);
 }
 
 .reservation-steps__highlights {
@@ -85,22 +90,22 @@
 
 .reservation-highlight {
   padding: var(--space-5);
-  border-left: 3px solid var(--accent);
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  border-left: 3px solid var(--gold);
+  background: rgba(251, 246, 236, 0.05);
+  border-radius: 0 var(--radius-s) var(--radius-s) 0;
 }
 
 .reservation-highlight h4 {
   font-size: var(--fs-base);
   font-weight: 600;
   margin-bottom: var(--space-2);
-  color: var(--white);
+  color: var(--paper);
 }
 
 .reservation-highlight p {
   font-size: var(--fs-sm);
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--mare-text-soft);
 }
 
 .reservation-steps__cta {
@@ -110,13 +115,13 @@
 }
 
 .reservation-steps .btn--outline {
-  border-color: rgba(255, 255, 255, 0.35);
-  color: var(--white);
+  border-color: rgba(251, 246, 236, 0.35);
+  color: var(--paper);
 }
 
 .reservation-steps .btn--outline:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(251, 246, 236, 0.1);
+  border-color: rgba(251, 246, 236, 0.55);
 }
 
 @media (min-width: 768px) {

@@ -36,20 +36,20 @@
 
 .display-italic {
   font-style: italic;
-  color: var(--sol);
+  color: var(--gold);
 }
 
 .section-title em,
 .apt-teaser__title em,
 .location-section__title em {
   font-style: italic;
-  color: var(--tijolo);
+  color: var(--terracotta-600);
 }
 
 .title-accent {
   font-style: italic;
   font-weight: 400;
-  color: var(--mare);
+  color: var(--mangue-600);
 }
 
 .section-cta {

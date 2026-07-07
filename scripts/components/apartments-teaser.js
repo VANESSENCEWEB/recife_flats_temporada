@@ -28,10 +28,10 @@ class RFApartmentsTeaser extends HTMLElement {
           <header class="section-head" data-apt-teaser-reveal>
             <span class="eyebrow eyebrow--pill">Nossa coleção</span>
             <h2 class="section-head__title" id="apt-teaser-heading">
-              Flats para toda <em>ocasião</em>
+              Flats para <em>temporada</em> em Recife
             </h2>
             <p class="section-head__lead">
-              Do casal ao grupo em família — escolha o apartamento ideal em Boa Viagem ou Pina e reserve direto.
+              Cada apartamento é escolhido a dedo — compare localização, estrutura e preço, e reserve direto conosco.
             </p>
           </header>
 

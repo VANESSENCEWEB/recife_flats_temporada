@@ -1,24 +1,22 @@
 /* ============================================================
-   MATCHING TEASER — Dentro do container (home)
+   MATCHING TEASER — Split foto + painel mangue
 ============================================================ */
 
-.matching-contained__grid {
+.matching-split {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: var(--space-7);
-  align-items: center;
-}
-
-.matching-contained__media {
-  border-radius: var(--radius-lg);
+  grid-template-columns: 1fr 1fr;
+  min-height: min(520px, 70vh);
   overflow: hidden;
-  aspect-ratio: 4 / 3;
-  background: var(--ocean);
-  box-shadow: var(--shadow-md);
 }
 
-.matching-contained__media picture,
-.matching-contained__media img {
+.matching-split__media {
+  position: relative;
+  min-height: 320px;
+  background: var(--mangue-800);
+}
+
+.matching-split__media picture,
+.matching-split__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -26,36 +24,58 @@
   display: block;
 }
 
-.matching-contained__copy {
+.matching-split__panel {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  padding: clamp(2.5rem, 5vw, 4.5rem);
+  background: linear-gradient(165deg, var(--mangue-700) 0%, var(--mangue-900) 100%);
+  color: var(--paper);
 }
 
-.matching-contained__actions {
-  gap: var(--space-3);
+.matching-split__panel-inner {
+  max-width: 28rem;
+}
+
+.matching-split__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--paper);
+  margin-bottom: var(--space-4);
+}
+
+.matching-split__title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.matching-split__lead {
+  font-size: var(--fs-md);
+  line-height: 1.65;
+  color: var(--mare-text-soft);
+  margin-bottom: var(--space-6);
+}
+
+.matching-split__actions {
+  display: flex;
   flex-wrap: wrap;
-}
-
-.matching-contained__actions .btn--lg {
-  padding: 14px var(--space-6);
+  gap: var(--space-3);
 }
 
 @media (max-width: 768px) {
-  .matching-contained__grid {
+  .matching-split {
     grid-template-columns: 1fr;
-    gap: var(--space-5);
+    min-height: auto;
   }
 
-  .matching-contained__media {
+  .matching-split__media {
     aspect-ratio: 16 / 10;
     max-height: 280px;
   }
 }
 
-/* ============================================================
-   MATCHING INTELIGENTE — modal do questionário
-============================================================ */
+/* Legado — modal do questionário */
 .matching-modal {
   position: fixed;
   inset: 0;

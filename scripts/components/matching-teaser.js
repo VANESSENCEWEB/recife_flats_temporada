@@ -1,5 +1,5 @@
 /**
- * <rf-matching-teaser> — Matching dentro do trilho .container (sem foto esticada).
+ * <rf-matching-teaser> — Split: foto + painel mangue (mockup).
  */
 
 import { assetUrl } from '../utils/paths.js';
@@ -11,32 +11,28 @@ class RFMatchingTeaser extends HTMLElement {
     const photoSrcWebp = assetUrl('./assets/images/matching/matching-couple-doubt.webp');
 
     this.innerHTML = `
-      <section class="home-section home-section--cream matching-contained" id="matching" aria-labelledby="matching-heading">
-        <div class="container">
-          <div class="matching-contained__grid">
-            <div class="matching-contained__media" data-matching-reveal>
-              <picture>
-                <source srcset="${photoSrcWebp}" type="image/webp">
-                <img src="${photoSrc}" alt="Casal em dúvida olhando para o celular, em frente a um prédio de apartamentos em Boa Viagem" loading="lazy">
-              </picture>
-            </div>
+      <section class="matching-split" id="matching" aria-labelledby="matching-heading">
+        <div class="matching-split__media" data-matching-reveal>
+          <picture>
+            <source srcset="${photoSrcWebp}" type="image/webp">
+            <img src="${photoSrc}" alt="Casal em dúvida olhando para o celular, em frente a um prédio de apartamentos em Boa Viagem" loading="lazy">
+          </picture>
+        </div>
 
-            <div class="matching-contained__copy" data-matching-reveal>
-              <header class="section-head">
-                <span class="eyebrow eyebrow--pill">Em dúvida?</span>
-                <h2 class="section-head__title" id="matching-heading">
-                  Não sabe qual <em>apartamento</em> escolher?
-                </h2>
-                <p class="section-head__lead">
-                  Faça o <strong>Matching Inteligente</strong> e descubra, em segundos, o apê ideal pra sua viagem em Recife.
-                </p>
-              </header>
-              <div class="matching-contained__actions section-cta">
-                <button type="button" class="btn btn--sun btn--lg" data-open-matching>
-                  Fazer Matching agora
-                </button>
-                <a href="./apartmatch.html" class="btn btn--secondary btn--lg">Saiba mais</a>
-              </div>
+        <div class="matching-split__panel" data-matching-reveal>
+          <div class="matching-split__panel-inner">
+            <span class="eyebrow eyebrow--on-dark">Em dúvida?</span>
+            <h2 class="matching-split__title" id="matching-heading">
+              Não sabe qual <em>apartamento</em> escolher?
+            </h2>
+            <p class="matching-split__lead">
+              Faça o <strong>Matching Inteligente</strong> e descubra, em segundos, o apê ideal pra sua viagem em Recife.
+            </p>
+            <div class="matching-split__actions">
+              <button type="button" class="btn btn--sun btn--lg" data-open-matching>
+                Fazer Matching agora
+              </button>
+              <a href="./apartmatch.html" class="btn btn--outline btn--lg">Saiba mais</a>
             </div>
           </div>
         </div>

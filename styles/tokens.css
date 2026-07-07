@@ -1,71 +1,123 @@
 /* ============================================================
    DESIGN TOKENS — Recife Flats Temporada
-   Paleta: areia / maré / tijolo / coco / sol / tinta
-   Tipos: Newsreader + Manrope + IBM Plex Mono
+   Paleta: terracotta / mangue / sand (WCAG AA verificado)
+   Tipos: Fraunces + Inter + JetBrains Mono
 ============================================================ */
 
 :root {
-  /* ---------- PALETA OFICIAL ---------- */
-  --areia:        #F3EAD9;
-  --areia-escura: #E4D5B7;
-  --mare:         #0E4A47;
-  --mare-escuro:  #082E2C;
-  --mare-claro:   #16635F;
-  --tijolo:       #C1512D;
-  --tijolo-escuro:#9E3F21;
-  --coco:         #4B6B3F;
-  --sol:          #E8A33D;
-  --tinta:        #1B2420;
-  --branco:       #FFFDF8;
+  /* ---------- TERRACOTTA ---------- */
+  --terracotta-100: #FDF1EC;
+  --terracotta-200: #FAE0D3;
+  --terracotta-300: #F0C6A8;
+  --terracotta-400: #E2A67A;
+  --terracotta-500: #CD7C4E;
+  --terracotta-600: #B8502F;
+  --terracotta-700: #9C4128;
+  --terracotta-800: #8C3A22;
+  --terracotta-900: #6E2D1A;
 
-  /* ---------- ALIASES (componentes legados) ---------- */
-  --cream:        var(--areia);
-  --cream-dark:   var(--areia-escura);
-  --ocean:        var(--mare);
-  --ocean-light:  var(--mare-claro);
-  --clay:         var(--tijolo);
-  --clay-light:   var(--tijolo-escuro);
-  --sand:         var(--sol);
-  --sand-light:   #F0C56A;
-  --sun:          var(--sol);
-  --sun-light:    #F0C56A;
-  --sun-dark:     #C98A28;
-  --text:         var(--tinta);
-  --text-muted:   #4B5751;
-  --white:        var(--branco);
-  --black:        var(--mare-escuro);
-  --accent:       var(--tijolo);
-  --accent-soft:  #F4DDD3;
-  --accent-dark:  var(--mare);
-  --accent-darker:var(--mare-escuro);
-  --brand-blue:   var(--mare-claro);
-  --sky-soft:     #D4E8E6;
-  --sky-mid:      var(--mare-claro);
+  /* ---------- MANGUE ---------- */
+  --mangue-100: #EAF0EC;
+  --mangue-200: #D0DFD4;
+  --mangue-300: #A8C4AF;
+  --mangue-400: #7FA98B;
+  --mangue-500: #578566;
+  --mangue-600: #33513F;
+  --mangue-700: #294232;
+  --mangue-800: #223A2C;
+  --mangue-900: #1A2E22;
+  --mangue-1000: #132119;
 
-  --white-90: rgba(255, 253, 248, 0.90);
-  --white-65: rgba(255, 253, 248, 0.65);
-  --white-40: rgba(255, 253, 248, 0.40);
-  --white-20: rgba(255, 253, 248, 0.20);
-  --white-10: rgba(255, 253, 248, 0.10);
+  /* ---------- SAND / NEUTRAL ---------- */
+  --paper:        #FBF6EC;
+  --sand-200:     #F2E8D8;
+  --sand-300:     #E8DAC3;
+  --sand-400:     #D9C7A8;
+  --sand-500:     #C4AD87;
+  --sand-600:     #A88F68;
+  --sand-700:     #8A7250;
+  --sand-800:     #6B5A42;
+  --sand-900:     #5C4F41;
+  --sand-1000:    #453A2F;
+  --sand-1100:    #332A22;
+  --ink:          #2A2118;
+  --ink-soft:     #5C4F41;
+  --line:         rgba(42, 33, 24, 0.12);
 
-  --mare-text-soft: #BFD8D4;
-  --mare-text-mid:  #9DB6B0;
+  /* ---------- ACCENTOS ---------- */
+  --gold:         #F0C79A;
+  --gold-dark:    #C99A3D;
+
+  /* ---------- SEMÂNTICOS ---------- */
+  --success-bg:   #EAF0EC;
+  --success-text: #294232;
+  --warning-bg:   #FBEFDA;
+  --warning-text: #8A5A12;
+  --error-bg:     #F7E7E4;
+  --error-text:   #8C2F22;
+  --info-bg:      #E7EEEE;
+  --info-text:    #3C5A61;
+
+  /* ---------- ALIASES LEGADOS (componentes existentes) ---------- */
+  --areia:        var(--sand-200);
+  --areia-escura: var(--sand-300);
+  --mare:         var(--mangue-600);
+  --mare-escuro:  var(--mangue-800);
+  --mare-claro:   var(--mangue-500);
+  --tijolo:       var(--terracotta-600);
+  --tijolo-escuro:var(--terracotta-800);
+  --coco:         var(--mangue-600);
+  --sol:          var(--gold);
+  --tinta:        var(--ink);
+  --branco:       var(--paper);
+
+  --cream:        var(--sand-200);
+  --cream-dark:   var(--sand-300);
+  --ocean:        var(--mangue-600);
+  --ocean-light:  var(--mangue-500);
+  --clay:         var(--terracotta-600);
+  --clay-light:   var(--terracotta-800);
+  --sand:         var(--gold);
+  --sand-light:   #F5D4A8;
+  --sun:          var(--gold);
+  --sun-light:    var(--gold);
+  --sun-dark:     var(--gold-dark);
+  --text:         var(--ink);
+  --text-muted:   var(--ink-soft);
+  --white:        var(--paper);
+  --black:        var(--mangue-900);
+  --accent:       var(--terracotta-600);
+  --accent-soft:  var(--terracotta-200);
+  --accent-dark:  var(--mangue-600);
+  --accent-darker:var(--mangue-800);
+  --brand-blue:   var(--mangue-500);
+  --sky-soft:     var(--mangue-100);
+  --sky-mid:      var(--mangue-400);
+
+  --white-90: rgba(251, 246, 236, 0.90);
+  --white-65: rgba(251, 246, 236, 0.65);
+  --white-40: rgba(251, 246, 236, 0.40);
+  --white-20: rgba(251, 246, 236, 0.20);
+  --white-10: rgba(251, 246, 236, 0.10);
+
+  --mare-text-soft: rgba(251, 246, 236, 0.82);
+  --mare-text-mid:  var(--mangue-400);
 
   /* ---------- TIPOGRAFIA ---------- */
-  --font-display: "Newsreader", Georgia, serif;
-  --font-body:    "Manrope", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono:    "IBM Plex Mono", ui-monospace, monospace;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace;
   --font-italic:  var(--font-display);
 
-  --fs-xs:    0.72rem;
-  --fs-sm:    0.82rem;
-  --fs-base:  1rem;
-  --fs-md:    1.05rem;
-  --fs-lg:    clamp(1.15rem, 1.6vw, 1.3rem);
+  --fs-xs:    0.78rem;
+  --fs-sm:    0.875rem;
+  --fs-base:  0.9375rem;
+  --fs-md:    1.125rem;
+  --fs-lg:    clamp(1.15rem, 1.6vw, 1.375rem);
   --fs-xl:    clamp(1.4rem, 2.2vw, 1.75rem);
-  --fs-2xl:   clamp(1.8rem, 2.8vw, 2.25rem);
-  --fs-3xl:   clamp(2.2rem, 3.8vw, 2.8rem);
-  --fs-display: clamp(2.4rem, 5.4vw, 4.2rem);
+  --fs-2xl:   clamp(1.75rem, 2.8vw, 2.875rem);
+  --fs-3xl:   clamp(2.2rem, 3.8vw, 3.2rem);
+  --fs-display: clamp(2.5rem, 5vw, 5rem);
 
   --lh-tight:   1.05;
   --lh-snug:    1.25;
@@ -94,28 +146,28 @@
   /* ---------- LAYOUT ---------- */
   --container:      1180px;
   --container-max:  var(--container);
-  --container-px:   24px;
+  --container-px:   32px;
   --nav-height:     72px;
   --nav-height-mobile: 64px;
   --announcement-height: 48px;
   --announcement-height-mobile: 52px;
 
   /* ---------- RAIOS ---------- */
-  --radius-s:     4px;
-  --radius-m:     8px;
+  --radius-s:     8px;
+  --radius-m:     14px;
   --radius-sm:    var(--radius-s);
   --radius-md:    var(--radius-m);
   --radius-lg:    var(--radius-m);
-  --radius-xl:    12px;
-  --radius-pill:  100px;
+  --radius-xl:    18px;
+  --radius-pill:  999px;
   --radius-full:  9999px;
 
   /* ---------- SOMBRAS ---------- */
-  --shadow-card: 0 1px 2px rgba(27, 36, 32, 0.06), 0 6px 20px rgba(27, 36, 32, 0.08);
+  --shadow-card: 0 1px 2px rgba(42, 33, 24, 0.06), 0 6px 20px rgba(42, 33, 24, 0.08);
   --shadow-sm:   var(--shadow-card);
-  --shadow-md:   0 8px 28px rgba(27, 36, 32, 0.12);
-  --shadow-lg:   0 20px 40px rgba(27, 36, 32, 0.16);
-  --shadow-clay: 0 6px 16px rgba(193, 81, 45, 0.35);
+  --shadow-md:   0 8px 28px rgba(42, 33, 24, 0.12);
+  --shadow-lg:   0 20px 40px rgba(42, 33, 24, 0.14);
+  --shadow-clay: 0 6px 16px rgba(184, 80, 47, 0.32);
 
   /* ---------- MOTION ---------- */
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
@@ -134,7 +186,7 @@
   --z-modal:    300;
 
   --section-py: clamp(4rem, 7vw, 6rem);
-  --fs-section-title: clamp(1.8rem, 3.4vw, 2.6rem);
+  --fs-section-title: clamp(1.75rem, 3.2vw, 2.875rem);
   --fs-section-lead: 1.05rem;
 }
 

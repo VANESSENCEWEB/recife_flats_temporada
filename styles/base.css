@@ -20,8 +20,8 @@ body {
   font-family: var(--font-body);
   font-size: var(--fs-base);
   line-height: var(--lh-normal);
-  color: var(--tinta);
-  background-color: var(--areia);
+  color: var(--ink);
+  background-color: var(--sand-200);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 600;
   line-height: var(--lh-tight);
-  color: var(--mare-escuro);
+  color: var(--ink);
   margin: 0 0 0.5em;
 }
 
@@ -65,13 +65,13 @@ p { text-wrap: pretty; }
 h1, h2, h3 { text-wrap: balance; }
 
 :focus-visible {
-  outline: 3px solid var(--sol);
+  outline: 3px solid var(--gold);
   outline-offset: 2px;
 }
 
 ::selection {
-  background: var(--tijolo);
-  color: var(--branco);
+  background: var(--terracotta-600);
+  color: var(--paper);
 }
 
 rf-announcement,
