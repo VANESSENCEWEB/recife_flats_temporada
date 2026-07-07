@@ -27,6 +27,16 @@
   margin-top: calc(-1 * var(--hero-header-offset));
 }
 
+.site-content--house:has(rf-hero-roof) .hero {
+  --hero-header-offset: calc(var(--roof-height) + var(--nav-height) + var(--announcement-height));
+  margin-top: calc(-1 * var(--hero-header-offset));
+}
+
+.site-content--house:not(:has(.announcement)):has(rf-hero-roof) .hero {
+  --hero-header-offset: calc(var(--roof-height) + var(--nav-height));
+  margin-top: calc(-1 * var(--hero-header-offset));
+}
+
 @media (max-width: 600px) {
   .hero {
     --hero-cloud-reserve: 4rem;
@@ -38,6 +48,16 @@
 
   .site-content:has(.announcement) .hero {
     --hero-header-offset: calc(var(--nav-height-mobile) + var(--announcement-height-mobile));
+    margin-top: calc(-1 * var(--hero-header-offset));
+  }
+
+  .site-content--house:has(rf-hero-roof) .hero {
+    --hero-header-offset: calc(var(--nav-height-mobile) + var(--announcement-height-mobile));
+    margin-top: calc(-1 * var(--hero-header-offset));
+  }
+
+  .site-content--house:not(:has(.announcement)):has(rf-hero-roof) .hero {
+    --hero-header-offset: var(--nav-height-mobile);
     margin-top: calc(-1 * var(--hero-header-offset));
   }
 }

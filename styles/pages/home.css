@@ -6,8 +6,30 @@
   padding-top: var(--announcement-height);
 }
 
+.site-content--house:has(rf-hero-roof) {
+  padding-top: calc(var(--roof-height) + var(--announcement-height));
+}
+
+.site-content--house:not(:has(.announcement)):has(rf-hero-roof) {
+  padding-top: var(--roof-height);
+}
+
+@media (max-width: 900px) {
+  .site-content--house:has(rf-hero-roof) {
+    padding-top: var(--announcement-height);
+  }
+
+  .site-content--house:not(:has(.announcement)):has(rf-hero-roof) {
+    padding-top: 0;
+  }
+}
+
 @media (max-width: 480px) {
   .site-content:has(.announcement) {
+    padding-top: var(--announcement-height-mobile);
+  }
+
+  .site-content--house:has(rf-hero-roof) {
     padding-top: var(--announcement-height-mobile);
   }
 }

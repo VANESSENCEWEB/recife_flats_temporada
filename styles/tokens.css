@@ -151,6 +151,9 @@
   --nav-height-mobile: 64px;
   --announcement-height: 48px;
   --announcement-height-mobile: 52px;
+  --roof-height: clamp(80px, 10vw, 140px);
+  --house-inset: 3%;
+  --house-border: 3px;
 
   /* ---------- RAIOS ---------- */
   --radius-s:     8px;

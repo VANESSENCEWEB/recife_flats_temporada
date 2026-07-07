@@ -7,6 +7,7 @@ if (window.gsap && window.ScrollTrigger) {
 }
 
 import './components/announcement.js';
+import './components/hero-roof.js';
 import './components/navbar.js';
 import './components/menu.js';
 import './components/booking-search.js';
