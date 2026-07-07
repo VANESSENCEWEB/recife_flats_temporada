@@ -161,23 +161,13 @@ class RFHero extends HTMLElement {
 
         <div class="hero__container container">
           <div class="hero__text">
-            <span class="hero__eyebrow" data-hero-eyebrow>
-              <span class="hero__eyebrow-dot"></span>
-              <span class="hero__eyebrow-text">${eyebrow}</span>
-            </span>
+            <span class="eyebrow hero__eyebrow" data-hero-eyebrow>${eyebrow}</span>
 
             <h1 class="hero__title" data-hero-title>${title}</h1>
 
             ${description ? `
               <p class="hero__description" data-hero-desc>${description}</p>
             ` : ''}
-
-            <div class="hero__badges" data-hero-badges>
-              <span class="hero__badge">★ 4.9 no Google</span>
-              <span class="hero__badge">🌊 100m da praia</span>
-              <span class="hero__badge">📶 WiFi 300Mbps</span>
-              <span class="hero__badge">🔒 Reserva direta</span>
-            </div>
 
             <div class="hero__cta" data-hero-cta>
               <a href="./apartamentos.html" class="btn btn--primary">Ver apartamentos</a>
@@ -215,12 +205,11 @@ class RFHero extends HTMLElement {
     const titleEl = this.querySelector('[data-hero-title]');
     const eyebrowEl = this.querySelector('[data-hero-eyebrow]');
     const descEl = this.querySelector('[data-hero-desc]');
-    const badgesEl = this.querySelector('[data-hero-badges]');
     const ctaEl = this.querySelector('[data-hero-cta]');
     const searchEl = this.querySelector('[data-hero-search]');
 
     const letters = titleEl ? splitTextIntoLetters(titleEl) : [];
-    const revealEls = [eyebrowEl, descEl, badgesEl, ctaEl, searchEl].filter(Boolean);
+    const revealEls = [eyebrowEl, descEl, ctaEl, searchEl].filter(Boolean);
 
     if (reduce) {
       revealEls.forEach((el) => {
@@ -242,9 +231,8 @@ class RFHero extends HTMLElement {
     }
     if (eyebrowEl) tl.to(eyebrowEl, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, 0.1);
     if (descEl) tl.to(descEl, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.35);
-    if (badgesEl) tl.to(badgesEl, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.45);
-    if (ctaEl) tl.to(ctaEl, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.55);
-    if (searchEl) tl.to(searchEl, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.65);
+    if (ctaEl) tl.to(ctaEl, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, 0.45);
+    if (searchEl) tl.to(searchEl, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.55);
   }
 }
 

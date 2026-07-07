@@ -13,7 +13,7 @@
   margin-top: calc(-1 * var(--hero-header-offset));
   overflow: hidden;
   isolation: isolate;
-  background-color: var(--ocean);
+  background-color: var(--mare-escuro);
   display: flex;
   flex-direction: column;
 }
@@ -57,12 +57,7 @@ rf-hero[data-period="night"] .hero__video {
 }
 
 rf-hero[data-period="night"] .hero__overlay {
-  background:
-    linear-gradient(180deg,
-      rgba(13, 13, 13, 0.45) 0%,
-      rgba(13, 13, 13, 0.15) 30%,
-      rgba(13, 13, 13, 0.25) 70%,
-      rgba(13, 13, 13, 0.70) 100%);
+  background: linear-gradient(180deg, rgba(8, 46, 44, 0.65) 0%, rgba(8, 46, 44, 0.88) 100%);
 }
 
 .hero__overlay {
@@ -70,12 +65,18 @@ rf-hero[data-period="night"] .hero__overlay {
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background:
-    linear-gradient(180deg,
-      rgba(13, 13, 13, 0.42) 0%,
-      rgba(13, 13, 13, 0.12) 28%,
-      rgba(13, 13, 13, 0.08) 55%,
-      rgba(13, 13, 13, 0.55) 100%);
+  background: linear-gradient(180deg, rgba(8, 46, 44, 0.55) 0%, rgba(8, 46, 44, 0.78) 100%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 26px 26px;
+  opacity: 0.35;
 }
 
 .hero__grain {
@@ -97,7 +98,7 @@ rf-hero[data-period="night"] .hero__overlay {
   z-index: 7;
   overflow: hidden;
   padding-block: 10px;
-  background: rgba(26, 63, 82, 0.55);
+  background: rgba(8, 46, 44, 0.55);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -199,67 +200,35 @@ rf-hero[data-period="night"] .hero__overlay {
   padding-bottom: 0;
 }
 
-/* --- Eyebrow com pílula outline e dot teal --- */
+/* --- Eyebrow design system --- */
 .hero__eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  background: transparent;
-  border: 1px dashed var(--white-40);
-  border-radius: var(--radius-pill);
-  padding: 8px var(--space-4);
-  margin-bottom: var(--space-5);
   opacity: 0;
   transform: translateY(20px);
-}
-.hero__eyebrow-dot {
-  width: 7px;
-  height: 7px;
-  background: var(--accent);
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px rgba(27, 154, 170, 0.25);
-  animation: hero-pulse 2s ease-in-out infinite;
-}
-@keyframes hero-pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%      { opacity: 0.6; transform: scale(0.85); }
-}
-.hero__eyebrow-text {
-  font-size: var(--fs-xs);
-  font-weight: 600;
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
-  color: var(--white);
+  margin-bottom: var(--space-5);
 }
 
 .hero__title {
   font-family: var(--font-display);
   font-size: var(--fs-display);
-  font-weight: 700;
-  line-height: 1.02;
-  color: var(--white);
-  letter-spacing: -0.03em;
+  font-weight: 600;
+  line-height: 1.05;
+  color: var(--branco);
+  letter-spacing: -0.02em;
   margin-bottom: var(--space-4);
-  max-width: 12ch;
+  max-width: 16ch;
   text-shadow:
     0 1px 2px rgba(0, 0, 0, 0.5),
-    0 4px 24px rgba(0, 0, 0, 0.45),
-    0 12px 48px rgba(0, 0, 0, 0.35);
+    0 4px 24px rgba(0, 0, 0, 0.45);
   display: block;
 }
 
 .hero__title em {
-  font-family: var(--font-italic);
+  font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  color: var(--sun);
+  color: var(--sol);
   display: inline;
   white-space: normal;
-  letter-spacing: -0.02em;
-  text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.55),
-    0 4px 20px rgba(0, 0, 0, 0.4),
-    0 0 40px rgba(245, 194, 78, 0.25);
 }
 
 /* --- Sol girando no fim do título --- */
@@ -297,49 +266,13 @@ rf-hero[data-period="night"] .hero__overlay {
 }
 
 .hero__description {
-  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
   line-height: 1.55;
-  color: var(--white-90);
-  max-width: 48ch;
+  color: #E7EFEC;
+  max-width: 32ch;
   margin-bottom: var(--space-5);
   opacity: 0;
   transform: translateY(20px);
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* --- Trust badges (pílulas com hover) --- */
-.hero__badges {
-  display: flex;
-  gap: var(--space-3);
-  flex-wrap: wrap;
-  margin-bottom: var(--space-5);
-  opacity: 0;
-  transform: translateY(20px);
-}
-.hero__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 8px var(--space-4);
-  background: var(--white-10);
-  border: 1px solid var(--white-20);
-  border-radius: var(--radius-pill);
-  font-size: var(--fs-sm);
-  font-weight: 500;
-  color: var(--white);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: background var(--dur-base), border-color var(--dur-base), transform var(--dur-fast);
-}
-.hero__badge:hover {
-  background: var(--white-20);
-  border-color: var(--white-40);
-  transform: translateY(-1px);
-}
-.hero__badge svg {
-  width: 14px;
-  height: 14px;
-  color: var(--accent-soft);
 }
 
 /* --- CTAs --- */
@@ -413,14 +346,6 @@ rf-hero[data-period="night"] .hero__overlay {
     line-height: 1.5;
     margin-bottom: var(--space-3);
   }
-  .hero__badges {
-    gap: var(--space-2);
-    margin-bottom: var(--space-3);
-  }
-  .hero__badge {
-    font-size: var(--fs-xs);
-    padding: 6px var(--space-3);
-  }
   .hero__cta {
     width: 100%;
     gap: var(--space-2);
@@ -440,10 +365,6 @@ rf-hero[data-period="night"] .hero__overlay {
 @media (max-width: 480px) {
   .hero__title { font-size: clamp(1.5rem, 9vw, 2.25rem); }
   .hero__description { font-size: 0.875rem; }
-  .hero__badges {
-    display: flex;
-    flex-wrap: wrap;
-  }
 }
 
 /* ============================================================
@@ -532,7 +453,7 @@ rf-hero[data-period="night"] .hero__overlay {
 .site-content {
   position: relative;
   z-index: 2;
-  background-color: var(--cream);
+  background-color: var(--areia);
   min-height: 100vh;
   transform-origin: right center;
   will-change: transform, filter;

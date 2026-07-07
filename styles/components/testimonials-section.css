@@ -1,23 +1,24 @@
 /* ============================================================
-   TESTIMONIALS
+   TESTIMONIALS — Design system
 ============================================================ */
 
 .testimonials__score {
-  color: var(--accent-dark);
+  color: var(--mare);
   font-weight: 700;
 }
 
 .testimonials__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-4);
+  gap: 24px;
 }
 
 .review-card {
-  background: var(--cream);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  border: 1px solid rgba(13, 13, 13, 0.06);
+  background: var(--branco);
+  border-radius: var(--radius-m);
+  padding: 28px;
+  border: none;
+  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -25,15 +26,16 @@
 }
 
 .review-card__stars {
-  color: var(--sun-dark);
+  color: var(--sol);
+  font-family: var(--font-mono);
   font-size: var(--fs-sm);
-  letter-spacing: 0.06em;
+  letter-spacing: 2px;
 }
 
 .review-card__quote {
-  font-size: var(--fs-sm);
+  font-size: 1rem;
   line-height: 1.65;
-  color: var(--text);
+  color: var(--tinta);
   flex: 1;
   margin: 0;
 }
@@ -41,23 +43,25 @@
 .review-card__author {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 12px;
   font-size: var(--fs-sm);
+  margin-top: 6px;
 }
 
 .review-card__author strong { display: block; font-weight: 600; }
-.review-card__author span { color: var(--text-muted); font-size: var(--fs-xs); }
+.review-card__author span { color: #6B7770; font-size: 0.76rem; }
 
 .review-card__avatar {
-  width: 36px;
-  height: 36px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: var(--ocean);
-  color: var(--white);
+  background: var(--mare);
+  color: var(--branco);
   display: grid;
   place-items: center;
-  font-size: 0.65rem;
-  font-weight: 700;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
   flex-shrink: 0;
 }
 

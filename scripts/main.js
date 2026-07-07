@@ -11,6 +11,7 @@ import './components/navbar.js';
 import './components/menu.js';
 import './components/booking-search.js';
 import './components/hero.js';
+import './components/trust-strip.js';
 import './components/location-section.js';
 import './components/reservation-steps.js';
 import './components/matching-teaser.js';
@@ -33,3 +34,15 @@ import './components/stats-banner.js';
 import './components/booking-promo.js';
 import './components/apartment-detail.js';
 import './components/contact-page.js';
+import { initReveal } from './utils/reveal.js';
+
+function bootReveal() {
+  initReveal();
+  document.addEventListener('rf-content-ready', () => initReveal());
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', bootReveal);
+} else {
+  bootReveal();
+}

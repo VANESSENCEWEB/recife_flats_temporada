@@ -1,10 +1,7 @@
 /* ============================================================
-   BASE — Reset moderno + defaults globais
-   Carregado depois de tokens.css. Não usa nenhuma cor crua —
-   tudo via variável.
+   BASE — Reset + defaults globais
 ============================================================ */
 
-/* Reset enxuto (estilo Josh Comeau, simplificado) */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -23,8 +20,8 @@ body {
   font-family: var(--font-body);
   font-size: var(--fs-base);
   line-height: var(--lh-normal);
-  color: var(--text);
-  background-color: var(--black);   /* fundo escuro aparece por trás do site quando o menu abre */
+  color: var(--tinta);
+  background-color: var(--areia);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -52,34 +49,36 @@ a {
   text-decoration: none;
 }
 
+ul {
+  list-style: none;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-weight: 600;
   line-height: var(--lh-tight);
-  letter-spacing: var(--tracking-tight);
+  color: var(--mare-escuro);
+  margin: 0 0 0.5em;
 }
 
 p { text-wrap: pretty; }
 h1, h2, h3 { text-wrap: balance; }
 
-/* Foco acessível */
 :focus-visible {
-  outline: 2px solid var(--sand);
-  outline-offset: 3px;
-  border-radius: 2px;
+  outline: 3px solid var(--sol);
+  outline-offset: 2px;
 }
 
-/* Seleção de texto */
 ::selection {
-  background: var(--clay);
-  color: var(--white);
+  background: var(--tijolo);
+  color: var(--branco);
 }
 
-/* Custom elements precisam ser block — senão geram whitespace fantasma */
 rf-announcement,
 rf-navbar,
 rf-menu,
 rf-hero,
+rf-trust-strip,
 rf-booking-search,
 rf-breadcrumbs,
 rf-apartment-card,

@@ -3,13 +3,13 @@
 ============================================================ */
 
 .site-footer {
-  background: var(--ocean);
-  color: rgba(255, 255, 255, 0.75);
+  background: var(--mare-escuro);
+  color: #CFE0DC;
 }
 
 .site-footer__main {
   padding-block: var(--space-10) var(--space-8);
-  border-top: 4px solid var(--accent);
+  border-top: none;
 }
 
 .site-footer__grid {
@@ -28,8 +28,8 @@
 .site-footer__logo-icon {
   width: 44px;
   height: 44px;
-  background: var(--accent);
-  border-radius: var(--radius-md);
+  background: var(--tijolo);
+  border-radius: var(--radius-s);
   display: grid;
   place-items: center;
 }
@@ -45,11 +45,12 @@
 
 .site-footer__brand-sub {
   display: block;
+  font-family: var(--font-mono);
   font-size: var(--fs-xs);
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--accent-soft);
+  color: var(--mare-text-soft);
 }
 
 .site-footer__desc {
@@ -76,8 +77,9 @@
 }
 
 .site-footer__socials a:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.35);
+  background: var(--sol);
+  border-color: var(--sol);
+  color: var(--mare-escuro);
   transform: translateY(-2px);
 }
 
@@ -107,7 +109,7 @@
 }
 
 .site-footer__col a:hover {
-  color: var(--white);
+  color: var(--sol);
   gap: var(--space-3);
 }
 

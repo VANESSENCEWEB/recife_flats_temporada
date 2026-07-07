@@ -1,45 +1,35 @@
 /* ============================================================
-   SECTION SHELL — Container, ritmo e hierarquia visual da home
-   Toda seção de conteúdo usa .home-section + .container
+   SECTION SHELL — Ritmo e superfícies
 ============================================================ */
 
-:root {
-  --section-py: clamp(2.75rem, 5vw, 4.5rem);
-  --fs-section-title: clamp(1.625rem, 2.4vw, 2.25rem);
-  --fs-section-lead: 1rem;
-}
-
-/* Base: padding vertical consistente, largura total do fundo */
 .home-section {
   padding-block: var(--section-py);
   width: 100%;
 }
 
-/* Superfícies — alternância clara (branco ↔ creme) */
 .home-section--white {
-  background: var(--white);
-  color: var(--text);
+  background: var(--branco);
+  color: var(--tinta);
 }
 
 .home-section--cream {
-  background: var(--cream);
-  color: var(--text);
+  background: var(--areia);
+  color: var(--tinta);
 }
 
 .home-section--ocean {
-  background: var(--ocean);
-  color: var(--white);
+  background: var(--mare);
+  color: var(--branco);
 }
 
 .home-section--sand {
-  background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%);
-  color: var(--text);
+  background: var(--areia-escura);
+  color: var(--tinta);
 }
 
-/* Cabeçalho de seção — mesma borda esquerda que o corpo */
 .section-head {
-  width: 100%;
-  margin-bottom: var(--space-6);
+  max-width: 640px;
+  margin-bottom: 56px;
 }
 
 .section-head--center {
@@ -47,63 +37,56 @@
   text-align: center;
 }
 
+.section-head--center .section-head__lead {
+  margin-inline: auto;
+}
+
 .section-head__title {
   font-family: var(--font-display);
   font-size: var(--fs-section-title);
   font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: var(--tracking-tight);
-  margin-block: var(--space-3) var(--space-3);
+  line-height: 1.15;
+  color: var(--mare-escuro);
+  margin-block: var(--space-3);
 }
 
 .section-head__title em,
 .section-head__title .title-accent {
-  font-family: var(--font-italic);
   font-style: italic;
   font-weight: 400;
-  color: var(--accent-dark);
+  color: var(--tijolo);
 }
 
-.home-section--ocean .section-head__title em,
-.home-section--ocean .section-head__title .title-accent {
-  color: var(--sun);
+.home-section--ocean .section-head__title,
+.home-section--ocean .section-head__title em {
+  color: var(--branco);
+}
+
+.home-section--ocean .section-head__title em {
+  color: var(--sol);
 }
 
 .section-head__lead {
   font-size: var(--fs-section-lead);
   color: var(--text-muted);
-  line-height: 1.6;
-  max-width: 48ch;
+  line-height: 1.65;
+  max-width: 56ch;
   margin: 0;
 }
 
 .home-section--ocean .section-head__lead {
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--mare-text-soft);
 }
 
-.home-section--ocean .eyebrow--pill {
-  color: var(--white);
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Corpo da seção — sempre dentro do container */
 .section-body {
   width: 100%;
 }
 
-/* Separador sutil entre faixas claras iguais */
 .home-section--white + .home-section--white,
 .home-section--cream + .home-section--cream {
-  border-top: 1px solid rgba(13, 13, 13, 0.06);
+  border-top: 1px solid var(--areia-escura);
 }
 
 @media (max-width: 600px) {
-  .section-head {
-    margin-bottom: var(--space-5);
-  }
-
-  .section-head--center .section-head__lead {
-    margin-inline: auto;
-  }
+  .section-head { margin-bottom: var(--space-6); }
 }

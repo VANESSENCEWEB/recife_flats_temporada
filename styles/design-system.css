@@ -1,0 +1,146 @@
+/* ============================================================
+   DESIGN SYSTEM — Componentes compartilhados
+============================================================ */
+
+/* Eyebrow com traço tijolo */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--tijolo);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--tijolo);
+  flex-shrink: 0;
+}
+
+.eyebrow--on-dark,
+.hero .eyebrow,
+.home-section--ocean .eyebrow {
+  color: var(--sol);
+}
+
+.eyebrow--on-dark::before,
+.hero .eyebrow::before,
+.home-section--ocean .eyebrow::before {
+  background: var(--sol);
+}
+
+/* Pill legado → discreto */
+.eyebrow--pill {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+/* Seções */
+.section { padding: var(--section-py) 0; }
+.section--tight { padding: 64px 0; }
+.section--areia-escura { background: var(--areia-escura); }
+.section--mare { background: var(--mare); color: var(--branco); }
+.section--mare h2,
+.section--mare h3 { color: var(--branco); }
+.section--mare .section-head__lead,
+.section--mare p { color: var(--mare-text-soft); }
+
+/* Reveal ao scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Faixa de confiança */
+.trust-strip {
+  background: var(--branco);
+  border-bottom: 1px solid var(--areia-escura);
+  padding: 22px 0;
+}
+
+.trust-strip__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #3E4A44;
+}
+
+.trust-item strong {
+  font-family: var(--font-mono);
+  color: var(--mare);
+}
+
+.trust-item svg {
+  flex-shrink: 0;
+  color: var(--tijolo);
+}
+
+/* Painel de maré (busca) */
+.tide-panel {
+  background: rgba(8, 46, 44, 0.72);
+  border: 1px solid rgba(232, 163, 61, 0.35);
+  border-radius: var(--radius-m);
+  padding: 22px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* CTA banner */
+.cta-banner {
+  background: var(--tijolo);
+  color: var(--branco);
+  border-radius: var(--radius-m);
+  padding: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.cta-banner h2 {
+  color: var(--branco);
+  margin: 0;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  max-width: 480px;
+}
+
+.cta-banner .btn--primary {
+  background: var(--mare-escuro);
+}
+
+.cta-banner .btn--primary:hover {
+  background: #051f1d;
+}
+
+@keyframes hero-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.6; transform: scale(0.85); }
+}
+
+@media (max-width: 768px) {
+  .cta-banner { padding: 32px 24px; }
+}

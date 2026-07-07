@@ -1,5 +1,5 @@
 /* ============================================================
-   NAVBAR — Fixa no topo, texto escuro legível
+   NAVBAR — Design system Recife Flats
 ============================================================ */
 
 rf-navbar {
@@ -14,27 +14,37 @@ rf-navbar {
   right: 0;
   width: 100%;
   z-index: var(--z-nav);
-  height: var(--nav-height);
+  min-height: var(--nav-height);
   display: flex;
   align-items: center;
-  background: rgba(246, 239, 228, 0.94);
+  padding: 18px 0;
+  background: rgba(243, 234, 217, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 1px 0 rgba(26, 63, 82, 0.08);
+  box-shadow: 0 1px 0 rgba(27, 36, 32, 0.08);
   transition: background var(--dur-slow) var(--ease-out),
-              backdrop-filter var(--dur-slow) var(--ease-out),
+              padding var(--dur-slow) var(--ease-out),
               box-shadow var(--dur-slow) var(--ease-out),
               top var(--dur-base) var(--ease-out);
 }
 
-/* Barra de anúncio fixa acima — navbar encosta sem folga */
 .site-content:has(.announcement) .navbar {
   top: var(--announcement-height);
 }
 
+/* Sobre o hero — transparente */
+.navbar.is-over-hero:not(.is-scrolled) {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
+/* Após scroll ou páginas internas — maré sólida */
 .navbar.is-scrolled {
-  background: rgba(246, 239, 228, 0.98);
-  box-shadow: 0 4px 24px rgba(26, 63, 82, 0.1);
+  background: var(--mare);
+  padding: 12px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .navbar__inner {
@@ -55,36 +65,54 @@ rf-navbar {
 .navbar__logo-icon {
   width: 36px;
   height: 36px;
-  background: var(--accent);
-  border-radius: var(--radius-sm);
+  background: var(--tijolo);
+  border-radius: var(--radius-s);
   display: grid;
   place-items: center;
   flex-shrink: 0;
   transition: background var(--dur-base);
 }
 
-.navbar__logo:hover .navbar__logo-icon { background: var(--accent-dark); }
+.navbar__logo:hover .navbar__logo-icon { background: var(--tijolo-escuro); }
 
 .navbar__logo-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.15;
+  line-height: 1.1;
 }
 
 .navbar__logo-name {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: var(--ocean);
+  color: var(--mare-escuro);
   letter-spacing: var(--tracking-tight);
 }
 
+.navbar__logo-name em {
+  font-style: italic;
+  color: var(--sol);
+}
+
 .navbar__logo-sub {
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: var(--tracking-wider);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent-dark);
+  color: var(--tijolo);
+  margin-top: 3px;
+}
+
+/* Texto claro sobre hero / navbar maré */
+.navbar.is-over-hero:not(.is-scrolled) .navbar__logo-name,
+.navbar.is-scrolled .navbar__logo-name {
+  color: var(--branco);
+}
+
+.navbar.is-over-hero:not(.is-scrolled) .navbar__logo-sub,
+.navbar.is-scrolled .navbar__logo-sub {
+  color: var(--mare-text-soft);
 }
 
 .navbar__actions {
@@ -106,7 +134,7 @@ rf-navbar {
   font-weight: 700;
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--ocean);
+  color: var(--mare-escuro);
 }
 
 .menu-toggle__icon {
@@ -121,12 +149,12 @@ rf-navbar {
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--ocean);
+  background: var(--mare-escuro);
   border-radius: 2px;
   transform-origin: center;
-  transition: transform 450ms var(--ease-flip),
+  transition: transform 450ms var(--ease-out),
               opacity 450ms,
-              top 450ms var(--ease-flip),
+              top 450ms var(--ease-out),
               background var(--dur-base);
 }
 
@@ -143,12 +171,22 @@ rf-navbar {
 .menu-toggle.is-open .menu-toggle__icon span:nth-child(3) {
   top: 50%; transform: translateY(-50%) rotate(-45deg);
 }
-.menu-toggle.is-open .menu-toggle__icon span { background: var(--sand); }
-.menu-toggle.is-open .menu-toggle__label    { color: var(--sand); }
+.menu-toggle.is-open .menu-toggle__icon span { background: var(--sol); }
+.menu-toggle.is-open .menu-toggle__label { color: var(--sol); }
+
+.navbar.is-over-hero:not(.is-scrolled) .menu-toggle__label,
+.navbar.is-scrolled .menu-toggle__label {
+  color: var(--branco);
+}
+
+.navbar.is-over-hero:not(.is-scrolled) .menu-toggle__icon span,
+.navbar.is-scrolled .menu-toggle__icon span {
+  background: var(--branco);
+}
 
 @media (max-width: 600px) {
   rf-navbar { height: var(--nav-height-mobile); }
-  .navbar { height: var(--nav-height-mobile); }
+  .navbar { min-height: var(--nav-height-mobile); }
   .site-content:has(.announcement) .navbar {
     top: var(--announcement-height-mobile);
   }
@@ -160,31 +198,42 @@ rf-navbar {
   align-items: center;
   gap: var(--space-3);
   background: transparent;
-  color: var(--ocean);
+  color: var(--mare-escuro);
   padding: 6px var(--space-5) 6px 6px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(26, 63, 82, 0.15);
+  border: 1px solid rgba(27, 36, 32, 0.15);
   transition: background var(--dur-base), border-color var(--dur-base);
 }
 
 .btn--phone:hover {
-  background: rgba(26, 63, 82, 0.05);
-  border-color: rgba(26, 63, 82, 0.28);
+  background: rgba(27, 36, 32, 0.05);
+  border-color: rgba(27, 36, 32, 0.28);
+}
+
+.navbar.is-over-hero:not(.is-scrolled) .btn--phone,
+.navbar.is-scrolled .btn--phone {
+  color: var(--branco);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.navbar.is-over-hero:not(.is-scrolled) .btn--phone:hover,
+.navbar.is-scrolled .btn--phone:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .btn--phone__icon {
   width: 36px;
   height: 36px;
-  background: var(--accent);
+  background: var(--tijolo);
   border-radius: 50%;
   display: grid;
   place-items: center;
-  color: var(--white);
+  color: var(--branco);
   flex-shrink: 0;
   transition: background var(--dur-base);
 }
 
-.btn--phone:hover .btn--phone__icon { background: var(--accent-dark); }
+.btn--phone:hover .btn--phone__icon { background: var(--tijolo-escuro); }
 
 .btn--phone__text {
   display: flex;
@@ -201,10 +250,15 @@ rf-navbar {
   color: var(--text-muted);
 }
 
+.navbar.is-over-hero:not(.is-scrolled) .btn--phone__label,
+.navbar.is-scrolled .btn--phone__label {
+  color: var(--mare-text-soft);
+}
+
 .btn--phone__number {
   font-size: var(--fs-sm);
   font-weight: 600;
-  color: var(--ocean);
+  color: inherit;
 }
 
 @media (max-width: 768px) {

@@ -4,8 +4,8 @@
 
 .reservation-steps {
   position: relative;
-  background: linear-gradient(165deg, var(--ocean) 0%, var(--ocean-light) 55%, #2a6d8a 100%);
-  color: var(--white);
+  background: var(--mare);
+  color: var(--branco);
   padding-block: var(--space-10);
   overflow: hidden;
 }
@@ -28,9 +28,9 @@
 }
 
 .reservation-steps__title em {
-  font-family: var(--font-italic);
+  font-family: var(--font-display);
   font-style: italic;
-  color: var(--sun-light);
+  color: var(--sol);
 }
 
 .reservation-steps__lead {
