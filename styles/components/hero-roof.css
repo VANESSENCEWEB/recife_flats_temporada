@@ -1,5 +1,5 @@
 /* ============================================================
-   HERO ROOF — Moldura casa (telhado antes da nav)
+   HERO ROOF + MOLDURA CASA — telhado + verde descendo
    Apenas na home com .site-content--house
 ============================================================ */
 
@@ -33,23 +33,41 @@
   top: calc(var(--roof-height) + var(--announcement-height));
 }
 
-/* ---- Moldura nas paredes (desktop) ---- */
+/* ---- Moldura casa: verde mangue desce pelas laterais ---- */
+.hero-house {
+  position: relative;
+  z-index: 1;
+}
+
 @media (min-width: 901px) {
-  .site-content--house .navbar.is-over-hero:not(.is-scrolled) {
+  .hero-house {
+    background: var(--mangue-900);
+    border-radius: 0 0 16px 16px;
+    overflow: hidden;
+  }
+
+  /* Navbar dentro da moldura — verde visível nas laterais */
+  .hero-house .navbar.is-over-hero:not(.is-scrolled) {
     left: var(--house-inset);
     right: var(--house-inset);
     width: auto;
+    background: rgba(26, 46, 34, 0.42);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-left: var(--house-border) solid var(--terracotta-700);
     border-right: var(--house-border) solid var(--terracotta-700);
+    border-bottom: 1px solid rgba(240, 199, 154, 0.12);
+    box-shadow: none;
   }
 
-  .site-content--house .hero {
+  /* Hero recuado — faixas verdes nas laterais da foto */
+  .hero-house .hero {
     margin-inline: var(--house-inset);
+    width: auto;
     border-left: var(--house-border) solid var(--terracotta-700);
     border-right: var(--house-border) solid var(--terracotta-700);
     border-bottom: var(--house-border) solid var(--terracotta-700);
-    border-radius: 0 0 16px 16px;
-    width: auto;
+    border-radius: 0 0 12px 12px;
   }
 }
 
@@ -73,6 +91,11 @@
 
   .site-content--house:has(.announcement) .navbar {
     top: var(--announcement-height);
+  }
+
+  .hero-house {
+    background: none;
+    border: none;
   }
 }
 

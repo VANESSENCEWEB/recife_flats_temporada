@@ -37,6 +37,13 @@
   margin-top: calc(-1 * var(--hero-header-offset));
 }
 
+/* Dentro da moldura casa o recuo lateral já vem do .hero-house */
+@media (min-width: 901px) {
+  .hero-house .hero {
+    margin-top: calc(-1 * var(--hero-header-offset));
+  }
+}
+
 @media (max-width: 600px) {
   .hero {
     --hero-cloud-reserve: 4rem;
