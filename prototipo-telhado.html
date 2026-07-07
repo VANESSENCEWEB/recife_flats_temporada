@@ -14,14 +14,56 @@
   <main class="hero-roof-demo">
     <header class="hero-roof-demo__intro">
       <p class="eyebrow" style="justify-content:center; margin-bottom:14px;">Protótipo visual · não está no site</p>
-      <h1>Telhado terracota no topo da hero</h1>
+      <h1>Telhado terracota — antes da nav, antes de tudo</h1>
       <p>
-        Três abordagens para o conceito de “casa / aconchego” no desktop.
-        A variante B costuma ser a mais moderna; a C é a mais próxima do seu sketch.
-        No mobile, o telhado some ou vira uma linha fina.
+        O telhado é o <strong>primeiro elemento da página</strong>: acima da navbar, do aviso de promoção e do hero.
+        Abaixo dele entram nav → conteúdo. No mobile, o telhado some ou vira uma linha fina.
       </p>
       <p style="margin-top:12px;"><a href="./index.html">← Voltar ao site</a></p>
     </header>
+
+    <!-- Preview principal: ordem real do site -->
+    <section class="hero-roof-variant hero-roof-variant--featured">
+      <p class="hero-roof-variant__label">Ordem no site · Variante B</p>
+      <h2 class="hero-roof-variant__title">Telhado → Navbar → Hero</h2>
+      <p class="hero-roof-variant__desc">
+        Simulação da pilha real: telhado no topo absoluto, navbar logo abaixo do beiral,
+        depois o hero com busca. É assim que entraria na home se você aprovar.
+      </p>
+
+      <div class="page-stack page-stack--soft">
+        <!-- 1. Telhado — antes de tudo -->
+        <div class="site-roof site-roof--soft" aria-hidden="true">
+          <div class="site-roof__fill"></div>
+          <div class="site-roof__tile"></div>
+          <div class="site-roof__eave"></div>
+        </div>
+
+        <!-- 2. Navbar — abaixo do telhado -->
+        <header class="site-navbar-mock" aria-hidden="true">
+          <span class="site-navbar-mock__logo">Recife Flats <small>Temporada</small></span>
+          <span class="site-navbar-mock__actions">WhatsApp · Menu</span>
+        </header>
+
+        <!-- 3. Hero -->
+        <section class="roof-frame roof-frame--below-roof">
+          <div class="roof-frame__bg"></div>
+          <div class="roof-frame__content">
+            <span class="roof-frame__eyebrow">Boa Viagem e Pina · Recife</span>
+            <h3 class="roof-frame__headline">Um lugar de <em>verdade</em> pra ficar em Recife.</h3>
+            <div class="roof-frame__search" aria-hidden="true">
+              <span>Entrada</span><span>Saída</span><span>Hóspedes</span><span>Quarto</span><span>Consultar</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <ol class="page-stack-order" aria-label="Ordem dos elementos">
+        <li>Telhado terracota</li>
+        <li>Navbar fixa</li>
+        <li>Hero + busca</li>
+      </ol>
+    </section>
 
     <!-- A: Linha arquitetônica -->
     <section class="hero-roof-variant">
@@ -31,21 +73,27 @@
         Só o contorno do telhado em terracota (2px). Elegante, não compete com a foto.
         Funciona bem se você quer inovação sem “ilustração de casa”.
       </p>
-      <div class="roof-frame roof-frame--line">
-        <div class="roof-frame__roof" aria-hidden="true">
+      <div class="page-stack page-stack--line">
+        <div class="site-roof site-roof--line" aria-hidden="true">
           <svg viewBox="0 0 1200 88" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 88 L600 8 L1200 88" fill="none" stroke="#B8502F" stroke-width="3" vector-effect="non-scaling-stroke"/>
             <path d="M0 88 L600 8 L1200 88" fill="none" stroke="#F0C79A" stroke-width="1" opacity="0.5" transform="translate(0, 4)" vector-effect="non-scaling-stroke"/>
           </svg>
         </div>
-        <div class="roof-frame__bg"></div>
-        <div class="roof-frame__content">
-          <span class="roof-frame__eyebrow">Boa Viagem e Pina · Recife</span>
-          <h3 class="roof-frame__headline">Um lugar de <em>verdade</em> pra ficar em Recife.</h3>
-          <div class="roof-frame__search" aria-hidden="true">
-            <span>Entrada</span><span>Saída</span><span>Hóspedes</span><span>Quarto</span><span>Consultar</span>
+        <header class="site-navbar-mock" aria-hidden="true">
+          <span class="site-navbar-mock__logo">Recife Flats <small>Temporada</small></span>
+          <span class="site-navbar-mock__actions">WhatsApp · Menu</span>
+        </header>
+        <section class="roof-frame roof-frame--below-roof">
+          <div class="roof-frame__bg"></div>
+          <div class="roof-frame__content">
+            <span class="roof-frame__eyebrow">Boa Viagem e Pina · Recife</span>
+            <h3 class="roof-frame__headline">Um lugar de <em>verdade</em> pra ficar em Recife.</h3>
+            <div class="roof-frame__search" aria-hidden="true">
+              <span>Entrada</span><span>Saída</span><span>Hóspedes</span><span>Quarto</span><span>Consultar</span>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </section>
 
@@ -57,20 +105,26 @@
         Forma em clip-path com gradiente terracotta e sombra de beiral.
         O site “mor” dentro da casa; moderno, quente, sem parecer clipart.
       </p>
-      <div class="roof-frame roof-frame--soft">
-        <div class="roof-frame__roof" aria-hidden="true">
-          <div class="roof-frame__roof-fill"></div>
-          <div class="roof-frame__roof-tile"></div>
-          <div class="roof-frame__roof-eave"></div>
+      <div class="page-stack page-stack--soft">
+        <div class="site-roof site-roof--soft" aria-hidden="true">
+          <div class="site-roof__fill"></div>
+          <div class="site-roof__tile"></div>
+          <div class="site-roof__eave"></div>
         </div>
-        <div class="roof-frame__bg"></div>
-        <div class="roof-frame__content">
-          <span class="roof-frame__eyebrow">Boa Viagem e Pina · Recife</span>
-          <h3 class="roof-frame__headline">Um lugar de <em>verdade</em> pra ficar em Recife.</h3>
-          <div class="roof-frame__search" aria-hidden="true">
-            <span>Entrada</span><span>Saída</span><span>Hóspedes</span><span>Quarto</span><span>Consultar</span>
+        <header class="site-navbar-mock" aria-hidden="true">
+          <span class="site-navbar-mock__logo">Recife Flats <small>Temporada</small></span>
+          <span class="site-navbar-mock__actions">WhatsApp · Menu</span>
+        </header>
+        <section class="roof-frame roof-frame--below-roof">
+          <div class="roof-frame__bg"></div>
+          <div class="roof-frame__content">
+            <span class="roof-frame__eyebrow">Boa Viagem e Pina · Recife</span>
+            <h3 class="roof-frame__headline">Um lugar de <em>verdade</em> pra ficar em Recife.</h3>
+            <div class="roof-frame__search" aria-hidden="true">
+              <span>Entrada</span><span>Saída</span><span>Hóspedes</span><span>Quarto</span><span>Consultar</span>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     </section>
 
@@ -83,15 +137,19 @@
         use com moderação para não parecer infantil.
       </p>
       <p class="hero-roof-variant--mobile-note">No mobile o telhado desta variante fica oculto.</p>
-      <div class="roof-frame--house-wrap">
-        <div class="roof-frame roof-frame--house">
-          <div class="roof-frame__roof" aria-hidden="true">
-            <svg viewBox="0 0 1200 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 140 L0 52 L600 0 L1200 52 L1200 140 Z" fill="#B8502F"/>
-              <path d="M0 52 L600 0 L1200 52" fill="none" stroke="#8C3A22" stroke-width="2" vector-effect="non-scaling-stroke"/>
-              <path d="M80 140 L80 72 L1120 72 L1120 140 Z" fill="#9C4128" opacity="0.35"/>
-            </svg>
-          </div>
+      <div class="page-stack page-stack--house">
+        <div class="site-roof site-roof--house" aria-hidden="true">
+          <svg viewBox="0 0 1200 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 140 L0 52 L600 0 L1200 52 L1200 140 Z" fill="#B8502F"/>
+            <path d="M0 52 L600 0 L1200 52" fill="none" stroke="#8C3A22" stroke-width="2" vector-effect="non-scaling-stroke"/>
+            <path d="M80 140 L80 72 L1120 72 L1120 140 Z" fill="#9C4128" opacity="0.35"/>
+          </svg>
+        </div>
+        <header class="site-navbar-mock site-navbar-mock--in-house" aria-hidden="true">
+          <span class="site-navbar-mock__logo">Recife Flats <small>Temporada</small></span>
+          <span class="site-navbar-mock__actions">WhatsApp · Menu</span>
+        </header>
+        <section class="roof-frame roof-frame--below-roof roof-frame--house-body">
           <div class="roof-frame__bg"></div>
           <div class="roof-frame__content">
             <span class="roof-frame__eyebrow">Boa Viagem e Pina · Recife</span>
@@ -100,7 +158,7 @@
               <span>Entrada</span><span>Saída</span><span>Hóspedes</span><span>Quarto</span><span>Consultar</span>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </section>
   </main>
